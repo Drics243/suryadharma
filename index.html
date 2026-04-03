@@ -1,56 +1,264 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<title>Mac Studio — Surya Dharma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Surya Dharma — Portfolio & Mac Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════
+   BASE / RESET
+═══════════════════════════════════════════════════ */
+:root{
+  --bg:#1a1a2e;--glass:rgba(255,255,255,.06);--gb:rgba(255,255,255,.11);
+  --tb:rgba(28,28,46,.98);--red:#ff5f57;--yel:#febc2e;--grn:#28c840;
+  --acc:#9d8fff;--acc2:#5ec4ff;--acc3:#ff79c6;--acc4:#50c878;
+  --t1:#f0f0f5;--t2:rgba(240,240,245,.65);--t3:rgba(240,240,245,.38);
+  --sh:0 28px 72px rgba(0,0,0,.7)
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:'DM Sans',sans-serif;color:#f0f0f5;touch-action:none}
-#wp{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 15% 15%,#2d1b69 0%,transparent 55%),radial-gradient(ellipse at 85% 85%,#0f3460 0%,transparent 55%),radial-gradient(ellipse at 50% 50%,#1a1a2e 0%,#0d0d1a 100%)}
-.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) ease-in-out infinite alternate}
-@keyframes twinkle{from{opacity:.08;transform:scale(1)}to{opacity:.9;transform:scale(1.5)}}
-/* MENUBAR */
-#mb{position:fixed;top:0;left:0;right:0;height:28px;z-index:9000;background:rgba(10,10,22,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;padding:0 14px;gap:14px;font-size:12px;color:#f0f0f5}
-#mb .ap{font-size:15px;cursor:pointer}
-#mb .mi span{cursor:pointer;padding:2px 8px;border-radius:4px;color:#f0f0f5;opacity:.85;transition:background .15s}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg)}
+body{font-family:'DM Sans',sans-serif;color:var(--t1);touch-action:none}
+
+/* ═══ WALLPAPER / STARS ═══ */
+#wp{position:fixed;inset:0;z-index:0;
+background:radial-gradient(ellipse at 15% 15%,#2d1b69 0%,transparent 55%),
+radial-gradient(ellipse at 85% 85%,#0f3460 0%,transparent 55%),
+radial-gradient(ellipse at 50% 50%,#1a1a2e 0%,#0d0d1a 100%)}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(–d,3s) ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.08;transform:scale(1)}to{opacity:.9;transform:scale(1.6)}}
+
+/* ═══════════════════════════════════════════════════
+MENU BAR
+═══════════════════════════════════════════════════ */
+#mb{
+position:fixed;top:0;left:0;right:0;height:30px;z-index:9000;
+background:rgba(10,10,22,.96);backdrop-filter:blur(20px) saturate(180%);
+border-bottom:1px solid rgba(255,255,255,.07);
+display:flex;align-items:center;padding:0 16px;gap:16px;
+font-size:13px;font-weight:500;color:var(–t1)
+}
+#mb .apple{font-size:16px;cursor:pointer}
+#mb .mi{display:flex;gap:2px}
+#mb .mi span{cursor:pointer;opacity:.82;padding:2px 8px;border-radius:4px;transition:background .15s;color:var(–t1);font-size:12px;white-space:nowrap}
 #mb .mi span:hover{background:rgba(255,255,255,.12);opacity:1}
-#mb .rt{margin-left:auto;display:flex;gap:10px;align-items:center;color:#f0f0f5}
-#clock{font-size:11px}
-/* DESKTOP */
-#desk{position:fixed;top:28px;left:0;right:0;bottom:78px;z-index:1;padding:12px}
-.di{position:absolute;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:8px;border-radius:10px;width:80px;transition:background .2s}
+#mb .rt{margin-left:auto;display:flex;gap:12px;align-items:center;color:var(–t1)}
+#clock{font-size:12px;color:var(–t1)}
+/* Menu groups separator */
+.mb-sep{width:1px;height:16px;background:rgba(255,255,255,.15);margin:0 4px}
+
+/* ═══════════════════════════════════════════════════
+DESKTOP
+═══════════════════════════════════════════════════ */
+#desk{position:fixed;top:30px;left:0;right:0;bottom:86px;z-index:1;padding:14px}
+.di{position:absolute;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:8px;border-radius:10px;width:82px;transition:background .2s}
 .di:hover,.di:active{background:rgba(255,255,255,.1)}
-.di .ico{font-size:36px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));transition:transform .2s}
-.di:hover .ico{transform:scale(1.1)}
-.di span{font-size:10px;color:#f0f0f5;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.9)}
-/* DOCK */
-#dock{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);z-index:9000;display:flex;align-items:flex-end;gap:7px;padding:7px 14px;background:rgba(255,255,255,.09);backdrop-filter:blur(30px);border-radius:20px;border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.di .ico{font-size:40px;transition:transform .2s;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+.di:hover .ico{transform:scale(1.12)}
+.di span{font-size:11px;color:var(–t1);text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.9);line-height:1.3}
+
+/* ═══════════════════════════════════════════════════
+DOCK
+═══════════════════════════════════════════════════ */
+#dock{
+position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:9000;
+display:flex;align-items:flex-end;gap:7px;padding:8px 14px;
+background:rgba(255,255,255,.09);backdrop-filter:blur(30px) saturate(200%);
+border-radius:22px;border:1px solid rgba(255,255,255,.16);
+box-shadow:0 8px 32px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)
+}
 .dk{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:transform .2s cubic-bezier(.34,1.56,.64,1);position:relative}
 .dk:hover{transform:scale(1.35) translateY(-10px)}
 .dk:hover .dtt{opacity:1}
-.dki{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:25px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.dki{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
 .dkd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.55);opacity:.3;transition:opacity .2s}
 .dkd.on{opacity:1}
-.dtt{position:absolute;bottom:calc(100%+10px);left:50%;transform:translateX(-50%);background:rgba(10,10,22,.96);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:4px 10px;font-size:11px;color:#f0f0f5;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
-.dksep{width:1px;height:36px;background:rgba(255,255,255,.18);margin:0 4px}
-/* WINDOWS */
-.macwin{position:fixed;z-index:100;background:rgba(18,18,32,.96);backdrop-filter:blur(40px);border-radius:13px;border:1px solid rgba(255,255,255,.12);box-shadow:0 28px 72px rgba(0,0,0,.7);display:none;flex-direction:column;overflow:hidden;min-width:360px;min-height:260px}
-.macwin.open{display:flex}
-.mwtb{height:38px;background:rgba(22,22,40,.98);display:flex;align-items:center;padding:0 12px;cursor:grab;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.07);touch-action:none;gap:10px}
-.mwtb:active{cursor:grabbing}
-.tls{display:flex;gap:7px;flex-shrink:0}
-.tl{width:12px;height:12px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:7px;color:transparent;transition:color .15s}
-.tl:hover{color:rgba(0,0,0,.7)}
-.tl.r{background:#ff5f57}.tl.y{background:#febc2e}.tl.g{background:#28c840}
-.wt{flex:1;text-align:center;font-size:12px;color:rgba(240,240,245,.5);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dtt{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(12,12,26,.96);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:4px 10px;font-size:11px;color:var(–t1);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
+.dksep{width:1px;height:40px;background:rgba(255,255,255,.18);margin:0 4px}
 
-/* ═══ FINDER ═══ */
-#finder{width:720px;height:480px;top:48px;left:60px}
+/* ═══════════════════════════════════════════════════
+WINDOWS (shared base)
+═══════════════════════════════════════════════════ */
+.win{
+position:fixed;z-index:100;
+background:rgba(18,18,32,.95);backdrop-filter:blur(40px) saturate(180%);
+border-radius:14px;border:1px solid rgba(255,255,255,.12);
+box-shadow:var(–sh),0 0 0 1px rgba(0,0,0,.4);
+display:none;flex-direction:column;overflow:hidden;
+min-width:320px;min-height:260px;
+animation:wO .3s cubic-bezier(.34,1.56,.64,1) both
+}
+.win.active{display:flex}
+@keyframes wO{from{opacity:0;transform:scale(.84)}to{opacity:1;transform:scale(1)}}
+@keyframes wC{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.84) translateY(50px)}}
+
+/* title bar */
+.tb{height:40px;background:rgba(24,24,40,.98);display:flex;align-items:center;padding:0 14px;cursor:grab;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.06);touch-action:none}
+.tb:active{cursor:grabbing}
+.tls{display:flex;gap:8px;margin-right:12px}
+.tl{width:13px;height:13px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:8px;color:transparent;transition:color .15s;flex-shrink:0}
+.tl:hover{color:rgba(0,0,0,.7)}
+.tl.r{background:var(–red)}.tl.y{background:var(–yel)}.tl.g{background:var(–grn)}
+.tbtitle{flex:1;text-align:center;font-size:13px;font-weight:500;color:rgba(240,240,245,.55);margin-right:60px}
+.wc{flex:1;overflow-y:auto;overflow-x:hidden}
+.wc::-webkit-scrollbar{width:5px}
+.wc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:3px}
+
+/* ═══════════════════════════════════════════════════
+SHARED COMPONENTS
+═══════════════════════════════════════════════════ */
+.stitle{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(–acc);font-weight:600;display:flex;align-items:center;gap:10px}
+.stitle::after{content:’’;flex:1;height:1px;background:linear-gradient(to right,rgba(157,143,255,.35),transparent)}
+.badge{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid;transition:transform .2s;cursor:default}
+.badge:hover{transform:translateY(-2px)}
+.bv{background:rgba(157,143,255,.15);border-color:rgba(157,143,255,.4);color:#c4b8ff}
+.bb{background:rgba(94,196,255,.15);border-color:rgba(94,196,255,.4);color:#7dd8ff}
+.bp{background:rgba(255,121,198,.15);border-color:rgba(255,121,198,.4);color:#ff9dd8}
+.bg{background:rgba(80,200,120,.15);border-color:rgba(80,200,120,.4);color:#7ae0a0}
+.bo{background:rgba(254,188,46,.15);border-color:rgba(254,188,46,.4);color:#fed876}
+.btn{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btnp{background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;box-shadow:0 4px 20px rgba(124,106,247,.4)}
+.btnp:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,106,247,.5)}
+.btns{background:rgba(255,255,255,.08);color:var(–t1);border:1px solid rgba(255,255,255,.14)}
+.btns:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════════════
+PORTFOLIO WINDOWS
+═══════════════════════════════════════════════════ */
+
+/* HOME */
+#wh{width:700px;height:510px;top:50px;left:calc(50% - 350px)}
+.hwrap{padding:36px 42px;display:flex;flex-direction:column;gap:22px}
+.hhero{display:flex;gap:26px;align-items:center}
+.avatar{width:88px;height:88px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#7c6af7,#5ec4ff);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;color:#fff;box-shadow:0 8px 32px rgba(124,106,247,.55);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.ht h1{font-size:28px;font-weight:700;color:var(–t1);line-height:1.2}
+.ht h1 span{color:var(–acc2)}
+.hsub{font-size:14px;color:var(–t2);margin-top:5px}
+.typer{font-size:12px;color:var(–acc);font-family:‘Fira Code’,monospace;margin-top:7px;min-height:18px}
+.badges{display:flex;gap:7px;flex-wrap:wrap}
+.srow{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.sc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:15px;text-align:center;transition:transform .2s,background .2s}
+.sc:hover{transform:translateY(-4px);background:rgba(255,255,255,.09)}
+.sc .num{font-size:26px;font-weight:700;color:var(–acc2)}
+.sc .lbl{font-size:10px;color:var(–t3);margin-top:3px;text-transform:uppercase;letter-spacing:1px}
+.ctar{display:flex;gap:9px;flex-wrap:wrap}
+
+/* ABOUT */
+#wa{width:720px;height:580px;top:55px;left:calc(50% - 360px)}
+.awrap{padding:28px 32px;display:flex;flex-direction:column;gap:18px}
+.abio{font-size:13px;color:var(–t2);line-height:1.8;padding:15px;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08)}
+.abio strong{color:var(–t1)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ir{display:flex;align-items:center;gap:10px;padding:8px 11px;background:rgba(255,255,255,.05);border-radius:9px;border:1px solid rgba(255,255,255,.08);transition:background .2s}
+.ir:hover{background:rgba(255,255,255,.09)}
+.ir i{font-size:13px;color:var(–acc);width:16px;text-align:center}
+.ik{font-size:12px;font-weight:600;color:var(–t1);min-width:68px}
+.iv{font-size:12px;color:var(–t2)}
+.sklst{display:flex;flex-direction:column;gap:9px}
+.ski{display:flex;flex-direction:column;gap:5px}
+.skh{display:flex;justify-content:space-between}
+.skn{font-size:12px;color:var(–t2)}.skp{font-size:12px;font-weight:700;color:var(–acc)}
+.skt{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.skb{height:100%;border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
+.skchips{display:flex;gap:6px;flex-wrap:wrap}
+.skchip{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;background:rgba(94,196,255,.1);border:1px solid rgba(94,196,255,.22);color:#7dd8ff}
+.tl2{display:flex;flex-direction:column}
+.tlr{display:flex;gap:12px;padding-bottom:15px;position:relative}
+.tlr::before{content:’’;position:absolute;left:5px;top:15px;bottom:0;width:1px;background:rgba(255,255,255,.08)}
+.tlr:last-child::before{display:none}
+.tld{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid var(–acc);background:var(–bg);box-shadow:0 0 8px rgba(157,143,255,.5)}
+.tlyr{font-size:11px;color:var(–acc);font-weight:600}
+.tltl{font-size:13px;color:var(–t1);font-weight:500;margin-top:1px}
+.tldc{font-size:12px;color:var(–t3);margin-top:2px;line-height:1.5}
+.lchip{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:500;background:rgba(94,196,255,.12);border:1px solid rgba(94,196,255,.25);color:#7dd8ff}
+
+/* ACHIEVEMENTS */
+#wac{width:740px;height:580px;top:55px;left:calc(50% - 370px)}
+.acwrap{padding:26px 30px;display:flex;flex-direction:column;gap:16px}
+.actabs{display:flex;gap:7px;flex-wrap:wrap}
+.actab{padding:7px 15px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(–t2);font-family:inherit;transition:all .2s}
+.actab.active{background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;border-color:transparent}
+.actab:hover:not(.active){background:rgba(255,255,255,.08);color:var(–t1)}
+.acgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.acard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:17px;cursor:pointer;position:relative;overflow:hidden;transition:all .25s cubic-bezier(.34,1.56,.64,1)}
+.acard::after{content:’’;position:absolute;inset:0;opacity:0;transition:opacity .3s;background:radial-gradient(circle at 50% 0%,rgba(157,143,255,.18),transparent 70%)}
+.acard:hover{transform:translateY(-5px);border-color:rgba(157,143,255,.4)}
+.acard:hover::after{opacity:1}
+.aico{font-size:28px;margin-bottom:9px}
+.attl{font-size:13px;font-weight:600;color:var(–t1)}
+.asub{font-size:11px;color:var(–t3);margin-top:3px;line-height:1.5}
+.ayear{position:absolute;top:12px;right:12px;font-size:10px;color:var(–acc);font-family:‘Fira Code’,monospace;background:rgba(157,143,255,.12);padding:2px 7px;border-radius:4px}
+.afeat{grid-column:1/-1;background:linear-gradient(135deg,rgba(157,143,255,.16),rgba(94,196,255,.1));border-color:rgba(157,143,255,.3)}
+.afeat .aico{font-size:38px}
+.clist{display:flex;flex-direction:column;gap:7px}
+.citem{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.09);transition:all .2s}
+.citem:hover{background:rgba(255,255,255,.09);border-color:rgba(157,143,255,.3);transform:translateX(3px)}
+.cnum{font-size:18px;flex-shrink:0;width:30px;text-align:center}
+.cinfo{flex:1}
+.ctitle{font-size:12px;font-weight:600;color:var(–t1);line-height:1.4}
+.cissuer{font-size:11px;color:var(–t2);margin-top:2px}
+.cdate{font-size:10px;color:var(–t3);font-family:‘Fira Code’,monospace;margin-top:1px}
+.cverify{display:inline-flex;align-items:center;gap:5px;margin-top:5px;font-size:11px;color:var(–acc2);text-decoration:none;background:rgba(94,196,255,.1);border:1px solid rgba(94,196,255,.2);padding:3px 10px;border-radius:5px;transition:all .2s}
+.cverify:hover{background:rgba(94,196,255,.2);border-color:rgba(94,196,255,.4)}
+.cnum2{font-size:10px;color:var(–t3);font-family:‘Fira Code’,monospace;flex-shrink:0}
+
+/* GRADES */
+#wg{width:700px;height:560px;top:55px;left:calc(50% - 350px)}
+.gwrap{padding:26px 30px;display:flex;flex-direction:column;gap:15px}
+.gpahero{background:linear-gradient(135deg,rgba(157,143,255,.18),rgba(94,196,255,.12));border:1px solid rgba(157,143,255,.3);border-radius:13px;padding:18px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.gpanum{font-size:48px;font-weight:700;color:var(–acc2);flex-shrink:0;min-width:80px}
+.gpalbl{font-size:10px;color:var(–t3);text-transform:uppercase;letter-spacing:1px}
+.gpadesc{font-size:12px;color:var(–t2);margin-top:3px}
+.stabs{display:flex;gap:7px;flex-wrap:wrap}
+.stab{padding:6px 13px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(–t2);font-family:inherit;transition:all .2s}
+.stab.active{background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;border-color:transparent}
+.stab:hover:not(.active){background:rgba(255,255,255,.08);color:var(–t1)}
+.gtable{width:100%;border-collapse:separate;border-spacing:0 4px}
+.gtable th{font-size:10px;color:var(–t3);text-transform:uppercase;letter-spacing:1px;padding:5px 10px;text-align:left}
+.gtable tr.gr td{padding:9px 10px;font-size:12px;color:var(–t1);background:rgba(255,255,255,.05);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);transition:background .2s}
+.gtable tr.gr td:first-child{border-left:1px solid rgba(255,255,255,.08);border-radius:7px 0 0 7px}
+.gtable tr.gr td:last-child{border-right:1px solid rgba(255,255,255,.08);border-radius:0 7px 7px 0}
+.gtable tr.gr:hover td{background:rgba(255,255,255,.09)}
+.gbg{display:inline-block;padding:2px 8px;border-radius:5px;font-weight:700;font-size:11px}
+.gA{background:rgba(80,200,120,.2);color:#7ae0a0}
+.gAm{background:rgba(94,196,255,.2);color:#7dd8ff}
+.gBp{background:rgba(254,188,46,.2);color:#fed876}
+.gB{background:rgba(255,121,198,.18);color:#ff9dd8}
+.gbw{height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden;min-width:70px}
+.gbb{height:100%;border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.csoon{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px;gap:12px;text-align:center}
+.csoon .csi{font-size:52px}
+.csoon h3{font-size:18px;font-weight:600;color:var(–t1)}
+.csoon p{font-size:13px;color:var(–t2)}
+
+/* CONTACT */
+#wco{width:620px;height:500px;top:65px;left:calc(50% - 310px)}
+.cowrap{padding:28px 32px;display:flex;flex-direction:column;gap:17px}
+.ccgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cccard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:14px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .2s}
+.cccard:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);border-color:rgba(157,143,255,.35)}
+.ccico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ccnm{font-size:13px;font-weight:600;color:var(–t1)}
+.ccvl{font-size:11px;color:var(–t3);margin-top:1px}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.flbl{font-size:11px;color:var(–t2);font-weight:500;margin-bottom:4px}
+.finp{width:100%;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(–t1);font-family:inherit;font-size:13px;outline:none;resize:vertical;transition:border-color .2s,background .2s}
+.finp:focus{border-color:var(–acc);background:rgba(157,143,255,.08)}
+.finp::placeholder{color:var(–t3)}
+.sbtn{width:100%;padding:12px;border-radius:8px;border:none;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;transition:all .2s}
+.sbtn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,106,247,.45)}
+
+/* ═══════════════════════════════════════════════════
+VS CODE / FINDER WINDOWS
+═══════════════════════════════════════════════════ */
+
+/* FINDER */
+#finder{width:720px;height:480px;top:80px;left:70px}
 .f-body{display:flex;flex:1;overflow:hidden}
 .f-sb{width:155px;background:rgba(12,12,26,.85);border-right:1px solid rgba(255,255,255,.06);padding:10px 0;flex-shrink:0;overflow-y:auto}
 .f-sb-sec{font-size:10px;color:rgba(240,240,245,.35);text-transform:uppercase;letter-spacing:1.5px;padding:8px 14px 4px}
@@ -70,19 +278,19 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:
 .f-item.sel{background:rgba(157,143,255,.2);outline:1px solid rgba(157,143,255,.4)}
 .f-item .fio{font-size:34px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.4))}
 .f-item .fin{font-size:11px;color:#f0f0f5;word-break:break-all;line-height:1.3;max-width:74px}
-.f-status{height:26px;background:rgba(12,12,26,.6);border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:0 14px;font-size:11px;color:rgba(240,240,245,.35);flex-shrink:0}
+.f-status-bar{height:26px;background:rgba(12,12,26,.6);border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:0 14px;font-size:11px;color:rgba(240,240,245,.35);flex-shrink:0}
 .f-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:rgba(240,240,245,.3);font-size:13px;gap:8px}
 .f-empty span{font-size:38px}
 
-/* ═══ VSCODE ═══ */
-#vscode{width:960px;height:620px;top:42px;left:200px}
+/* VSCODE */
+#vscode{width:960px;height:620px;top:55px;left:200px}
 .vsc-body{display:flex;flex:1;overflow:hidden;flex-direction:column}
 .vsc-main{display:flex;flex:1;overflow:hidden}
 .vsc-act{width:44px;background:rgba(10,10,22,.98);display:flex;flex-direction:column;align-items:center;padding:4px 0;gap:1px;flex-shrink:0;border-right:1px solid rgba(255,255,255,.07)}
 .abt{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:rgba(240,240,245,.45);transition:all .2s;margin:2px 0;position:relative}
 .abt:hover{color:rgba(240,240,245,.9);background:rgba(255,255,255,.08)}
 .abt.on{color:#9d8fff}
-.abt.on::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:24px;background:#9d8fff;border-radius:0 2px 2px 0}
+.abt.on::before{content:’’;position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:24px;background:#9d8fff;border-radius:0 2px 2px 0}
 .abt.run{color:#28c840}
 .abt.run:hover{background:rgba(40,200,64,.15);color:#50e87a}
 .act-gap{flex:1}
@@ -94,12 +302,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:
 .ftree{flex:1;overflow-y:auto;padding-bottom:8px}
 .ftree::-webkit-scrollbar{width:3px}
 .ftree::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12)}
-.fti{display:flex;align-items:center;gap:5px;padding:3px 6px 3px var(--ind,6px);cursor:pointer;font-size:12px;color:rgba(240,240,245,.72);transition:background .1s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fti{display:flex;align-items:center;gap:5px;padding:3px 6px 3px var(–ind,6px);cursor:pointer;font-size:12px;color:rgba(240,240,245,.72);transition:background .1s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fti:hover{background:rgba(255,255,255,.07)}
 .fti.on{background:rgba(157,143,255,.2);color:#d4ccff}
 .fti .arr{font-size:9px;color:rgba(240,240,245,.35);width:10px;flex-shrink:0;transition:transform .15s}
 .fti.op .arr{transform:rotate(90deg)}
-/* EDITOR */
 .vsc-ea{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#1e1e1e}
 .tabbar{height:34px;background:rgba(14,14,24,.98);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:flex-end;overflow-x:auto;flex-shrink:0}
 .tabbar::-webkit-scrollbar{height:0}
@@ -122,13 +329,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:
 .ebtn.s{background:rgba(255,255,255,.08);color:#f0f0f5;border:1px solid rgba(255,255,255,.14)}
 .ebtn.s:hover{background:rgba(255,255,255,.14)}
 #cm-wrap{flex:1;overflow:hidden}
-/* CodeMirror overrides */
-.CodeMirror{height:100%!important;font-family:'Fira Code',monospace!important;font-size:13px!important;line-height:1.65!important;background:#1e1e1e!important}
+.CodeMirror{height:100%!important;font-family:‘Fira Code’,monospace!important;font-size:13px!important;line-height:1.65!important;background:#1e1e1e!important}
 .CodeMirror-gutters{background:#1e1e1e!important;border-right:1px solid rgba(255,255,255,.1)!important}
 .CodeMirror-linenumber{color:rgba(240,240,245,.28)!important}
-/* BOTTOM PANEL */
-.bp{height:190px;background:#1e1e1e;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;flex-shrink:0;transition:height .2s}
-.bp.col{height:28px;overflow:hidden}
+.vsc-bp{height:190px;background:#1e1e1e;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;flex-shrink:0;transition:height .2s}
+.vsc-bp.col{height:28px;overflow:hidden}
 .ptabs{height:28px;background:rgba(10,10,22,.98);display:flex;align-items:center;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.07)}
 .ptab{padding:0 13px;height:100%;display:flex;align-items:center;font-size:10px;color:rgba(240,240,245,.4);cursor:pointer;text-transform:uppercase;letter-spacing:.8px;transition:color .15s;border-top:1px solid transparent}
 .ptab:hover{color:rgba(240,240,245,.8)}
@@ -136,81 +341,318 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:
 .pacts{margin-left:auto;display:flex;align-items:center;gap:1px;padding:0 8px}
 .pab{background:none;border:none;color:rgba(240,240,245,.4);cursor:pointer;font-size:12px;padding:4px 7px;border-radius:4px;transition:all .15s;font-family:inherit}
 .pab:hover{background:rgba(255,255,255,.1);color:#f0f0f5}
-.pc{flex:1;overflow:hidden;display:flex;flex-direction:column}
-.pc.h{display:none}
-.term{flex:1;overflow-y:auto;padding:10px 12px;font-family:'Fira Code',monospace;font-size:12px;line-height:1.65;background:#0d0d1a;color:#d4d4d4}
+.vsc-pc{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.vsc-pc.h{display:none}
+.term{flex:1;overflow-y:auto;padding:10px 12px;font-family:‘Fira Code’,monospace;font-size:12px;line-height:1.65;background:#0d0d1a;color:#d4d4d4}
 .term::-webkit-scrollbar{width:3px}
 .term::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12)}
 .tw{color:#9d8fff}.tp{color:#28c840}.to{color:#ccc}.te{color:#ff5f57}.ti{color:#5ec4ff}.tv{color:#febc2e}
 .pframe{flex:1;border:none;background:#fff}
-.prob{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:rgba(240,240,245,.35);font-size:13px;gap:8px}
-/* STATUS BAR */
-.sb{height:22px;background:#007acc;display:flex;align-items:center;padding:0 10px;flex-shrink:0;font-size:11px;color:#fff}
-.sb .sl{display:flex;gap:10px;align-items:center}
-.sb .sr{margin-left:auto;display:flex;gap:10px;align-items:center}
-.sb span{opacity:.9;cursor:pointer}
-/* MODALS */
-.mo{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
-.mb{background:rgba(20,20,38,.98);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:24px;min-width:360px;max-width:500px;box-shadow:0 24px 60px rgba(0,0,0,.7)}
-.mt{font-size:15px;font-weight:600;color:#f0f0f5;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.mg{display:flex;flex-direction:column;gap:11px}
-.mg label{display:block;font-size:11px;color:rgba(240,240,245,.55);margin-bottom:4px;font-weight:500}
-.mg input{width:100%;padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#f0f0f5;font-family:'Fira Code',monospace;font-size:13px;outline:none;transition:border-color .2s}
-.mg input:focus{border-color:rgba(157,143,255,.6)}
-.mf{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
-.mf button{padding:8px 20px;border-radius:7px;border:none;font-family:inherit;font-size:13px;cursor:pointer;transition:all .2s;font-weight:500}
+.vsc-prob{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:rgba(240,240,245,.35);font-size:13px;gap:8px}
+.vsc-statusbar{height:22px;background:#007acc;display:flex;align-items:center;padding:0 10px;flex-shrink:0;font-size:11px;color:#fff}
+.vsc-statusbar .sl{display:flex;gap:10px;align-items:center}
+.vsc-statusbar .sr{margin-left:auto;display:flex;gap:10px;align-items:center}
+.vsc-statusbar span{opacity:.9;cursor:pointer}
+
+/* ═══════════════════════════════════════════════════
+MODALS (VSC)
+═══════════════════════════════════════════════════ */
+.vsc-modal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.vsc-modal-box{background:rgba(20,20,38,.98);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:24px;min-width:360px;max-width:500px;box-shadow:0 24px 60px rgba(0,0,0,.7)}
+.vsc-mt{font-size:15px;font-weight:600;color:#f0f0f5;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.vsc-mg{display:flex;flex-direction:column;gap:11px}
+.vsc-mg label{display:block;font-size:11px;color:rgba(240,240,245,.55);margin-bottom:4px;font-weight:500}
+.vsc-mg input{width:100%;padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#f0f0f5;font-family:‘Fira Code’,monospace;font-size:13px;outline:none;transition:border-color .2s}
+.vsc-mg input:focus{border-color:rgba(157,143,255,.6)}
+.vsc-mf{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.vsc-mf button{padding:8px 20px;border-radius:7px;border:none;font-family:inherit;font-size:13px;cursor:pointer;transition:all .2s;font-weight:500}
 .mcc{background:rgba(255,255,255,.08);color:#f0f0f5;border:1px solid rgba(255,255,255,.14)}
 .mcc:hover{background:rgba(255,255,255,.14)}
 .mcr{background:linear-gradient(135deg,#28c840,#20a830);color:#fff}
 .mcr:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(40,200,64,.4)}
 .minfo{font-size:12px;color:rgba(240,240,245,.45);padding:10px;background:rgba(255,255,255,.04);border-radius:7px;line-height:1.7;margin-bottom:2px}
-/* NOTIFICATION */
-.notif{position:fixed;top:36px;right:14px;z-index:99999;background:rgba(18,18,38,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 16px;min-width:240px;box-shadow:0 8px 32px rgba(0,0,0,.6);transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);display:flex;gap:11px;align-items:flex-start}
+
+/* ═══════════════════════════════════════════════════
+NOTIFICATION
+═══════════════════════════════════════════════════ */
+.notif{position:fixed;top:38px;right:16px;z-index:99999;background:rgba(18,18,38,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:13px 17px;min-width:260px;box-shadow:0 8px 32px rgba(0,0,0,.6);transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);display:flex;gap:12px;align-items:center}
 .notif.show{transform:translateX(0)}
+.nttl{font-size:13px;font-weight:600;color:var(–t1)}
+.ntmsg{font-size:12px;color:var(–t3);margin-top:2px}
+
+/* ═══════════════════════════════════════════════════
+SPOTLIGHT
+═══════════════════════════════════════════════════ */
+#spl{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.45);backdrop-filter:blur(12px);display:none;align-items:flex-start;justify-content:center;padding-top:14vh}
+#spl.open{display:flex}
+.spbox{width:580px;background:rgba(18,18,38,.97);backdrop-filter:blur(30px);border-radius:16px;border:1px solid rgba(255,255,255,.15);box-shadow:0 32px 80px rgba(0,0,0,.8);overflow:hidden;animation:wO .2s ease both}
+.spinrow{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.spinrow i{font-size:17px;color:var(–t3)}
+#spinput{flex:1;background:transparent;border:none;outline:none;font-family:inherit;font-size:18px;color:var(–t1)}
+#spinput::placeholder{color:var(–t3)}
+.spres{padding:6px 0;max-height:280px;overflow-y:auto}
+.sprow{display:flex;align-items:center;gap:13px;padding:10px 20px;cursor:pointer;transition:background .15s;color:var(–t1)}
+.sprow:hover,.sprow.sel{background:rgba(157,143,255,.2)}
+.sprow i{font-size:15px;width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:rgba(157,143,255,.15);color:var(–acc)}
+.spnm{font-size:14px;font-weight:500;color:var(–t1)}
+
+/* CONTEXT MENU */
+#ctx{position:fixed;z-index:9997;background:rgba(18,18,38,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 0;min-width:180px;box-shadow:0 16px 40px rgba(0,0,0,.6);display:none}
+#ctx.open{display:block;animation:fadeIn .15s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.ctxr{padding:8px 16px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:10px;color:var(–t1);transition:background .15s}
+.ctxr i{font-size:12px;color:var(–t3);width:14px}
+.ctxr:hover{background:rgba(157,143,255,.2)}
+.ctxs{height:1px;background:rgba(255,255,255,.08);margin:4px 0}
+
 ::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:3px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:3px}
 </style>
+
 </head>
 <body>
 <div id="wp"></div>
 
-<!-- MENUBAR -->
+<!-- ═══════════════════════════════════════════════════
+     MENU BAR
+═══════════════════════════════════════════════════ -->
+
 <div id="mb">
-  <span class="ap">🍎</span>
-  <div class="mi" style="display:flex;gap:2px">
+  <span class="apple">🍎</span>
+  <div class="mi">
+    <!-- Portfolio menus -->
+    <span onclick="owp('h')">Home</span>
+    <span onclick="owp('a')">About</span>
+    <span onclick="owp('ac')">Achievements</span>
+    <span onclick="owp('g')">Grades</span>
+    <span onclick="owp('co')">Contact</span>
+    <div class="mb-sep"></div>
+    <!-- VSC menus -->
     <span onclick="toggleWin('finder')">Finder</span>
     <span onclick="toggleWin('vscode')">Editor</span>
-    <span onclick="newFile()">File → New</span>
-    <span onclick="runFile()">▶ Run</span>
-    <span onclick="clearTerm()">Clear Terminal</span>
+    <span onclick="vscNewFile()">File→New</span>
+    <span onclick="vscRunFile()">▶ Run</span>
+    <span onclick="vscClearTerm()">Clear Term</span>
   </div>
   <div class="rt">
-    <i class="fas fa-wifi" style="font-size:12px"></i>
+    <i class="fas fa-wifi" style="color:var(--t1);font-size:13px"></i>
+    <i class="fas fa-battery-three-quarters" style="color:var(--t1);font-size:13px"></i>
+    <i class="fas fa-search" style="color:var(--t1);font-size:13px;cursor:pointer" onclick="openSpl()"></i>
     <span id="clock"></span>
   </div>
 </div>
 
-<!-- DESKTOP ICONS -->
+<!-- ═══════════════════════════════════════════════════
+     DESKTOP ICONS
+═══════════════════════════════════════════════════ -->
+
 <div id="desk">
-  <div class="di" style="top:16px;left:16px" ondblclick="toggleWin('finder')"><div class="ico">🗂️</div><span>Finder</span></div>
-  <div class="di" style="top:106px;left:16px" ondblclick="toggleWin('vscode')"><div class="ico">💻</div><span>VS Code</span></div>
-  <div class="di" style="top:196px;left:16px" ondblclick="goPortfolio()"><div class="ico">🌐</div><span>Portfolio</span></div>
+  <!-- Portfolio icons -->
+  <div class="di" style="top:14px;left:14px" ondblclick="owp('h')" ontouchend="dbt('h',event)"><div class="ico">🏠</div><span>Home</span></div>
+  <div class="di" style="top:106px;left:14px" ondblclick="owp('a')" ontouchend="dbt('a',event)"><div class="ico">👤</div><span>About Me</span></div>
+  <div class="di" style="top:198px;left:14px" ondblclick="owp('ac')" ontouchend="dbt('ac',event)"><div class="ico">🏆</div><span>Achievements</span></div>
+  <div class="di" style="top:290px;left:14px" ondblclick="owp('g')" ontouchend="dbt('g',event)"><div class="ico">📊</div><span>Grades</span></div>
+  <div class="di" style="top:382px;left:14px" ondblclick="owp('co')" ontouchend="dbt('co',event)"><div class="ico">✉️</div><span>Contact</span></div>
+  <!-- VSC icons (right side) -->
+  <div class="di" style="top:14px;right:14px" ondblclick="toggleWin('finder')"><div class="ico">🗂️</div><span>Finder</span></div>
+  <div class="di" style="top:106px;right:14px" ondblclick="toggleWin('vscode')"><div class="ico">💻</div><span>VS Code</span></div>
 </div>
 
-<!-- ═══════════ FINDER ═══════════ -->
-<div class="macwin" id="finder">
-  <div class="mwtb" id="tb-finder">
+<!-- ═══════════════════════════════════════════════════
+     PORTFOLIO WINDOWS
+═══════════════════════════════════════════════════ -->
+
+<!-- HOME -->
+
+<div class="win" id="wh">
+  <div class="tb" id="tbh"><div class="tls"><div class="tl r" onclick="cwp('h')">✕</div><div class="tl y" onclick="mwp('h')">–</div><div class="tl g" onclick="xwp('h')">+</div></div><div class="tbtitle">🏠 Home — Surya Dharma</div></div>
+  <div class="wc"><div class="hwrap">
+    <div class="hhero">
+      <div class="avatar">SD</div>
+      <div class="ht">
+        <h1>Hi, I'm <span>Surya Dharma</span> 👋</h1>
+        <div class="hsub">Entrepreneur · Trader · Student · Bogor, Indonesia 🇮🇩</div>
+        <div class="typer" id="typer">// Loading...</div>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge bv">📈 Index Trader</span>
+      <span class="badge bb">💛 Gold &amp; Silver</span>
+      <span class="badge bp">🎓 SMAIT Ummul Quro</span>
+      <span class="badge bg">🏢 GrowHost Founder</span>
+      <span class="badge bo">🤝 Datalix Co-Founder</span>
+      <span class="badge bv">🌐 TRADER FX ID</span>
+    </div>
+    <div class="srow">
+      <div class="sc"><div class="num" data-c="26">0</div><div class="lbl">Certifications</div></div>
+      <div class="sc"><div class="num" data-c="5">0</div><div class="lbl">Years in Business</div></div>
+      <div class="sc"><div class="num" data-c="5">0</div><div class="lbl">Instruments Traded</div></div>
+      <div class="sc"><div class="num" data-c="11">0</div><div class="lbl">School Grade</div></div>
+    </div>
+    <div class="ctar">
+      <button class="btn btnp" onclick="owp('a')">🔍 About Me</button>
+      <button class="btn btns" onclick="owp('ac')">🏆 Achievements</button>
+      <button class="btn btns" onclick="owp('g')">📊 Grades</button>
+      <button class="btn btns" onclick="owp('co')">✉️ Contact</button>
+    </div>
+  </div></div>
+</div>
+
+<!-- ABOUT -->
+
+<div class="win" id="wa">
+  <div class="tb" id="tba"><div class="tls"><div class="tl r" onclick="cwp('a')">✕</div><div class="tl y" onclick="mwp('a')">–</div><div class="tl g" onclick="xwp('a')">+</div></div><div class="tbtitle">👤 About Me — Surya Dharma</div></div>
+  <div class="wc"><div class="awrap">
+    <div class="stitle">Bio</div>
+    <div class="abio">As the <strong>owner and founder of GrowHost</strong> &amp; <strong>Co-Founder of Datalix</strong>, I successfully managed an online hosting service from 2021 to 2026, offering digital hosting solutions to international clients. Operating remotely via Discord and a dedicated website, my responsibilities included client communication, customer support, service deployment, technical coordination, and order processing. I also developed and managed an online community to enhance customer engagement and satisfaction.<br><br>My academic journey at <strong>SMAIT Ummul Quro Bogor</strong>, with a focus on general business and commerce, complements my professional experience. I have furthered my knowledge through certifications in Financial Engineering, International Business, and Business Impact. Skilled in futures trading, trading strategies, and trading systems, I am committed to continuous learning and growth in finance and business development.</div>
+    <div class="twocol">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="stitle">Personal Info</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="ir"><i class="fas fa-user"></i><span class="ik">Name</span><span class="iv">Surya Dharma</span></div>
+          <div class="ir"><i class="fas fa-school"></i><span class="ik">School</span><span class="iv">SMAIT Ummul Quro Bogor</span></div>
+          <div class="ir"><i class="fas fa-graduation-cap"></i><span class="ik">Grade</span><span class="iv">11 — IPS (Social Science)</span></div>
+          <div class="ir"><i class="fas fa-birthday-cake"></i><span class="ik">Age</span><span class="iv">18 years old</span></div>
+          <div class="ir"><i class="fas fa-map-marker-alt"></i><span class="ik">City</span><span class="iv">Bogor, Indonesia 🇮🇩</span></div>
+          <div class="ir"><i class="fas fa-chart-line"></i><span class="ik">Platform</span><span class="iv">MT5 · Pepperstone</span></div>
+        </div>
+        <div class="stitle">Languages</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap"><span class="lchip">🇮🇩 Indonesian</span><span class="lchip">🇬🇧 English</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="stitle">Core Skills</div>
+        <div class="sklst" id="sklst">
+          <div class="ski"><div class="skh"><span class="skn">Financial Analysis</span><span class="skp">90%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#7c6af7,#5ec4ff)" data-w="90"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Trading &amp; Risk Mgmt</span><span class="skp">85%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#5ec4ff,#ff79c6)" data-w="85"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Business Development</span><span class="skp">88%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#ff79c6,#7c6af7)" data-w="88"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Customer Management</span><span class="skp">85%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#28c840,#5ec4ff)" data-w="85"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Microsoft Excel</span><span class="skp">80%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#febc2e,#ff5f57)" data-w="80"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Market Research</span><span class="skp">82%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#7c6af7,#28c840)" data-w="82"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="stitle">Other Skills</div>
+    <div class="skchips">
+      <span class="skchip">Analisis Keuangan</span><span class="skchip">Riset Investasi</span><span class="skchip">Analisis Bisnis</span><span class="skchip">Pemikiran Analitis</span><span class="skchip">Berpikir Kritis</span><span class="skchip">Pemecahan Masalah</span><span class="skchip">Manajemen Waktu</span><span class="skchip">Pemasaran Online</span><span class="skchip">CRM</span><span class="skchip">HTML &amp; CSS</span><span class="skchip">Komunikasi</span><span class="skchip">Pembelajaran Mandiri</span>
+    </div>
+    <div class="stitle">Journey</div>
+    <div class="tl2">
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2021</div><div class="tltl">Founded GrowHost</div><div class="tldc">Mendirikan bisnis hosting &amp; server digital, melayani klien internasional via Discord &amp; website.</div></div></div>
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2022</div><div class="tltl">Co-Founded Datalix &amp; Mulai Belajar Trading</div><div class="tldc">Bergabung mendirikan Datalix (game scripts &amp; VPS/RDP) dan mulai mendalami financial market.</div></div></div>
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2024</div><div class="tltl">Masuk SMAIT Ummul Quro Bogor</div><div class="tldc">Memulai perjalanan akademik (Kelas 10) sambil terus mengembangkan bisnis &amp; skill trading.</div></div></div>
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2025</div><div class="tltl">Naik Kelas 11 — 25+ Sertifikasi</div><div class="tldc">Meraih lebih dari 25 sertifikasi Coursera dari Columbia, Duke, Rice, London Business School, dll.</div></div></div>
+      <div class="tlr"><div class="tld" style="border-color:var(--acc3);box-shadow:0 0 8px rgba(255,121,198,.5)"></div><div><div class="tlyr" style="color:var(--acc3)">2026 → Future</div><div class="tltl">Founder TRADER FX ID &amp; Bermimpi Lebih Besar</div><div class="tldc">Mendirikan komunitas trading, menyelesaikan job simulations di BofA &amp; Citi, dan terus bertumbuh.</div></div></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+
+<div class="win" id="wac">
+  <div class="tb" id="tbac"><div class="tls"><div class="tl r" onclick="cwp('ac')">✕</div><div class="tl y" onclick="mwp('ac')">–</div><div class="tl g" onclick="xwp('ac')">+</div></div><div class="tbtitle">🏆 Achievements &amp; Certifications</div></div>
+  <div class="wc"><div class="acwrap">
+    <div class="actabs">
+      <button class="actab active" onclick="switchAch(this,'abiz')">💼 Business (2021–)</button>
+      <button class="actab" onclick="switchAch(this,'atrade')">📈 Trading (2022–)</button>
+      <button class="actab" onclick="switchAch(this,'ajob')">🏦 Job Sim (2026)</button>
+      <button class="actab" onclick="switchAch(this,'acerts')">🎓 Certificates (2026)</button>
+    </div>
+    <div id="abiz">
+      <div class="acgrid">
+        <div class="acard afeat"><div class="aico">🌐</div><div class="ayear">2021 – Present</div><div class="attl">Founder — GrowHost</div><div class="asub">Mendirikan dan mengelola layanan digital hosting untuk klien internasional. Bertanggung jawab atas client management, service deployment, customer support, dan community building via Discord &amp; website.</div></div>
+        <div class="acard" onclick="notify('🤝','Datalix','Co-Founder: Game Script Development & Digital Server (RDP/VPS) — bergerak sejak 2022 melayani klien di bidang hosting dan game server.')"><div class="aico">💻</div><div class="ayear">2022 – Present</div><div class="attl">Co-Founder — Datalix</div><div class="asub">Pembuatan Script Game &amp; penjualan RDP/VPS Server. Bergerak di bidang digital product &amp; server solutions untuk klien gaming.</div></div>
+        <div class="acard" onclick="notify('🌍','TRADER FX ID','Komunitas trading Forex & Indices Indonesia — didirikan 2026 untuk edukasi dan sharing strategi trading.')"><div class="aico">🌍</div><div class="ayear">2026 – Present</div><div class="attl">Founder — TRADER FX ID</div><div class="asub">Mendirikan komunitas trading Forex &amp; Indices Indonesia — fokus pada edukasi, analisis pasar, dan sharing strategi antar trader.</div></div>
+        <div class="acard" onclick="notify('⚡','Self-Taught Entrepreneur','Membangun bisnis dari nol sejak 2021, membuktikan bahwa semangat belajar mandiri bisa menghasilkan hasil nyata di usia muda.')"><div class="aico">⚡</div><div class="ayear">2021 – Present</div><div class="attl">Self-Taught Entrepreneur</div><div class="asub">Membangun bisnis online dari umur muda tanpa modal besar — hanya dengan tekad, konsistensi, dan semangat belajar mandiri.</div></div>
+      </div>
+    </div>
+    <div id="atrade" style="display:none">
+      <div class="acgrid">
+        <div class="acard afeat"><div class="aico">📈</div><div class="ayear">2022 – Present</div><div class="attl">Certified Trader — Indices &amp; Metal</div><div class="asub">Aktif trading SPX500, US30, NAS100, XAUUSD (Gold), XAGUSD (Silver) di MetaTrader 5 via Pepperstone. Menguasai sistem risk management terstruktur dengan 1:2 RRR dan trailing stop-loss.</div></div>
+        <div class="acard"><div class="aico">🧠</div><div class="ayear">2022</div><div class="attl">Mulai Belajar Trading</div><div class="asub">Mempelajari analisis teknikal, price action, chart patterns, dan fundamental market secara independen.</div></div>
+        <div class="acard"><div class="aico">⚖️</div><div class="ayear">2024</div><div class="attl">Trading Framework Developed</div><div class="asub">Membangun sistem trading: 1:2 RRR, trailing SL, daily loss limit, fixed lot sizing (0.01 Gold/Silver, 0.1 Indices).</div></div>
+        <div class="acard"><div class="aico">📊</div><div class="ayear">2026</div><div class="attl">Bloomberg Terminal Analysis</div><div class="asub">Menyelesaikan project "Analyze Apple's Stock and Financials with Bloomberg Terminal" via Coursera.</div></div>
+        <div class="acard"><div class="aico">💹</div><div class="ayear">2026</div><div class="attl">Stock Valuation — DDM</div><div class="asub">Menguasai valuasi saham fundamental menggunakan Dividend Discount Model melalui Coursera project.</div></div>
+        <div class="acard"><div class="aico">🏗️</div><div class="ayear">2026</div><div class="attl">Construct Stock Market Indices</div><div class="asub">Menyelesaikan project konstruksi indeks pasar saham — memahami metodologi pembuatan indeks keuangan.</div></div>
+      </div>
+    </div>
+    <div id="ajob" style="display:none">
+      <div class="acgrid">
+        <div class="acard afeat"><div class="aico">🏦</div><div class="ayear">2026</div><div class="attl">The Private Bank Job Simulation</div><div class="asub">Bank of America — Menyelesaikan simulasi pekerjaan private banking. Memahami client portfolio management, investment advisory, dan wealth management dalam lingkungan perbankan kelas dunia.</div></div>
+        <div class="acard afeat"><div class="aico">💹</div><div class="ayear">2026</div><div class="attl">Markets Sales &amp; Trading Job Simulation</div><div class="asub">Citi — Job Simulation dalam bidang Sales &amp; Trading. Memahami bagaimana institutional trading desk beroperasi di bank investasi global, termasuk market making dan client sales.</div></div>
+      </div>
+    </div>
+    <div id="acerts" style="display:none">
+      <div class="clist" id="certlist"></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- GRADES -->
+
+<div class="win" id="wg">
+  <div class="tb" id="tbg"><div class="tls"><div class="tl r" onclick="cwp('g')">✕</div><div class="tl y" onclick="mwp('g')">–</div><div class="tl g" onclick="xwp('g')">+</div></div><div class="tbtitle">📊 Academic Grades — SMAIT Ummul Quro</div></div>
+  <div class="wc"><div class="gwrap">
+    <div class="gpahero">
+      <div><div class="gpanum" id="gpan">0.00</div><div class="gpalbl">Cumulative GPA</div></div>
+      <div>
+        <div class="gpadesc" style="color:var(--t1);font-weight:600;font-size:14px">SMAIT Ummul Quro Bogor · Grade 11 · IPS 🇮🇩</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:3px">Skala 4.0: A(≥90=4.0) · A-(85–89=3.7) · B+(80–84=3.3) · B(75–79=3.0)</div>
+        <div id="semgpa" style="margin-top:8px;font-size:12px;color:var(--acc2)"></div>
+      </div>
+    </div>
+    <div class="stabs">
+      <button class="stab active" onclick="switchG(this,'g10s1','Kelas 10 Sem 1')">Kelas 10 · Sem 1</button>
+      <button class="stab" onclick="switchG(this,'g10s2','Kelas 10 Sem 2')">Kelas 10 · Sem 2</button>
+      <button class="stab" onclick="switchG(this,'g11s1','Kelas 11 Sem 1')">Kelas 11 · Sem 1</button>
+      <button class="stab" onclick="switchG(this,'g11s2','')">Kelas 11 · Sem 2</button>
+      <button class="stab" onclick="switchG(this,'g12s1','')">Kelas 12 · Sem 1</button>
+    </div>
+    <div id="g10s1"><table class="gtable"><thead><tr><th>Mata Pelajaran</th><th>Nilai</th><th>Grade</th><th>GPA</th><th>Progress</th></tr></thead><tbody id="tb10s1"></tbody></table></div>
+    <div id="g10s2" style="display:none"><table class="gtable"><thead><tr><th>Mata Pelajaran</th><th>Nilai</th><th>Grade</th><th>GPA</th><th>Progress</th></tr></thead><tbody id="tb10s2"></tbody></table></div>
+    <div id="g11s1" style="display:none"><table class="gtable"><thead><tr><th>Mata Pelajaran</th><th>Nilai</th><th>Grade</th><th>GPA</th><th>Progress</th></tr></thead><tbody id="tb11s1"></tbody></table></div>
+    <div id="g11s2" style="display:none"><div class="csoon"><div class="csi">⏳</div><h3>Kelas 11 Semester 2</h3><p>Sedang berlangsung — nilai akan tersedia setelah ujian selesai 📝</p></div></div>
+    <div id="g12s1" style="display:none"><div class="csoon"><div class="csi">🚀</div><h3>Kelas 12 Semester 1</h3><p>Coming Soon — Stay tuned! ✨</p></div></div>
+  </div></div>
+</div>
+
+<!-- CONTACT -->
+
+<div class="win" id="wco">
+  <div class="tb" id="tbco"><div class="tls"><div class="tl r" onclick="cwp('co')">✕</div><div class="tl y" onclick="mwp('co')">–</div><div class="tl g" onclick="xwp('co')">+</div></div><div class="tbtitle">✉️ Contact — Surya Dharma</div></div>
+  <div class="wc"><div class="cowrap">
+    <div class="ccgrid">
+      <div class="cccard" onclick="notify('📧','Email','suryadharma@email.com')"><div class="ccico" style="background:rgba(255,121,198,.15)">📧</div><div><div class="ccnm">Email</div><div class="ccvl">suryadharma@email.com</div></div></div>
+      <div class="cccard" onclick="notify('📱','Instagram','@surya.dharma')"><div class="ccico" style="background:rgba(157,143,255,.15)">📱</div><div><div class="ccnm">Instagram</div><div class="ccvl">@surya.dharma</div></div></div>
+      <div class="cccard" onclick="notify('💼','LinkedIn','linkedin.com/in/suryadharma')"><div class="ccico" style="background:rgba(94,196,255,.15)">💼</div><div><div class="ccnm">LinkedIn</div><div class="ccvl">Surya Dharma</div></div></div>
+      <div class="cccard" onclick="notify('📍','Location','Bogor, Jawa Barat, Indonesia 🇮🇩')"><div class="ccico" style="background:rgba(80,200,120,.15)">📍</div><div><div class="ccnm">Location</div><div class="ccvl">Bogor, Indonesia 🇮🇩</div></div></div>
+    </div>
+    <div class="stitle">Send Message</div>
+    <div class="fr2">
+      <div><div class="flbl">Your Name</div><input class="finp" type="text" placeholder="John Doe" id="cn"></div>
+      <div><div class="flbl">Email</div><input class="finp" type="email" placeholder="you@example.com" id="ce"></div>
+    </div>
+    <div><div class="flbl">Message</div><textarea class="finp" rows="4" placeholder="Hey Surya, I wanted to reach out about..." id="cm"></textarea></div>
+    <button class="sbtn" onclick="sendMsg()">🚀 Send Message</button>
+  </div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     VSC: FINDER WINDOW
+═══════════════════════════════════════════════════ -->
+
+<div class="win" id="finder">
+  <div class="tb" id="tb-finder">
     <div class="tls"><div class="tl r" onclick="closeWin('finder')">✕</div><div class="tl y" onclick="closeWin('finder')">–</div><div class="tl g" onclick="maxWin('finder')">+</div></div>
     <div style="display:flex;gap:4px">
       <button onclick="finderBack()" style="background:rgba(255,255,255,.08);border:none;color:#f0f0f5;width:22px;height:22px;border-radius:5px;cursor:pointer;font-size:10px"><i class="fas fa-chevron-left"></i></button>
       <button onclick="finderFwd()" style="background:rgba(255,255,255,.08);border:none;color:#f0f0f5;width:22px;height:22px;border-radius:5px;cursor:pointer;font-size:10px"><i class="fas fa-chevron-right"></i></button>
     </div>
-    <div class="wt" id="finder-title">Finder — Home</div>
+    <div class="tbtitle" id="finder-title">Finder — Home</div>
   </div>
   <div class="f-toolbar">
     <span class="f-bc" id="f-bc">🏠 Home</span>
     <div style="margin-left:auto;display:flex;gap:6px">
-      <button onclick="newFile()"><i class="fas fa-file-medical"></i> New File</button>
+      <button onclick="vscNewFile()"><i class="fas fa-file-medical"></i> New File</button>
       <button onclick="openSelInVSC()"><i class="fas fa-code"></i> Open in VSC</button>
     </div>
   </div>
@@ -228,34 +670,34 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:
     </div>
     <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
       <div class="f-main" id="f-main"></div>
-      <div class="f-status" id="f-status">Ready</div>
+      <div class="f-status-bar" id="f-status">Ready</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ VS CODE ═══════════ -->
-<div class="macwin" id="vscode">
-  <div class="mwtb" id="tb-vscode">
+<!-- ═══════════════════════════════════════════════════
+     VSC: VSCODE WINDOW
+═══════════════════════════════════════════════════ -->
+
+<div class="win" id="vscode">
+  <div class="tb" id="tb-vscode">
     <div class="tls"><div class="tl r" onclick="closeWin('vscode')">✕</div><div class="tl y" onclick="closeWin('vscode')">–</div><div class="tl g" onclick="maxWin('vscode')">+</div></div>
-    <div class="wt" id="vsc-title">Mac Studio — Code Editor</div>
+    <div class="tbtitle" id="vsc-title">Mac Studio — Code Editor</div>
   </div>
   <div class="vsc-body">
     <div class="vsc-main">
-      <!-- ACTIVITY BAR -->
       <div class="vsc-act">
         <div class="abt on" id="act-ex" onclick="toggleSB()" title="Explorer"><i class="fas fa-copy"></i></div>
-        <div class="abt run" onclick="runFile()" title="Run (F5)"><i class="fas fa-play"></i></div>
-        <div class="abt" onclick="clearTerm();spanel('terminal')" title="Terminal"><i class="fas fa-terminal"></i></div>
-        <div class="abt" onclick="spanel('preview')" title="HTML Preview"><i class="fas fa-eye"></i></div>
+        <div class="abt run" onclick="vscRunFile()" title="Run (F5)"><i class="fas fa-play"></i></div>
+        <div class="abt" onclick="vscClearTerm();vscSpanel('terminal')" title="Terminal"><i class="fas fa-terminal"></i></div>
+        <div class="abt" onclick="vscSpanel('preview')" title="HTML Preview"><i class="fas fa-eye"></i></div>
         <div class="act-gap"></div>
         <div class="abt" onclick="notify('⚙️','Settings','Coming soon!')"><i class="fas fa-cog"></i></div>
       </div>
-      <!-- SIDEBAR -->
       <div class="vsc-sb" id="vsc-sb">
-        <div class="sb-hdr">EXPLORER <div style="display:flex;gap:2px"><button onclick="newFile()" title="New file">+</button><button onclick="toggleSB()" title="Close">✕</button></div></div>
+        <div class="sb-hdr">EXPLORER <div style="display:flex;gap:2px"><button onclick="vscNewFile()" title="New file">+</button><button onclick="toggleSB()" title="Close">✕</button></div></div>
         <div class="ftree" id="ftree"></div>
       </div>
-      <!-- EDITOR -->
       <div class="vsc-ea">
         <div class="tabbar" id="tabbar"></div>
         <div class="ec" id="ec">
@@ -265,24 +707,23 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:
             <p>Buka file dari Finder atau Explorer</p>
             <div class="eb">
               <button class="ebtn p" onclick="openWin('finder')">🗂️ Open Finder</button>
-              <button class="ebtn s" onclick="newFile()">+ New File</button>
+              <button class="ebtn s" onclick="vscNewFile()">+ New File</button>
             </div>
           </div>
           <div id="cm-wrap"></div>
         </div>
-        <!-- BOTTOM PANEL -->
-        <div class="bp" id="bp">
+        <div class="vsc-bp" id="vsc-bp">
           <div class="ptabs">
-            <div class="ptab on" id="pt-terminal" onclick="spanel('terminal')">TERMINAL</div>
-            <div class="ptab" id="pt-preview" onclick="spanel('preview')">PREVIEW</div>
-            <div class="ptab" id="pt-problems" onclick="spanel('problems')">PROBLEMS</div>
+            <div class="ptab on" id="pt-terminal" onclick="vscSpanel('terminal')">TERMINAL</div>
+            <div class="ptab" id="pt-preview" onclick="vscSpanel('preview')">PREVIEW</div>
+            <div class="ptab" id="pt-problems" onclick="vscSpanel('problems')">PROBLEMS</div>
             <div class="pacts">
-              <button class="pab" onclick="clearTerm()" title="Clear"><i class="fas fa-trash"></i></button>
-              <button class="pab" onclick="runFile()" title="Run" style="color:#28c840"><i class="fas fa-play"></i></button>
+              <button class="pab" onclick="vscClearTerm()" title="Clear"><i class="fas fa-trash"></i></button>
+              <button class="pab" onclick="vscRunFile()" title="Run" style="color:#28c840"><i class="fas fa-play"></i></button>
               <button class="pab" id="ptogbtn" onclick="togglePanel()" title="Toggle panel"><i class="fas fa-chevron-down"></i></button>
             </div>
           </div>
-          <div class="pc" id="pc-terminal">
+          <div class="vsc-pc" id="pc-terminal">
             <div class="term" id="term">
               <div class="tw">Mac Studio Terminal v1.0 🐍 Python 3 powered by Skulpt</div>
               <div class="ti">Open a .py file → press ▶ to run · HTML files show in Preview tab</div>
@@ -290,68 +731,507 @@ html,body{width:100%;height:100%;overflow:hidden;background:#1a1a2e;font-family:
               <br>
             </div>
           </div>
-          <div class="pc h" id="pc-preview"><iframe id="pframe" class="pframe" sandbox="allow-scripts allow-same-origin"></iframe></div>
-          <div class="pc h" id="pc-problems"><div class="prob"><i class="fas fa-check-circle" style="font-size:26px;color:#28c840"></i>No problems detected ✅</div></div>
+          <div class="vsc-pc h" id="pc-preview"><iframe id="pframe" class="pframe" sandbox="allow-scripts allow-same-origin"></iframe></div>
+          <div class="vsc-pc h" id="pc-problems"><div class="vsc-prob"><i class="fas fa-check-circle" style="font-size:26px;color:#28c840"></i>No problems detected ✅</div></div>
         </div>
       </div>
     </div>
-    <div class="sb">
+    <div class="vsc-statusbar">
       <div class="sl"><span><i class="fas fa-code-branch"></i> main</span><span id="sb-file">No file open</span></div>
       <div class="sr"><span id="sb-lang">—</span><span id="sb-pos">Ln 1, Col 1</span><span>UTF-8</span><span>🐍 Skulpt</span></div>
     </div>
   </div>
 </div>
 
-<!-- DOCK -->
+<!-- ═══════════════════════════════════════════════════
+     DOCK
+═══════════════════════════════════════════════════ -->
+
 <div id="dock">
+  <!-- Portfolio -->
+  <div class="dk" onclick="owp('h')"><div class="dki" style="background:linear-gradient(135deg,#4a90d9,#7c6af7)">🏠</div><div class="dkd"></div><div class="dtt">Home</div></div>
+  <div class="dk" onclick="owp('a')"><div class="dki" style="background:linear-gradient(135deg,#f7971e,#ffd200)">👤</div><div class="dkd"></div><div class="dtt">About Me</div></div>
+  <div class="dk" onclick="owp('ac')"><div class="dki" style="background:linear-gradient(135deg,#f7971e,#ff5f6d)">🏆</div><div class="dkd"></div><div class="dtt">Achievements</div></div>
+  <div class="dk" onclick="owp('g')"><div class="dki" style="background:linear-gradient(135deg,#11998e,#38ef7d)">📊</div><div class="dkd"></div><div class="dtt">Grades</div></div>
+  <div class="dk" onclick="owp('co')"><div class="dki" style="background:linear-gradient(135deg,#ff79c6,#7c6af7)">✉️</div><div class="dkd"></div><div class="dtt">Contact</div></div>
+  <div class="dksep"></div>
+  <!-- VSC -->
   <div class="dk" onclick="toggleWin('finder')"><div class="dki" style="background:linear-gradient(135deg,#5ac8fa,#007aff)">🗂️</div><div class="dkd" id="dot-finder"></div><div class="dtt">Finder</div></div>
   <div class="dk" onclick="toggleWin('vscode')"><div class="dki" style="background:linear-gradient(135deg,#007aff,#5856d6)">💻</div><div class="dkd" id="dot-vscode"></div><div class="dtt">VS Code</div></div>
   <div class="dksep"></div>
-  <div class="dk" onclick="runFile()"><div class="dki" style="background:linear-gradient(135deg,#306998,#FFD43B)">🐍</div><div class="dtt">Run Python</div></div>
-  <div class="dk" onclick="spanel('preview');openWin('vscode')"><div class="dki" style="background:linear-gradient(135deg,#e34c26,#f06529)">🌐</div><div class="dtt">HTML Preview</div></div>
-  <div class="dk" onclick="goPortfolio()"><div class="dki" style="background:linear-gradient(135deg,#9d8fff,#5ec4ff)">🏠</div><div class="dtt">Portfolio</div></div>
+  <div class="dk" onclick="openSpl()"><div class="dki" style="background:linear-gradient(135deg,#636e72,#b2bec3)">🔍</div><div class="dtt">Spotlight</div></div>
 </div>
 
-<!-- INPUT MODAL -->
-<div class="mo" id="input-modal" style="display:none" onclick="if(event.target===this)cancelRun()">
-  <div class="mb">
-    <div class="mt">🐍 Python — Input Required</div>
-    <div class="mg" id="modal-mg"></div>
-    <div class="mf"><button class="mcc" onclick="cancelRun()">Cancel</button><button class="mcr" onclick="confirmRun()">▶ Run Program</button></div>
-  </div>
-</div>
+<!-- SPOTLIGHT -->
 
-<!-- NEW FILE MODAL -->
-<div class="mo" id="nf-modal" style="display:none" onclick="if(event.target===this)closeNFModal()">
-  <div class="mb">
-    <div class="mt">📄 New File</div>
-    <div class="mg">
-      <div><label>Filename (contoh: main.py, index.html)</label><input type="text" id="nf-name" placeholder="filename.py" onkeydown="if(event.key==='Enter')createNF()"></div>
-      <div><label>Location (folder)</label><input type="text" id="nf-loc" value="VSC"></div>
-    </div>
-    <div class="mf"><button class="mcc" onclick="closeNFModal()">Cancel</button><button class="mcr" onclick="createNF()">Create</button></div>
+<div id="spl" onclick="closeSpl(event)">
+  <div class="spbox">
+    <div class="spinrow"><i class="fas fa-search"></i><input id="spinput" placeholder="Spotlight Search…" oninput="spSearch(this.value)" onkeydown="spKey(event)"></div>
+    <div class="spres" id="spres"></div>
   </div>
 </div>
 
 <!-- NOTIFICATION -->
-<div class="notif" id="notif"><div style="font-size:20px;flex-shrink:0" id="nico">✉️</div><div><div style="font-size:13px;font-weight:600;color:#f0f0f5" id="nttl"></div><div style="font-size:11px;color:rgba(240,240,245,.5);margin-top:2px" id="nmsg"></div></div></div>
 
-<!-- EXTERNAL SCRIPTS -->
+<div class="notif" id="notif">
+  <div style="font-size:22px;flex-shrink:0" id="nico">✉️</div>
+  <div><div class="nttl" id="nttl"></div><div class="ntmsg" id="ntmsg"></div></div>
+</div>
+
+<!-- CONTEXT MENU -->
+
+<div id="ctx">
+  <div class="ctxr" onclick="owp('h');closeCtx()"><i class="fas fa-home"></i>Open Home</div>
+  <div class="ctxr" onclick="owp('a');closeCtx()"><i class="fas fa-user"></i>Open About</div>
+  <div class="ctxr" onclick="owp('ac');closeCtx()"><i class="fas fa-trophy"></i>Achievements</div>
+  <div class="ctxs"></div>
+  <div class="ctxr" onclick="toggleWin('finder');closeCtx()"><i class="fas fa-folder"></i>Open Finder</div>
+  <div class="ctxr" onclick="toggleWin('vscode');closeCtx()"><i class="fas fa-code"></i>Open VS Code</div>
+  <div class="ctxs"></div>
+  <div class="ctxr" onclick="openSpl();closeCtx()"><i class="fas fa-search"></i>Spotlight</div>
+  <div class="ctxr" onclick="closeCtx()"><i class="fas fa-times"></i>Dismiss</div>
+</div>
+
+<!-- VSC MODALS -->
+
+<div class="vsc-modal" id="input-modal" style="display:none" onclick="if(event.target===this)cancelRun()">
+  <div class="vsc-modal-box">
+    <div class="vsc-mt">🐍 Python — Input Required</div>
+    <div class="vsc-mg" id="modal-mg"></div>
+    <div class="vsc-mf"><button class="mcc" onclick="cancelRun()">Cancel</button><button class="mcr" onclick="confirmRun()">▶ Run Program</button></div>
+  </div>
+</div>
+<div class="vsc-modal" id="nf-modal" style="display:none" onclick="if(event.target===this)closeNFModal()">
+  <div class="vsc-modal-box">
+    <div class="vsc-mt">📄 New File</div>
+    <div class="vsc-mg">
+      <div><label>Filename (contoh: main.py, index.html)</label><input type="text" id="nf-name" placeholder="filename.py" onkeydown="if(event.key==='Enter')createNF()"></div>
+      <div><label>Location (folder)</label><input type="text" id="nf-loc" value="VSC"></div>
+    </div>
+    <div class="vsc-mf"><button class="mcc" onclick="closeNFModal()">Cancel</button><button class="mcr" onclick="createNF()">Create</button></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     EXTERNAL SCRIPTS
+═══════════════════════════════════════════════════ -->
+
 <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
 
 <script>
-// ═══════════════════════════════════════
-// VIRTUAL FILE SYSTEM
-// ═══════════════════════════════════════
+/* ═══════════════════════════════════════════════════
+   STARS
+═══════════════════════════════════════════════════ */
+const wp = document.getElementById('wp');
+for (let i = 0; i < 80; i++) {
+  const s = document.createElement('div'); s.className = 'star';
+  const sz = Math.random() * 2 + .5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;animation-delay:${Math.random()*5}s`;
+  wp.appendChild(s);
+}
+
+/* ═══════════════════════════════════════════════════
+   CLOCK
+═══════════════════════════════════════════════════ */
+function tick() {
+  const n = new Date();
+  document.getElementById('clock').textContent =
+    n.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) + '  ' +
+    n.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
+}
+tick(); setInterval(tick, 1000);
+
+/* ═══════════════════════════════════════════════════
+   NOTIFICATION (shared)
+═══════════════════════════════════════════════════ */
+let nT;
+function notify(ico, ttl, msg) {
+  document.getElementById('nico').textContent = ico;
+  document.getElementById('nttl').textContent = ttl;
+  document.getElementById('ntmsg').textContent = msg;
+  const n = document.getElementById('notif');
+  n.classList.add('show'); clearTimeout(nT);
+  nT = setTimeout(() => n.classList.remove('show'), 4000);
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL Z-INDEX
+═══════════════════════════════════════════════════ */
+let topZ = 200;
+const maxedMap = {};
+
+// bring to front on any interaction
+document.querySelectorAll('.win').forEach(w => {
+  w.addEventListener('mousedown', () => { w.style.zIndex = ++topZ; });
+  w.addEventListener('touchstart', () => { w.style.zIndex = ++topZ; }, { passive: true });
+});
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO WINDOW MANAGER (owp / cwp / mwp / xwp)
+═══════════════════════════════════════════════════ */
+function owp(id) {
+  const el = document.getElementById('w' + id);
+  if (!el) return;
+  el.classList.add('active');
+  el.style.animation = 'wO .3s cubic-bezier(.34,1.56,.64,1) both';
+  el.style.zIndex = ++topZ;
+  if (id === 'h') setTimeout(animC, 350);
+  if (id === 'a') setTimeout(animSk, 350);
+  if (id === 'g') setTimeout(() => animG('g10s1', 'Kelas 10 Sem 1'), 350);
+}
+function cwp(id) {
+  const el = document.getElementById('w' + id);
+  if (!el) return;
+  el.style.animation = 'wC .2s ease-in both';
+  setTimeout(() => el.classList.remove('active'), 200);
+}
+function mwp(id) { cwp(id); notify('🗂️', 'Minimized', 'Tap dock icon to restore'); }
+function xwp(id) {
+  const el = document.getElementById('w' + id);
+  if (!el) return;
+  if (maxedMap['p_' + id]) {
+    Object.assign(el.style, maxedMap['p_' + id]);
+    maxedMap['p_' + id] = null;
+  } else {
+    const r = el.getBoundingClientRect();
+    maxedMap['p_' + id] = { top: el.style.top || r.top+'px', left: el.style.left || r.left+'px', width: el.style.width || r.width+'px', height: el.style.height || r.height+'px', right: el.style.right || 'auto' };
+    el.style.top = '30px'; el.style.left = '0'; el.style.right = '0';
+    el.style.width = '100%'; el.style.height = 'calc(100vh - 116px)';
+  }
+}
+
+/* DRAG — portfolio windows */
+function dragPortfolio(id) {
+  const el = document.getElementById('w' + id);
+  const tb = document.getElementById('tb' + id);
+  if (!el || !tb) return;
+  let dr = false, ox = 0, oy = 0;
+  tb.addEventListener('mousedown', e => {
+    if (e.target.classList.contains('tl')) return;
+    dr = true; const r = el.getBoundingClientRect();
+    ox = e.clientX - r.left; oy = e.clientY - r.top;
+    el.style.zIndex = ++topZ; e.preventDefault();
+  });
+  document.addEventListener('mousemove', e => {
+    if (!dr) return;
+    el.style.left = `${e.clientX - ox}px`; el.style.top = `${e.clientY - oy}px`;
+    el.style.right = 'auto'; el.style.bottom = 'auto';
+  });
+  document.addEventListener('mouseup', () => { dr = false; });
+  tb.addEventListener('touchstart', e => {
+    if (e.target.classList.contains('tl')) return;
+    const t = e.touches[0]; dr = true;
+    const r = el.getBoundingClientRect();
+    ox = t.clientX - r.left; oy = t.clientY - r.top; el.style.zIndex = ++topZ;
+  }, { passive: true });
+  document.addEventListener('touchmove', e => {
+    if (!dr) return;
+    const t = e.touches[0];
+    el.style.left = `${t.clientX - ox}px`; el.style.top = `${t.clientY - oy}px`;
+    el.style.right = 'auto'; el.style.bottom = 'auto'; e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('touchend', () => { dr = false; });
+}
+['h','a','ac','g','co'].forEach(dragPortfolio);
+
+/* DOUBLE TAP (mobile) */
+const tapT = {};
+function dbt(id, e) {
+  e.preventDefault();
+  const now = Date.now();
+  if (tapT[id] && now - tapT[id] < 400) { owp(id); tapT[id] = 0; }
+  else tapT[id] = now;
+}
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO: COUNTERS
+═══════════════════════════════════════════════════ */
+function animC() {
+  document.querySelectorAll('[data-c]').forEach(el => {
+    const t = +el.dataset.c; let c = 0;
+    const s = () => { c = Math.min(c + Math.ceil(t / 25), t); el.textContent = c; if (c < t) requestAnimationFrame(s); };
+    s();
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO: TYPEWRITER
+═══════════════════════════════════════════════════ */
+const phrases = ['// Entrepreneur · Trader · Student 🎓','// Founder: GrowHost & TRADER FX ID','// Co-Founder: Datalix (Game Scripts & VPS)','// 26+ Coursera Certifications 📜','// SPX500 · US30 · NAS100 · XAUUSD · XAGUSD','// SMAIT Ummul Quro Bogor, Indonesia 🇮🇩','// Columbia · Duke · Rice · London Business School'];
+let pi = 0, ci = 0, del = false;
+function type() {
+  const el = document.getElementById('typer');
+  if (!el) return;
+  const ph = phrases[pi];
+  if (!del) {
+    if (ci < ph.length) { el.textContent = ph.slice(0, ++ci); setTimeout(type, 55); }
+    else { del = true; setTimeout(type, 2000); }
+  } else {
+    if (ci > 0) { el.textContent = ph.slice(0, --ci); setTimeout(type, 28); }
+    else { del = false; pi = (pi + 1) % phrases.length; setTimeout(type, 400); }
+  }
+}
+type();
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO: SKILLS
+═══════════════════════════════════════════════════ */
+function animSk() {
+  document.querySelectorAll('.skb').forEach(b => {
+    b.style.width = '0';
+    setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 100);
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO: GRADES
+═══════════════════════════════════════════════════ */
+const gr10s1=[['PAI',91],['PKN',93],['Bahasa Indonesia',89],['Matematika',75],['Fisika',76],['Kimia',88],['Biologi',81],['Sosiologi',85],['Ekonomi',84],['Geografi',80],['Sejarah',87],['B. Inggris',88],['PJOK',96],['TIK',98],['Seni',89]];
+const gr10s2=[['PAI',92],['PKN',93],['Bahasa Indonesia',90],['Matematika',81],['Fisika',84],['Kimia',90],['Biologi',85],['Sosiologi',93],['Ekonomi',90],['Geografi',81],['Sejarah',84],['B. Inggris',84],['PJOK',94],['TIK',95],['Seni',93]];
+const gr11s1=[['PAI',93],['PKN',92],['Bahasa Indonesia',87],['Matematika',85],['Sosiologi',93],['Ekonomi',93],['Geografi',86],['Sejarah',88],['B. Inggris',85],['PJOK',95],['TIK',95],['Seni',93]];
+
+function sgpa(s){if(s>=90)return 4.0;if(s>=85)return 3.7;if(s>=80)return 3.3;if(s>=75)return 3.0;if(s>=70)return 2.7;return 2.3;}
+function sgl(s){if(s>=90)return'A';if(s>=85)return'A-';if(s>=80)return'B+';if(s>=75)return'B';return'B-';}
+function sgc(s){if(s>=90)return'gA';if(s>=85)return'gAm';if(s>=80)return'gBp';return'gB';}
+function sgcol(s){if(s>=90)return'#28c840';if(s>=85)return'#5ec4ff';if(s>=80)return'#febc2e';return'#ff79c6';}
+function calcGPA(d){return(d.reduce((a,[,s])=>a+sgpa(s),0)/d.length).toFixed(2);}
+
+const gpaMap={'g10s1':calcGPA(gr10s1),'g10s2':calcGPA(gr10s2),'g11s1':calcGPA(gr11s1)};
+const cumGPA=((+gpaMap.g10s1+(+gpaMap.g10s2)+(+gpaMap.g11s1))/3).toFixed(2);
+
+function renderG(data, tid) {
+  const tb = document.getElementById(tid); tb.innerHTML = '';
+  data.forEach(([sub, sc]) => {
+    const g = sgpa(sc), l = sgl(sc), cl = sgc(sc), col = sgcol(sc);
+    tb.insertAdjacentHTML('beforeend', `<tr class="gr"><td style="color:var(--t1)">${sub}</td><td style="color:var(--t1);font-family:'Fira Code',monospace;font-weight:600">${sc}</td><td><span class="gbg ${cl}">${l}</span></td><td style="color:var(--acc2);font-family:'Fira Code',monospace;font-weight:600">${g.toFixed(1)}</td><td style="min-width:70px"><div class="gbw"><div class="gbb" style="background:${col}" data-w="${sc}%"></div></div></td></tr>`);
+  });
+}
+renderG(gr10s1,'tb10s1'); renderG(gr10s2,'tb10s2'); renderG(gr11s1,'tb11s1');
+
+let gpaAnimDone = false;
+function animG(tabId, label) {
+  document.querySelectorAll('.gbb').forEach(b => {
+    b.style.width = '0';
+    setTimeout(() => { b.style.width = b.dataset.w || '0'; }, 120);
+  });
+  if (!gpaAnimDone) {
+    gpaAnimDone = true;
+    const el = document.getElementById('gpan'); let c = 0; const t = +cumGPA;
+    const s = () => { c = Math.min(c + 0.04, t); el.textContent = c.toFixed(2); if (c < t) requestAnimationFrame(s); };
+    s();
+  }
+  if (tabId && gpaMap[tabId]) document.getElementById('semgpa').textContent = `${label || tabId}: GPA ${gpaMap[tabId]}`;
+}
+function switchG(btn, id, label) {
+  document.querySelectorAll('.stab').forEach(t => t.classList.remove('active')); btn.classList.add('active');
+  ['g10s1','g10s2','g11s1','g11s2','g12s1'].forEach(x => { document.getElementById(x).style.display = 'none'; });
+  document.getElementById(id).style.display = 'block';
+  setTimeout(() => animG(id, label), 80);
+}
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO: ACHIEVEMENTS TABS
+═══════════════════════════════════════════════════ */
+function switchAch(btn, id) {
+  document.querySelectorAll('.actab').forEach(t => t.classList.remove('active')); btn.classList.add('active');
+  ['abiz','atrade','ajob','acerts'].forEach(x => { document.getElementById(x).style.display = 'none'; });
+  document.getElementById(id).style.display = 'block';
+  if (id === 'acerts') buildCerts();
+}
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO: CERTIFICATES
+═══════════════════════════════════════════════════ */
+const certs=[
+  {t:'Analyze Investment Banking & Financial Market Systems',i:'EDUCBA',d:'Feb 22, 2026',e:'📊',url:'https://coursera.org/verify/L6FJF18LFOVJ'},
+  {t:'Analyze Mortgage-Backed Securities and Credit Risk',i:'EDUCBA',d:'Feb 22, 2026',e:'🏦',url:'https://coursera.org/verify/TLGEDTSYXNF1'},
+  {t:'Analyze Markets Using Technical Analysis & Chart Patterns',i:'EDUCBA',d:'Feb 22, 2026',e:'📈',url:'https://coursera.org/verify/ILWZEH3T4JCN'},
+  {t:'Behavioral Finance',i:'Duke University',d:'Feb 22, 2026',e:'🧠',url:'https://coursera.org/verify/8EAOVBL5ZV4A'},
+  {t:'Understanding Financial Markets',i:'University of Geneva',d:'Feb 22, 2026',e:'🌍',url:'https://coursera.org/verify/JLJM9ZR9K3DR'},
+  {t:'Fundamentals of Financial Analysis',i:'London Business School',d:'Feb 22, 2026',e:'📋',url:'https://coursera.org/verify/B7PY2F5RH05X'},
+  {t:'Fundamentals of International Business',i:'University of London',d:'Feb 23, 2026',e:'🌐',url:'https://coursera.org/verify/8DU9KR8LBN3O'},
+  {t:'Business Impact',i:'Duke University',d:'Feb 23, 2026',e:'💥',url:'https://coursera.org/verify/XSL6DDNGRKV4'},
+  {t:"Analyze Apple's Stock and Financials with Bloomberg Terminal",i:'Coursera Project',d:'Feb 23, 2026',e:'🍎',url:'https://coursera.org/verify/17MLAD2UXTQ7'},
+  {t:'Stock Valuation with Dividend Discount Model',i:'Coursera Project',d:'Feb 23, 2026',e:'💹',url:'https://coursera.org/verify/8IZNK21MIAWX'},
+  {t:'Construct Stock Market Indices',i:'Coursera Project',d:'Feb 23, 2026',e:'📉',url:'https://coursera.org/verify/4YWWANNVQ5U6'},
+  {t:'Investment Risk Management',i:'Coursera Project',d:'Feb 23, 2026',e:'⚖️',url:'https://coursera.org/verify/XWV37BIZ3Z8R'},
+  {t:'Global Financial Markets and Instruments',i:'Rice University',d:'Feb 23, 2026',e:'🏛️',url:'https://coursera.org/verify/8XWXRP1W5F7U'},
+  {t:'Introduction to Financial Engineering and Risk Management',i:'Columbia University',d:'Feb 24, 2026',e:'🎓',url:'https://coursera.org/verify/A5MHP520NQY0'},
+  {t:'Impact Investment Finance',i:'Duke University',d:'Feb 24, 2026',e:'🌱',url:'https://coursera.org/verify/X68OXCZCCZW6'},
+  {t:'Financial Statements',i:'Duke University',d:'Feb 24, 2026',e:'📑',url:'https://coursera.org/verify/P17IPBPTRC0G'},
+  {t:'Business Growth Strategy',i:'University of Virginia',d:'Feb 24, 2026',e:'📣',url:'https://coursera.org/verify/X279GXI4B5TT'},
+  {t:'Fundamentals of Marketing Strategy',i:'University of London',d:'Feb 24, 2026',e:'🎯',url:'https://coursera.org/verify/66EFIUDJVWDG'},
+  {t:'Corporate Finance Fundamentals',i:'Corporate Finance Institute',d:'Feb 25, 2026',e:'💼',url:'https://coursera.org/verify/QLX7V7Y27XUK'},
+  {t:'ChatGPT for Beginners: Using AI for Market Research',i:'Coursera Project',d:'Feb 27, 2026',e:'🤖',url:'https://coursera.org/verify/KHTG82QBI05L'},
+  {t:'GenAI Basics — How LLMs Work',i:'Duke University',d:'Feb 27, 2026',e:'🧬',url:'https://coursera.org/verify/YEAMTINOT8M8'},
+  {t:'Introduction to CRM with HubSpot',i:'Coursera Project',d:'Feb 27, 2026',e:'🤝',url:'https://coursera.org/verify/1SR7DJB9LVZI'},
+  {t:'Getting Started with Microsoft Word',i:'Coursera Project',d:'Feb 27, 2026',e:'📝',url:'https://coursera.org/verify/VANCP5XP4ZL0'},
+  {t:'Getting Started with Microsoft Excel',i:'Coursera Project',d:'Feb 27, 2026',e:'📊',url:'https://coursera.org/verify/1OHNXU1JUDOJ'},
+  {t:'ChatGPT for Beginners: Save time with Microsoft Excel',i:'Coursera Project',d:'Feb 27, 2026',e:'⚡',url:'https://coursera.org/verify/6LZ3GDWDQ82K'},
+  {t:'Introduction to Microsoft Excel',i:'Coursera Project',d:'Feb 27, 2026',e:'📗',url:'https://coursera.org/verify/ELNB8RZ4T3LX'},
+];
+let certsBuilt = false;
+function buildCerts() {
+  if (certsBuilt) return; certsBuilt = true;
+  const cl = document.getElementById('certlist');
+  certs.forEach((c, i) => {
+    cl.insertAdjacentHTML('beforeend', `<div class="citem"><div class="cnum">${c.e}</div><div class="cinfo"><div class="ctitle">${c.t}</div><div class="cissuer">🏛️ ${c.i}</div><div class="cdate">📅 ${c.d}</div><a class="cverify" href="${c.url}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt" style="font-size:10px"></i> Verify Certificate</a></div><div class="cnum2">#${String(i+1).padStart(2,'0')}</div></div>`);
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   PORTFOLIO: CONTACT
+═══════════════════════════════════════════════════ */
+function sendMsg() {
+  const n = document.getElementById('cn').value;
+  const e = document.getElementById('ce').value;
+  const m = document.getElementById('cm').value;
+  if (!n || !e || !m) { notify('⚠️', 'Incomplete', 'Please fill all fields'); return; }
+  notify('✅', 'Message Sent!', `Thanks ${n}! I'll reply soon 🙏`);
+  ['cn','ce','cm'].forEach(id => { document.getElementById(id).value = ''; });
+}
+
+/* ═══════════════════════════════════════════════════
+   SPOTLIGHT
+═══════════════════════════════════════════════════ */
+const spAll = [
+  {ico:'fa-home',nm:'Home',fn:()=>owp('h')},
+  {ico:'fa-user',nm:'About Me',fn:()=>owp('a')},
+  {ico:'fa-trophy',nm:'Achievements',fn:()=>owp('ac')},
+  {ico:'fa-chart-bar',nm:'Grades',fn:()=>owp('g')},
+  {ico:'fa-envelope',nm:'Contact',fn:()=>owp('co')},
+  {ico:'fa-folder',nm:'Finder',fn:()=>toggleWin('finder')},
+  {ico:'fa-code',nm:'VS Code',fn:()=>toggleWin('vscode')},
+];
+function openSpl() {
+  document.getElementById('spl').classList.add('open');
+  document.getElementById('spinput').value = '';
+  document.getElementById('spinput').focus();
+  spSearch('');
+}
+function closeSpl(e) { if (e.target === document.getElementById('spl')) document.getElementById('spl').classList.remove('open'); }
+function spSearch(q) {
+  const res = document.getElementById('spres');
+  const f = spAll.filter(s => s.nm.toLowerCase().includes(q.toLowerCase()));
+  res.innerHTML = f.map((s,i) => `<div class="sprow${i===0?' sel':''}" id="spr${i}"><i class="fas ${s.ico}"></i><span class="spnm">${s.nm}</span></div>`).join('');
+  f.forEach((s,i) => {
+    const el = document.getElementById('spr'+i);
+    if (el) el.onclick = () => { s.fn(); document.getElementById('spl').classList.remove('open'); };
+  });
+}
+function spKey(e) {
+  if (e.key === 'Escape') document.getElementById('spl').classList.remove('open');
+  if (e.key === 'Enter') { const s = document.querySelector('.sprow.sel'); if (s) s.click(); }
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTEXT MENU
+═══════════════════════════════════════════════════ */
+document.addEventListener('contextmenu', e => {
+  e.preventDefault();
+  const m = document.getElementById('ctx');
+  m.style.left = e.clientX + 'px'; m.style.top = e.clientY + 'px';
+  m.classList.add('open');
+});
+document.addEventListener('click', closeCtx);
+function closeCtx() { document.getElementById('ctx').classList.remove('open'); }
+
+/* ═══════════════════════════════════════════════════
+   VSC: WINDOW MANAGER
+═══════════════════════════════════════════════════ */
+function openWin(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('active');
+  el.style.animation = 'wO .3s cubic-bezier(.34,1.56,.64,1) both';
+  el.style.zIndex = ++topZ;
+  const dot = document.getElementById('dot-' + id);
+  if (dot) dot.classList.add('on');
+  if (id === 'vscode') setTimeout(() => { if (cm) cm.refresh(); }, 60);
+}
+function closeWin(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('active');
+  const dot = document.getElementById('dot-' + id);
+  if (dot) dot.classList.remove('on');
+}
+function toggleWin(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (el.classList.contains('active')) closeWin(id);
+  else openWin(id);
+}
+function maxWin(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (maxedMap['v_' + id]) {
+    Object.assign(el.style, maxedMap['v_' + id]);
+    maxedMap['v_' + id] = null;
+  } else {
+    const r = el.getBoundingClientRect();
+    maxedMap['v_' + id] = { top: el.style.top || r.top+'px', left: el.style.left || r.left+'px', width: el.style.width || r.width+'px', height: el.style.height || r.height+'px', right: el.style.right || 'auto' };
+    el.style.top = '30px'; el.style.left = '0'; el.style.right = '0';
+    el.style.width = '100%'; el.style.height = 'calc(100vh - 116px)';
+  }
+  setTimeout(() => { if (cm) cm.refresh(); }, 250);
+}
+
+/* DRAG — VSC windows */
+function initDrag(wid) {
+  const el = document.getElementById(wid);
+  const tb = document.getElementById('tb-' + wid);
+  if (!el || !tb) return;
+  let dr = false, ox = 0, oy = 0;
+  const start = (cx, cy) => {
+    const r = el.getBoundingClientRect();
+    ox = cx - r.left; oy = cy - r.top;
+    el.style.zIndex = ++topZ; dr = true;
+  };
+  const move = (cx, cy) => {
+    if (!dr) return;
+    el.style.left = `${cx - ox}px`; el.style.top = `${cy - oy}px`;
+    el.style.right = 'auto'; el.style.bottom = 'auto';
+  };
+  const end = () => { dr = false; };
+  tb.addEventListener('mousedown', e => {
+    if (e.target.classList.contains('tl') || e.target.tagName === 'BUTTON' || e.target.tagName === 'I') return;
+    start(e.clientX, e.clientY); e.preventDefault();
+  });
+  document.addEventListener('mousemove', e => move(e.clientX, e.clientY));
+  document.addEventListener('mouseup', end);
+  tb.addEventListener('touchstart', e => {
+    if (e.target.classList.contains('tl') || e.target.tagName === 'BUTTON' || e.target.tagName === 'I') return;
+    const t = e.touches[0]; start(t.clientX, t.clientY);
+  }, { passive: true });
+  document.addEventListener('touchmove', e => {
+    if (!dr) return;
+    const t = e.touches[0]; move(t.clientX, t.clientY); e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('touchend', end);
+}
+
+/* ═══════════════════════════════════════════════════
+   VSC: VIRTUAL FILE SYSTEM
+═══════════════════════════════════════════════════ */
 const VFS = {type:'folder',children:{
   Desktop:{type:'folder',icon:'🖥️',children:{
     'Welcome.txt':{type:'file',ext:'txt',content:'Selamat datang di Mac Studio!\n\nIni adalah desktop virtual milik Surya Dharma.\nBuka Finder untuk menjelajahi file.\n\nShortcuts:\n• F5 = Run Python / Preview HTML\n• Ctrl+S = Save file\n• Ctrl+N = New file\n\n— Mac Studio v1.0'}
@@ -393,6 +1273,7 @@ const VFS = {type:'folder',children:{
     .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(124,106,247,0.5); }
     .counter { font-size: 3rem; font-weight: 700; color: #5ec4ff; }
   </style>
+
 </head>
 <body>
   <div class="card">
@@ -406,807 +1287,402 @@ const VFS = {type:'folder',children:{
 </html>`}
   }},
   VSC:{type:'folder',icon:'💙',children:{
-    'introduction.py':{type:'file',ext:'py',content:`# Type Data dan Variabel
-
-# Variabel = tempat untuk meyimpan value
-# Type Data = Jenis - jenis value
-# Value = isi dari variabel (ex : no ururt, nama, usia, dll)
-
-# Prosedur penulisan variabel
-# 1. tidak boleh diawali angka / simbol
-# 2. tidak boleh pakai spasi (gunakan underscore)
-# 3. tidak boleh menggunakan istilah yang ada pada python(if, else, dll)
-# 4. gunakan istilah / singkatan umum
-
-
-# TYPE DATA
-# 1. Integer (int) = berisi angka bilangan bulat
-# 2. String (str) = berisi teks / kaarakter (.,-_ dll)
-
-# Contoh :
-nama = "Hazza Azzam Musyaffa"
-usia = 16
-alamat = "Perumahan Telaga Kahuripan"
-email = "h.azzam.musyaffa@gmail.com"
-
-print(nama)
-print(usia)`},
-    'looping1.py':{type:'file',ext:'py',content:`'''LOOOPING'''
-'''Merupakan proses pengulangan baris kode baik sebagian maupun sepenuhnya sampai kondisi terpenuhi'''
-
-# Jenis-jenis Looping
-'''For Loop & While Loop'''
-
-# Fungsi Looping:
-'''1. Mengulang sebagian / seluruh baris code
-   2. Mengiterasi data (list, string, int, dll)
-   3. Mengakses elemen satu persatu secara berurutan'''
-
-#Contoh1
-'''for a in range(5):
-    #print(a)'''
-
-#Contoh2
-'''buah = ["apel", "jeruk", "anggur"]
-for b in buah:
-    print(b)'''
-
-#Contoh3 (menghitung huruf vokal pada teks)
-teks = str(input("Masukkan teks: "))
-jumlah = 0
-
-for huruf in teks:
-    if huruf.lower() in "aiueo":
-        jumlah +=1
-print("jumlah huruf vokal : ", jumlah)`},
-    'NestedIF1.py':{type:'file',ext:'py',content:`'''Nested IF adalah sturuktur pengambilan keputusan yang mana terdapat 
-lebih dari satu indikator / terdapat IF didalam IF'''
-
-# Menetukan nilai berdasarkan inputan
-'''
-nilai = int(input("Masukkan nilai: "))
-if nilai <= 60 :
-    kategori = "Tidak Lulus"
-elif nilai >= 80 :
-    kategori = "Nilai A"
-else :
-    kategori = "Nilai B"
-print(kategori)
-
-'''
-
-# Nested IF Multi Variabel
-masa_kerja = int(input("Masa kerja (tahun): "))
-Jabatan = str(input("Masukkan Jabatan: "))
-
-if masa_kerja >= 10 :
-    if Jabatan.lower() == "manager":
-        gaji = "10 Jt"
-    elif Jabatan.lower() == "supervisor":
-        gaji = "8 Jt"
-    elif Jabatan.lower() == "staff":
-        gaji = "5 Jt"
-    else:
-        print("Data Tidak Valid")
-        gaji = "N/A"
-else:
-    if Jabatan.lower() == "manager":
-        gaji = "8 Jt"
-    elif Jabatan.lower() == "supervisor":
-        gaji = "6 Jt"
-    elif Jabatan.lower() == "staff":
-        gaji = "3 Jt"
-    else:
-        print("Data Tidak Valid")
-        gaji = "N/A"
-print("Gaji:", gaji)`},
-    'praktek1.py':{type:'file',ext:'py',content:`# Tipe Data Float = Berisi angka desimal (yang ada komanya)
-# usia = 10.5 
-# print(usia)
-
-# Logika IF = digunakan untuk mengambil keputusan
-# Logika If selalu memiliki 2 output yaitu = true or false (else)
-
-# usia = 16
-# if usia >= 17 :
-#     print("Dewasa")
-# else :
-#     print("Remaja")
-
-
-# Menentukan apakah besok puasa sunnah / tidak
-# Variabel = hari
-# Value = senin
-
-hari = "senin"
-if hari == "senin" :
-    print("puasa")
-else :
-    print("tidak")`},
-    'PSAS_Informatika.py':{type:'file',ext:'py',content:`# nama barang = "aqua"
-# harga barang = 10000
-# jumlah barang = 11
-
-harga = 110000
-jumlah = 11
-total = harga * jumlah
-print("Total:", total)
-
-if total > 110000 :
-    diskon = total * 0.10
-    print("Diskon 10%:", diskon)
-    print("Bayar:", total - diskon)
-else:
-    print("Tidak diskon")
-    print("Bayar:", total)`},
-    'hello_world.py':{type:'file',ext:'py',content:`# Hello World - Program Python Pertama
-
-print("Hello, World!")
-print("Nama saya: Surya Dharma")
-print("Belajar Python itu seru!")
-
-# Operasi matematika
-a = 10
-b = 5
-print("a + b =", a + b)
-print("a * b =", a * b)
-print("a ** b =", a ** b)  # pangkat`}
+    'introduction.py':{type:'file',ext:'py',content:`# Type Data dan Variabel\n\n# Variabel = tempat untuk meyimpan value\n# Type Data = Jenis - jenis value\n# Value = isi dari variabel (ex : no ururt, nama, usia, dll)\n\n# Prosedur penulisan variabel\n# 1. tidak boleh diawali angka / simbol\n# 2. tidak boleh pakai spasi (gunakan underscore)\n# 3. tidak boleh menggunakan istilah yang ada pada python(if, else, dll)\n# 4. gunakan istilah / singkatan umum\n\n\n# TYPE DATA\n# 1. Integer (int) = berisi angka bilangan bulat\n# 2. String (str) = berisi teks / kaarakter (.,-_ dll)\n\n# Contoh :\nnama = "Hazza Azzam Musyaffa"\nusia = 16\nalamat = "Perumahan Telaga Kahuripan"\nemail = "h.azzam.musyaffa@gmail.com"\n\nprint(nama)\nprint(usia)`},
+    'looping1.py':{type:'file',ext:'py',content:`'''LOOOPING'''\n'''Merupakan proses pengulangan baris kode baik sebagian maupun sepenuhnya sampai kondisi terpenuhi'''\n\n# Jenis-jenis Looping\n'''For Loop & While Loop'''\n\n# Fungsi Looping:\n'''1. Mengulang sebagian / seluruh baris code\n   2. Mengiterasi data (list, string, int, dll)\n   3. Mengakses elemen satu persatu secara berurutan'''\n\n#Contoh3 (menghitung huruf vokal pada teks)\nteks = str(input("Masukkan teks: "))\njumlah = 0\n\nfor huruf in teks:\n    if huruf.lower() in "aiueo":\n        jumlah +=1\nprint("jumlah huruf vokal : ", jumlah)`},
+    'NestedIF1.py':{type:'file',ext:'py',content:`'''Nested IF adalah sturuktur pengambilan keputusan yang mana terdapat \nlebih dari satu indikator / terdapat IF didalam IF'''\n\n# Nested IF Multi Variabel\nmasa_kerja = int(input("Masa kerja (tahun): "))\nJabatan = str(input("Masukkan Jabatan: "))\n\nif masa_kerja >= 10 :\n    if Jabatan.lower() == "manager":\n        gaji = "10 Jt"\n    elif Jabatan.lower() == "supervisor":\n        gaji = "8 Jt"\n    elif Jabatan.lower() == "staff":\n        gaji = "5 Jt"\n    else:\n        print("Data Tidak Valid")\n        gaji = "N/A"\nelse:\n    if Jabatan.lower() == "manager":\n        gaji = "8 Jt"\n    elif Jabatan.lower() == "supervisor":\n        gaji = "6 Jt"\n    elif Jabatan.lower() == "staff":\n        gaji = "3 Jt"\n    else:\n        print("Data Tidak Valid")\n        gaji = "N/A"\nprint("Gaji:", gaji)`},
+    'praktek1.py':{type:'file',ext:'py',content:`# Tipe Data Float = Berisi angka desimal (yang ada komanya)\n\n# Logika IF = digunakan untuk mengambil keputusan\n# Logika If selalu memiliki 2 output yaitu = true or false (else)\n\n# Menentukan apakah besok puasa sunnah / tidak\n# Variabel = hari\n# Value = senin\n\nhari = "senin"\nif hari == "senin" :\n    print("puasa")\nelse :\n    print("tidak")`},
+    'PSAS_Informatika.py':{type:'file',ext:'py',content:`# nama barang = "aqua"\n# harga barang = 10000\n# jumlah barang = 11\n\nharga = 110000\njumlah = 11\ntotal = harga * jumlah\nprint("Total:", total)\n\nif total > 110000 :\n    diskon = total * 0.10\n    print("Diskon 10%:", diskon)\n    print("Bayar:", total - diskon)\nelse:\n    print("Tidak diskon")\n    print("Bayar:", total)`},
+    'hello_world.py':{type:'file',ext:'py',content:`# Hello World - Program Python Pertama\n\nprint("Hello, World!")\nprint("Nama saya: Surya Dharma")\nprint("Belajar Python itu seru!")\n\n# Operasi matematika\na = 10\nb = 5\nprint("a + b =", a + b)\nprint("a * b =", a * b)\nprint("a ** b =", a ** b)  # pangkat`}
   }}
 }};
 
-// ═══════════════════════════════════════
-// WINDOW MANAGEMENT
-// ═══════════════════════════════════════
-let topZ = 200;
-const maxed = {};
-
-function openWin(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.add('open');
-  el.style.zIndex = ++topZ;
-  const dot = document.getElementById('dot-' + id);
-  if (dot) dot.classList.add('on');
-  if (id === 'vscode') setTimeout(() => { if (cm) cm.refresh(); }, 60);
-}
-
-function closeWin(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.remove('open');
-  const dot = document.getElementById('dot-' + id);
-  if (dot) dot.classList.remove('on');
-}
-
-function toggleWin(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  if (el.classList.contains('open')) closeWin(id);
-  else openWin(id);
-}
-
-function maxWin(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  if (maxed[id]) {
-    Object.assign(el.style, maxed[id]);
-    maxed[id] = null;
-  } else {
-    const r = el.getBoundingClientRect();
-    maxed[id] = { top: el.style.top || r.top + 'px', left: el.style.left || r.left + 'px', width: el.style.width || r.width + 'px', height: el.style.height || r.height + 'px', right: el.style.right || 'auto' };
-    el.style.top = '28px'; el.style.left = '0'; el.style.right = '0';
-    el.style.width = '100%'; el.style.height = 'calc(100vh - 28px - 76px)';
-  }
-  setTimeout(() => { if (cm) cm.refresh(); }, 250);
-}
-
-document.querySelectorAll('.macwin').forEach(w => {
-  w.addEventListener('mousedown', () => { w.style.zIndex = ++topZ; });
-  w.addEventListener('touchstart', () => { w.style.zIndex = ++topZ; }, { passive: true });
-});
-
-// ═══════════════════════════════════════
-// DRAG (Mouse + Touch)
-// ═══════════════════════════════════════
-function initDrag(wid) {
-  const el = document.getElementById(wid);
-  const tb = document.getElementById('tb-' + wid);
-  if (!el || !tb) return;
-  let dr = false, ox = 0, oy = 0;
-  const start = (cx, cy) => {
-    const r = el.getBoundingClientRect();
-    ox = cx - r.left; oy = cy - r.top;
-    el.style.zIndex = ++topZ; dr = true;
-  };
-  const move = (cx, cy) => {
-    if (!dr) return;
-    el.style.left = `${cx - ox}px`; el.style.top = `${cy - oy}px`;
-    el.style.right = 'auto'; el.style.bottom = 'auto';
-  };
-  const end = () => { dr = false; };
-  tb.addEventListener('mousedown', e => {
-    if (e.target.classList.contains('tl') || e.target.tagName === 'BUTTON' || e.target.tagName === 'I') return;
-    start(e.clientX, e.clientY); e.preventDefault();
-  });
-  document.addEventListener('mousemove', e => move(e.clientX, e.clientY));
-  document.addEventListener('mouseup', end);
-  tb.addEventListener('touchstart', e => {
-    if (e.target.classList.contains('tl') || e.target.tagName === 'BUTTON' || e.target.tagName === 'I') return;
-    const t = e.touches[0]; start(t.clientX, t.clientY);
-  }, { passive: true });
-  document.addEventListener('touchmove', e => {
-    if (!dr) return;
-    const t = e.touches[0]; move(t.clientX, t.clientY); e.preventDefault();
-  }, { passive: false });
-  document.addEventListener('touchend', end);
-}
-
-// ═══════════════════════════════════════
-// FINDER
-// ═══════════════════════════════════════
-let curPath = [];
-let pathHist = [[]], histIdx = 0, selFile = null;
-const tapT = {};
+/* ═══════════════════════════════════════════════════
+VSC: FINDER LOGIC
+═══════════════════════════════════════════════════ */
+let curPath = [], pathHist = [[]], histIdx = 0, selFile = null;
+const finderTapT = {};
 
 function getNode(path) {
-  let node = VFS;
-  for (const p of path) {
-    if (node.children && node.children[p]) node = node.children[p];
-    else return null;
-  }
-  return node;
+let node = VFS;
+for (const p of path) {
+if (node.children && node.children[p]) node = node.children[p];
+else return null;
 }
-
+return node;
+}
 function fileIcon(name) {
-  const ext = name.split('.').pop().toLowerCase();
-  return { py: '🐍', html: '🌐', css: '🎨', js: '📜', txt: '📄', json: '📋', md: '📝' }[ext] || '📄';
+const ext = name.split(’.’).pop().toLowerCase();
+return {py:‘🐍’,html:‘🌐’,css:‘🎨’,js:‘📜’,txt:‘📄’,json:‘📋’,md:‘📝’}[ext] || ‘📄’;
 }
-
 function renderFinder() {
-  const node = getNode(curPath);
-  const main = document.getElementById('f-main');
-  const status = document.getElementById('f-status');
-  const title = document.getElementById('finder-title');
-  const bc = document.getElementById('f-bc');
-  if (!node || node.type !== 'folder') return;
-
-  const name = curPath[curPath.length - 1] || 'Home';
-  title.textContent = 'Finder — ' + name;
-  bc.textContent = '🏠 Home' + (curPath.length ? ' › ' + curPath.join(' › ') : '');
-
-  // Sidebar highlights
-  document.querySelectorAll('.f-sb-item').forEach(i => i.classList.remove('active'));
-  const key = curPath.length === 1 ? curPath[0] : (curPath.length === 0 ? 'home' : '');
-  const sel = document.getElementById('fsb-' + key);
-  if (sel) sel.classList.add('active');
-  else if (!curPath.length) document.getElementById('fsb-home').classList.add('active');
-
-  const ch = node.children;
-  const keys = Object.keys(ch).sort((a, b) => {
-    const af = ch[a].type === 'folder', bf = ch[b].type === 'folder';
-    return af && !bf ? -1 : !af && bf ? 1 : a.localeCompare(b);
-  });
-
-  if (!keys.length) {
-    main.innerHTML = '<div class="f-empty"><span>📂</span>Folder kosong</div>';
-    status.textContent = '0 item'; return;
-  }
-
-  main.innerHTML = '<div class="f-grid">' + keys.map(k => {
-    const item = ch[k];
-    const ico = item.type === 'folder' ? (item.icon || '📁') : fileIcon(k);
-    return `<div class="f-item" id="fi-${k.replace(/\W/g,'_')}" onclick="fsel('${k}')" ondblclick="fopen('${k}')" ontouchend="ftap('${k}',event)">
-      <div class="fio">${ico}</div><div class="fin">${k}</div></div>`;
-  }).join('') + '</div>';
-
-  status.textContent = `${keys.length} item${keys.length !== 1 ? 's' : ''}`;
+const node = getNode(curPath);
+const main = document.getElementById(‘f-main’);
+const status = document.getElementById(‘f-status’);
+const title = document.getElementById(‘finder-title’);
+const bc = document.getElementById(‘f-bc’);
+if (!node || node.type !== ‘folder’) return;
+const name = curPath[curPath.length - 1] || ‘Home’;
+title.textContent = ‘Finder — ’ + name;
+bc.textContent = ‘🏠 Home’ + (curPath.length ? ’ › ’ + curPath.join(’ › ‘) : ‘’);
+document.querySelectorAll(’.f-sb-item’).forEach(i => i.classList.remove(‘active’));
+const key = curPath.length === 1 ? curPath[0] : (curPath.length === 0 ? ‘home’ : ‘’);
+const selEl = document.getElementById(‘fsb-’ + key);
+if (selEl) selEl.classList.add(‘active’);
+else if (!curPath.length) document.getElementById(‘fsb-home’)?.classList.add(‘active’);
+const ch = node.children;
+const keys = Object.keys(ch).sort((a,b) => {
+const af = ch[a].type===‘folder’, bf = ch[b].type===‘folder’;
+return af&&!bf?-1:!af&&bf?1:a.localeCompare(b);
+});
+if (!keys.length) { main.innerHTML=’<div class="f-empty"><span>📂</span>Folder kosong</div>’; status.textContent=‘0 item’; return; }
+main.innerHTML = ‘<div class="f-grid">’+keys.map(k=>{
+const item=ch[k], ico=item.type===‘folder’?(item.icon||‘📁’):fileIcon(k);
+return `<div class="f-item" id="fi-${k.replace(/\W/g,'_')}" onclick="fsel('${k}')" ondblclick="fopen('${k}')" ontouchend="ftap('${k}',event)"><div class="fio">${ico}</div><div class="fin">${k}</div></div>`;
+}).join(’’)+’</div>’;
+status.textContent = `${keys.length} item${keys.length!==1?'s':''}`;
 }
-
 function fsel(name) {
-  selFile = name;
-  document.querySelectorAll('.f-item').forEach(el => el.classList.remove('sel'));
-  const el = document.getElementById('fi-' + name.replace(/\W/g,'_'));
-  if (el) el.classList.add('sel');
+selFile = name;
+document.querySelectorAll(’.f-item’).forEach(el=>el.classList.remove(‘sel’));
+const el = document.getElementById(‘fi-’+name.replace(/\W/g,’_’));
+if (el) el.classList.add(‘sel’);
 }
-
 function fopen(name) {
-  const node = getNode(curPath);
-  if (!node || !node.children[name]) return;
-  const item = node.children[name];
-  if (item.type === 'folder') {
-    const newPath = [...curPath, name];
-    pathHist = pathHist.slice(0, histIdx + 1);
-    pathHist.push([...newPath]);
-    histIdx = pathHist.length - 1;
-    curPath = newPath;
-    renderFinder();
-  } else {
-    openInEditor([...curPath, name]);
-    openWin('vscode');
-    notify('📂', 'File Opened', `${name} opened in VS Code`);
-  }
+const node = getNode(curPath);
+if (!node||!node.children[name]) return;
+const item = node.children[name];
+if (item.type===‘folder’) {
+const newPath = […curPath, name];
+pathHist = pathHist.slice(0, histIdx+1); pathHist.push([…newPath]); histIdx = pathHist.length-1;
+curPath = newPath; renderFinder();
+} else {
+openInEditor([…curPath, name]); openWin(‘vscode’);
+notify(‘📂’,‘File Opened’, name+’ opened in VS Code’);
 }
-
+}
 function ftap(name, e) {
-  e.preventDefault();
-  const now = Date.now();
-  if (tapT[name] && now - tapT[name] < 400) { fopen(name); tapT[name] = 0; }
-  else { tapT[name] = now; fsel(name); }
+e.preventDefault();
+const now = Date.now();
+if (finderTapT[name]&&now-finderTapT[name]<400) { fopen(name); finderTapT[name]=0; }
+else { finderTapT[name]=now; fsel(name); }
 }
-
 function goTo(path) {
-  const parts = path ? path.split('/').filter(p => p) : [];
-  if (!getNode(parts)) return;
-  curPath = parts;
-  pathHist = pathHist.slice(0, histIdx + 1);
-  pathHist.push([...curPath]);
-  histIdx = pathHist.length - 1;
-  renderFinder();
+const parts = path ? path.split(’/’).filter(p=>p) : [];
+if (!getNode(parts)) return;
+curPath = parts;
+pathHist = pathHist.slice(0, histIdx+1); pathHist.push([…curPath]); histIdx = pathHist.length-1;
+renderFinder();
 }
-
-function finderBack() {
-  if (histIdx > 0) { histIdx--; curPath = [...pathHist[histIdx]]; renderFinder(); }
-}
-function finderFwd() {
-  if (histIdx < pathHist.length - 1) { histIdx++; curPath = [...pathHist[histIdx]]; renderFinder(); }
-}
-
+function finderBack() { if (histIdx>0){histIdx–;curPath=[…pathHist[histIdx]];renderFinder();} }
+function finderFwd() { if (histIdx<pathHist.length-1){histIdx++;curPath=[…pathHist[histIdx]];renderFinder();} }
 function openSelInVSC() {
-  if (!selFile) { notify('⚠️', 'No file selected', 'Klik file dulu, lalu Open in VSC'); return; }
-  fopen(selFile);
+if (!selFile){notify(‘⚠️’,‘No file selected’,‘Klik file dulu, lalu Open in VSC’);return;}
+fopen(selFile);
 }
 
-// ═══════════════════════════════════════
-// VS CODE EDITOR
-// ═══════════════════════════════════════
-let tabs = {}, activeTab = null, cm = null, pTimer = null, sbOpen = true, panelCol = false, curPanel = 'terminal';
+/* ═══════════════════════════════════════════════════
+VSC: EDITOR LOGIC
+═══════════════════════════════════════════════════ */
+let vscTabs = {}, activeTab = null, cm = null, pTimer = null, sbOpen = true, panelCol = false, curPanel = ‘terminal’;
 
 function getLang(name) {
-  const ext = name.split('.').pop().toLowerCase();
-  return { py: 'python', html: 'htmlmixed', css: 'css', js: 'javascript', txt: 'text', md: 'text' }[ext] || 'text';
+const ext = name.split(’.’).pop().toLowerCase();
+return {py:‘python’,html:‘htmlmixed’,css:‘css’,js:‘javascript’,txt:‘text’,md:‘text’}[ext]||‘text’;
 }
 function getLangLabel(lang) {
-  return { python: '🐍 Python', htmlmixed: '🌐 HTML', css: '🎨 CSS', javascript: '📜 JavaScript', text: '📄 Text' }[lang] || lang;
+return {python:‘🐍 Python’,htmlmixed:‘🌐 HTML’,css:‘🎨 CSS’,javascript:‘📜 JavaScript’,text:‘📄 Text’}[lang]||lang;
 }
-
 function openInEditor(pathArr) {
-  const pstr = pathArr.join('/');
-  const name = pathArr[pathArr.length - 1];
-  const node = getNode(pathArr);
-  if (!node || node.type !== 'file') return;
-  if (!tabs[pstr]) tabs[pstr] = { name, path: pathArr, pstr, content: node.content || '', lang: getLang(name), mod: false };
-  activeTab = pstr;
-  renderTabs();
-  loadInEditor(pstr);
+const pstr = pathArr.join(’/’);
+const name = pathArr[pathArr.length-1];
+const node = getNode(pathArr);
+if (!node||node.type!==‘file’) return;
+if (!vscTabs[pstr]) vscTabs[pstr]={name,path:pathArr,pstr,content:node.content||’’,lang:getLang(name),mod:false};
+activeTab = pstr;
+renderTabs(); loadInEditor(pstr);
 }
-
 function renderTabs() {
-  const bar = document.getElementById('tabbar');
-  const keys = Object.keys(tabs);
-  if (!keys.length) { bar.innerHTML = ''; return; }
-  bar.innerHTML = keys.map(k => {
-    const t = tabs[k], ico = fileIcon(t.name);
-    return `<div class="tab${k === activeTab ? ' on' : ''}" onclick="switchTab('${k}')">
-      <span>${ico}</span><span>${t.name}</span>${t.mod ? '<span class="tmod">●</span>' : ''}
-      <span class="tc" onclick="closeTab('${k}',event)">✕</span></div>`;
-  }).join('');
+const bar = document.getElementById(‘tabbar’);
+const keys = Object.keys(vscTabs);
+if (!keys.length){bar.innerHTML=’’;return;}
+bar.innerHTML = keys.map(k=>{
+const t=vscTabs[k], ico=fileIcon(t.name);
+return `<div class="tab${k===activeTab?' on':''}" onclick="switchTab('${k}')"><span>${ico}</span><span>${t.name}</span>${t.mod?'<span class="tmod">●</span>':''}<span class="tc" onclick="closeTab('${k}',event)">✕</span></div>`;
+}).join(’’);
 }
-
-function switchTab(pstr) {
-  saveActive();
-  activeTab = pstr;
-  renderTabs();
-  loadInEditor(pstr);
-}
-
+function switchTab(pstr) { saveActive(); activeTab=pstr; renderTabs(); loadInEditor(pstr); }
 function closeTab(pstr, e) {
-  e.stopPropagation();
-  delete tabs[pstr];
-  const keys = Object.keys(tabs);
-  activeTab = pstr === activeTab ? (keys.length ? keys[keys.length - 1] : null) : activeTab;
-  renderTabs();
-  if (activeTab) loadInEditor(activeTab);
-  else { showEmpty(true); updateStatus(null); }
+e.stopPropagation(); delete vscTabs[pstr];
+const keys = Object.keys(vscTabs);
+activeTab = pstr===activeTab?(keys.length?keys[keys.length-1]:null):activeTab;
+renderTabs();
+if (activeTab) loadInEditor(activeTab);
+else { showEmpty(true); updateStatus(null); }
 }
-
 function loadInEditor(pstr) {
-  const t = tabs[pstr];
-  if (!t) return;
-  showEmpty(false);
-  if (!cm) initCM();
-  cm.setOption('mode', t.lang);
-  cm.setValue(t.content);
-  cm.clearHistory();
-  setTimeout(() => { cm.refresh(); cm.focus(); }, 30);
-  updateStatus(t);
-  document.getElementById('vsc-title').textContent = t.name + ' — Mac Studio';
-  if (t.lang === 'htmlmixed') updatePreview(t.content);
+const t = vscTabs[pstr]; if (!t) return;
+showEmpty(false);
+if (!cm) initCM();
+cm.setOption(‘mode’, t.lang);
+cm.setValue(t.content);
+cm.clearHistory();
+setTimeout(()=>{cm.refresh();cm.focus();},30);
+updateStatus(t);
+document.getElementById(‘vsc-title’).textContent = t.name+’ — Mac Studio’;
+if (t.lang===‘htmlmixed’) updatePreview(t.content);
 }
-
 function saveActive() {
-  if (!activeTab || !tabs[activeTab] || !cm) return;
-  const newC = cm.getValue();
-  if (newC !== tabs[activeTab].content) {
-    tabs[activeTab].content = newC;
-    tabs[activeTab].mod = false;
-    const node = getNode(tabs[activeTab].path);
-    if (node) node.content = newC;
-  }
+if (!activeTab||!vscTabs[activeTab]||!cm) return;
+const newC = cm.getValue();
+if (newC!==vscTabs[activeTab].content) {
+vscTabs[activeTab].content=newC; vscTabs[activeTab].mod=false;
+const node=getNode(vscTabs[activeTab].path);
+if (node) node.content=newC;
 }
-
+}
 function initCM() {
-  const wrap = document.getElementById('cm-wrap');
-  cm = CodeMirror(wrap, {
-    value: '',
-    mode: 'python',
-    theme: 'dracula',
-    lineNumbers: true,
-    matchBrackets: true,
-    autoCloseBrackets: true,
-    indentUnit: 4,
-    tabSize: 4,
-    indentWithTabs: false,
-    lineWrapping: true,
-    extraKeys: {
-      'Ctrl-S': () => { saveActive(); notify('💾', 'Saved!', 'File tersimpan ✅'); },
-      'Cmd-S': () => { saveActive(); notify('💾', 'Saved!', 'File tersimpan ✅'); },
-      'F5': () => runFile(),
-      'Ctrl-/': 'toggleComment',
-    }
-  });
-  cm.on('change', () => {
-    if (!activeTab || !tabs[activeTab]) return;
-    const newC = cm.getValue();
-    if (newC !== tabs[activeTab].content) {
-      tabs[activeTab].content = newC;
-      tabs[activeTab].mod = true;
-      const node = getNode(tabs[activeTab].path);
-      if (node) node.content = newC;
-      renderTabs();
-      if (tabs[activeTab].lang === 'htmlmixed') {
-        clearTimeout(pTimer);
-        pTimer = setTimeout(() => updatePreview(newC), 600);
-      }
-    }
-    updateCursor();
-  });
-  cm.on('cursorActivity', updateCursor);
-  // style the wrapper
-  wrap.style.height = '100%';
-  wrap.querySelector('.CodeMirror').style.height = '100%';
+const wrap = document.getElementById(‘cm-wrap’);
+cm = CodeMirror(wrap,{
+value:’’,mode:‘python’,theme:‘dracula’,lineNumbers:true,
+matchBrackets:true,autoCloseBrackets:true,indentUnit:4,tabSize:4,
+indentWithTabs:false,lineWrapping:true,
+extraKeys:{
+‘Ctrl-S’:()=>{saveActive();notify(‘💾’,‘Saved!’,‘File tersimpan ✅’);},
+‘Cmd-S’:()=>{saveActive();notify(‘💾’,‘Saved!’,‘File tersimpan ✅’);},
+‘F5’:()=>vscRunFile(),
+‘Ctrl-/’:‘toggleComment’,
 }
-
+});
+cm.on(‘change’,()=>{
+if (!activeTab||!vscTabs[activeTab]) return;
+const newC=cm.getValue();
+if (newC!==vscTabs[activeTab].content){
+vscTabs[activeTab].content=newC; vscTabs[activeTab].mod=true;
+const node=getNode(vscTabs[activeTab].path);
+if (node) node.content=newC;
+renderTabs();
+if (vscTabs[activeTab].lang===‘htmlmixed’){
+clearTimeout(pTimer); pTimer=setTimeout(()=>updatePreview(newC),600);
+}
+}
+updateCursor();
+});
+cm.on(‘cursorActivity’,updateCursor);
+wrap.style.height=‘100%’;
+const cmEl=wrap.querySelector(’.CodeMirror’);
+if (cmEl) cmEl.style.height=‘100%’;
+}
 function showEmpty(show) {
-  const ee = document.getElementById('ee');
-  const cmw = document.getElementById('cm-wrap');
-  ee.style.display = show ? 'flex' : 'none';
-  cmw.style.visibility = show ? 'hidden' : 'visible';
+document.getElementById(‘ee’).style.display=show?‘flex’:‘none’;
+document.getElementById(‘cm-wrap’).style.visibility=show?‘hidden’:‘visible’;
 }
-
 function updateStatus(t) {
-  document.getElementById('sb-file').textContent = t ? t.name : 'No file open';
-  document.getElementById('sb-lang').textContent = t ? getLangLabel(t.lang) : '—';
+document.getElementById(‘sb-file’).textContent=t?t.name:‘No file open’;
+document.getElementById(‘sb-lang’).textContent=t?getLangLabel(t.lang):’—’;
 }
-
 function updateCursor() {
-  if (!cm) return;
-  const c = cm.getCursor();
-  document.getElementById('sb-pos').textContent = `Ln ${c.line + 1}, Col ${c.ch + 1}`;
+if (!cm) return;
+const c=cm.getCursor();
+document.getElementById(‘sb-pos’).textContent=`Ln ${c.line+1}, Col ${c.ch+1}`;
 }
-
-// ═══════════════════════════════════════
-// SIDEBAR TOGGLE
-// ═══════════════════════════════════════
 function toggleSB() {
-  sbOpen = !sbOpen;
-  document.getElementById('vsc-sb').classList.toggle('off', !sbOpen);
-  document.getElementById('act-ex').classList.toggle('on', sbOpen);
-  setTimeout(() => { if (cm) cm.refresh(); }, 250);
+sbOpen=!sbOpen;
+document.getElementById(‘vsc-sb’).classList.toggle(‘off’,!sbOpen);
+document.getElementById(‘act-ex’).classList.toggle(‘on’,sbOpen);
+setTimeout(()=>{if(cm)cm.refresh();},250);
 }
 
-// ═══════════════════════════════════════
-// FILE TREE
-// ═══════════════════════════════════════
+/* FILE TREE */
 function renderFT() {
-  const el = document.getElementById('ftree');
-  el.innerHTML = renderFTNode(VFS, '', 0);
+const el = document.getElementById(‘ftree’);
+el.innerHTML = renderFTNode(VFS,’’,0);
 }
-
 function renderFTNode(node, path, depth) {
-  if (!node.children) return '';
-  const ch = node.children;
-  const keys = Object.keys(ch).sort((a, b) => {
-    const af = ch[a].type === 'folder', bf = ch[b].type === 'folder';
-    return af && !bf ? -1 : !af && bf ? 1 : a.localeCompare(b);
-  });
-  let html = '';
-  for (const k of keys) {
-    const child = ch[k];
-    const cp = path ? path + '/' + k : k;
-    const ind = (depth * 12 + 8) + 'px';
-    if (child.type === 'folder') {
-      const fid = 'ft-' + cp.replace(/[^\w]/g, '_');
-      html += `<div class="fti" style="--ind:${ind}" onclick="toggleFT('${fid}',this)">
-        <span class="arr">›</span><span style="font-size:14px">${child.icon || '📁'}</span><span>${k}</span></div>
-        <div id="${fid}" style="display:none">${renderFTNode(child, cp, depth + 1)}</div>`;
-    } else {
-      const ico = fileIcon(k);
-      html += `<div class="fti" style="--ind:${ind}" onclick="openInEditor('${cp}'.split('/'))">
-        <span style="font-size:13px;width:10px"></span><span style="font-size:14px">${ico}</span><span>${k}</span></div>`;
-    }
-  }
-  return html;
+if (!node.children) return ‘’;
+const ch=node.children;
+const keys=Object.keys(ch).sort((a,b)=>{
+const af=ch[a].type===‘folder’,bf=ch[b].type===‘folder’;
+return af&&!bf?-1:!af&&bf?1:a.localeCompare(b);
+});
+let html=’’;
+for (const k of keys){
+const child=ch[k], cp=path?path+’/’+k:k, ind=(depth*12+8)+‘px’;
+if (child.type===‘folder’){
+const fid=‘ft-’+cp.replace(/[^\w]/g,’_’);
+html+=`<div class="fti" style="--ind:${ind}" onclick="toggleFT('${fid}',this)"><span class="arr">›</span><span style="font-size:14px">${child.icon||'📁'}</span><span>${k}</span></div><div id="${fid}" style="display:none">${renderFTNode(child,cp,depth+1)}</div>`;
+} else {
+const ico=fileIcon(k);
+html+=`<div class="fti" style="--ind:${ind}" onclick="openInEditor('${cp}'.split('/'))"><span style="font-size:13px;width:10px"></span><span style="font-size:14px">${ico}</span><span>${k}</span></div>`;
 }
-
+}
+return html;
+}
 function toggleFT(fid, el) {
-  const div = document.getElementById(fid);
-  const open = div.style.display !== 'none';
-  div.style.display = open ? 'none' : 'block';
-  el.classList.toggle('op', !open);
+const div=document.getElementById(fid), open=div.style.display!==‘none’;
+div.style.display=open?‘none’:‘block’; el.classList.toggle(‘op’,!open);
 }
 
-// ═══════════════════════════════════════
-// PANEL
-// ═══════════════════════════════════════
-function spanel(name) {
-  curPanel = name;
-  ['terminal', 'preview', 'problems'].forEach(p => {
-    document.getElementById('pc-' + p)?.classList.toggle('h', p !== name);
-    document.getElementById('pt-' + p)?.classList.toggle('on', p === name);
-  });
-  if (panelCol) {
-    panelCol = false;
-    document.getElementById('bp').classList.remove('col');
-    document.getElementById('ptogbtn').innerHTML = '<i class="fas fa-chevron-down"></i>';
-  }
-  if (cm) setTimeout(() => cm.refresh(), 250);
+/* PANEL */
+function vscSpanel(name) {
+curPanel=name;
+[‘terminal’,‘preview’,‘problems’].forEach(p=>{
+document.getElementById(‘pc-’+p)?.classList.toggle(‘h’,p!==name);
+document.getElementById(‘pt-’+p)?.classList.toggle(‘on’,p===name);
+});
+if (panelCol){panelCol=false;document.getElementById(‘vsc-bp’).classList.remove(‘col’);document.getElementById(‘ptogbtn’).innerHTML=’<i class="fas fa-chevron-down"></i>’;}
+if (cm) setTimeout(()=>cm.refresh(),250);
 }
-
 function togglePanel() {
-  panelCol = !panelCol;
-  document.getElementById('bp').classList.toggle('col', panelCol);
-  document.getElementById('ptogbtn').innerHTML = panelCol ? '<i class="fas fa-chevron-up"></i>' : '<i class="fas fa-chevron-down"></i>';
-  if (cm) setTimeout(() => cm.refresh(), 250);
+panelCol=!panelCol;
+document.getElementById(‘vsc-bp’).classList.toggle(‘col’,panelCol);
+document.getElementById(‘ptogbtn’).innerHTML=panelCol?’<i class="fas fa-chevron-up"></i>’:’<i class="fas fa-chevron-down"></i>’;
+if (cm) setTimeout(()=>cm.refresh(),250);
 }
 
-// ═══════════════════════════════════════
-// TERMINAL
-// ═══════════════════════════════════════
-function tlog(text, cls = 'to') {
-  const t = document.getElementById('term');
-  const d = document.createElement('div');
-  d.className = cls;
-  d.textContent = text;
-  t.appendChild(d);
-  t.scrollTop = t.scrollHeight;
+/* TERMINAL */
+function tlog(text, cls=‘to’) {
+const t=document.getElementById(‘term’);
+const d=document.createElement(‘div’); d.className=cls; d.textContent=text;
+t.appendChild(d); t.scrollTop=t.scrollHeight;
+}
+function vscClearTerm() {
+document.getElementById(‘term’).innerHTML=’<div class="tw">Mac Studio Terminal v1.0 🐍</div><br>’;
 }
 
-function clearTerm() {
-  document.getElementById('term').innerHTML = '<div class="tw">Mac Studio Terminal v1.0 🐍</div><br>';
-}
-
-// ═══════════════════════════════════════
-// PYTHON RUNNER (Skulpt)
-// ═══════════════════════════════════════
-let inQ = [], pendingCode = '', pendingName = '';
-
+/* PYTHON RUNNER */
+let inQ=[], pendingCode=’’, pendingName=’’;
 function detectInputs(code) {
-  const re = /input\s*\(\s*["']([^"']*)["']\s*\)/g;
-  const prompts = [];
-  let m;
-  while ((m = re.exec(code)) !== null) prompts.push(m[1]);
-  const total = (code.match(/\binput\s*\(/g) || []).length;
-  while (prompts.length < total) prompts.push('Input ' + (prompts.length + 1));
-  return prompts;
+const re=/input\s*(\s*[”’]([^"']*)[”’]\s*)/g, prompts=[]; let m;
+while((m=re.exec(code))!==null) prompts.push(m[1]);
+const total=(code.match(/\binput\s*(/g)||[]).length;
+while(prompts.length<total) prompts.push(‘Input ‘+(prompts.length+1));
+return prompts;
 }
-
-function runFile() {
-  if (!activeTab || !tabs[activeTab]) { notify('⚠️', 'No File', 'Buka file dulu!'); return; }
-  saveActive();
-  const t = tabs[activeTab];
-  if (t.lang === 'python') {
-    pendingCode = t.content;
-    pendingName = t.name;
-    const prompts = detectInputs(t.content);
-    if (prompts.length > 0) {
-      const mg = document.getElementById('modal-mg');
-      mg.innerHTML = `<div class="minfo">Program <strong>${t.name}</strong> membutuhkan ${prompts.length} input:</div>` +
-        prompts.map((p, i) => `<div><label>${p || 'Input ' + (i + 1)}</label>
-          <input type="text" id="inp-${i}" placeholder="ketik jawaban..." onkeydown="if(event.key==='Enter'){const n=document.getElementById('inp-${i+1}');if(n)n.focus();else confirmRun()}"></div>`).join('');
-      document.getElementById('input-modal').style.display = 'flex';
-      setTimeout(() => document.getElementById('inp-0')?.focus(), 100);
-    } else {
-      execPython(t.content, [], t.name);
-    }
-  } else if (t.lang === 'htmlmixed') {
-    updatePreview(t.content);
-    spanel('preview');
-    notify('🌐', 'HTML Preview', 'Menampilkan preview ' + t.name);
-  } else if (t.lang === 'css') {
-    notify('🎨', 'CSS File', 'CSS bekerja bersama HTML. Coba buka file HTML dulu.');
-  } else {
-    notify('ℹ️', 'Info', 'Run hanya untuk Python (.py) dan HTML (.html)');
-  }
+function vscRunFile() {
+if (!activeTab||!vscTabs[activeTab]){notify(‘⚠️’,‘No File’,‘Buka file dulu!’);return;}
+saveActive();
+const t=vscTabs[activeTab];
+if (t.lang===‘python’){
+pendingCode=t.content; pendingName=t.name;
+const prompts=detectInputs(t.content);
+if (prompts.length>0){
+const mg=document.getElementById(‘modal-mg’);
+mg.innerHTML=`<div class="minfo">Program <strong>${t.name}</strong> membutuhkan ${prompts.length} input:</div>`+
+prompts.map((p,i)=>`<div><label>${p||'Input '+(i+1)}</label><input type="text" id="inp-${i}" placeholder="ketik jawaban..." onkeydown="if(event.key==='Enter'){const n=document.getElementById('inp-${i+1}');if(n)n.focus();else confirmRun()}"></div>`).join(’’);
+document.getElementById(‘input-modal’).style.display=‘flex’;
+setTimeout(()=>document.getElementById(‘inp-0’)?.focus(),100);
+} else {
+execPython(t.content,[],t.name);
 }
-
+} else if (t.lang===‘htmlmixed’){
+updatePreview(t.content); vscSpanel(‘preview’);
+notify(‘🌐’,‘HTML Preview’,‘Menampilkan preview ‘+t.name);
+} else if (t.lang===‘css’){
+notify(‘🎨’,‘CSS File’,‘CSS bekerja bersama HTML. Coba buka file HTML dulu.’);
+} else {
+notify(‘ℹ️’,‘Info’,‘Run hanya untuk Python (.py) dan HTML (.html)’);
+}
+}
 function confirmRun() {
-  const prompts = detectInputs(pendingCode);
-  const inputs = prompts.map((_, i) => document.getElementById('inp-' + i)?.value || '');
-  document.getElementById('input-modal').style.display = 'none';
-  execPython(pendingCode, inputs, pendingName);
+const prompts=detectInputs(pendingCode);
+const inputs=prompts.map((_,i)=>document.getElementById(‘inp-’+i)?.value||’’);
+document.getElementById(‘input-modal’).style.display=‘none’;
+execPython(pendingCode,inputs,pendingName);
 }
-
-function cancelRun() {
-  document.getElementById('input-modal').style.display = 'none';
-  pendingCode = '';
-}
-
+function cancelRun() { document.getElementById(‘input-modal’).style.display=‘none’; pendingCode=’’; }
 function execPython(code, inputs, fname) {
-  inQ = [...inputs];
-  spanel('terminal');
-  tlog('');
-  tlog('▶ Running: ' + fname, 'tp');
-  tlog('─'.repeat(42), 'ti');
-
-  Sk.configure({
-    output: text => { if (text && text !== '\n') tlog(text, 'to'); },
-    read: x => {
-      if (Sk.builtinFiles?.files?.[x] === undefined) throw "File not found: '" + x + "'";
-      return Sk.builtinFiles.files[x];
-    },
-    inputfun: prompt => {
-      const val = inQ.length > 0 ? inQ.shift() : (window.prompt(prompt) || '');
-      tlog(prompt + val, 'tv');
-      return val;
-    },
-    inputfunTakesPrompt: true,
-    __future__: Sk.python3,
-    execLimit: 15000,
-  });
-
-  try {
-    const prog = Sk.importMainWithBody('<stdin>', false, code, true);
-    if (prog && typeof prog.then === 'function') {
-      prog.then(() => {
-        tlog('─'.repeat(42), 'ti');
-        tlog('✅ Program selesai dijalankan', 'tp');
-        tlog('');
-      }).catch(err => {
-        tlog('─'.repeat(42), 'ti');
-        tlog('❌ Error: ' + err.toString(), 'te');
-        tlog('');
-      });
-    } else {
-      tlog('─'.repeat(42), 'ti');
-      tlog('✅ Selesai', 'tp');
-    }
-  } catch (err) {
-    tlog('─'.repeat(42), 'ti');
-    tlog('❌ Error: ' + err.toString(), 'te');
-  }
+inQ=[…inputs]; vscSpanel(‘terminal’); tlog(’’); tlog(‘▶ Running: ‘+fname,‘tp’); tlog(‘─’.repeat(42),‘ti’);
+Sk.configure({
+output: text=>{if(text&&text!==’\n’)tlog(text,‘to’);},
+read: x=>{if(Sk.builtinFiles?.files?.[x]===undefined)throw”File not found: ‘”+x+”’”;return Sk.builtinFiles.files[x];},
+inputfun: prompt=>{const val=inQ.length>0?inQ.shift():(window.prompt(prompt)||’’);tlog(prompt+val,‘tv’);return val;},
+inputfunTakesPrompt:true,
+**future**:Sk.python3,
+execLimit:15000,
+});
+try {
+const prog=Sk.importMainWithBody(’<stdin>’,false,code,true);
+if (prog&&typeof prog.then===‘function’){
+prog.then(()=>{tlog(‘─’.repeat(42),‘ti’);tlog(‘✅ Program selesai dijalankan’,‘tp’);tlog(’’);})
+.catch(err=>{tlog(‘─’.repeat(42),‘ti’);tlog(‘❌ Error: ‘+err.toString(),‘te’);tlog(’’);});
+} else { tlog(‘─’.repeat(42),‘ti’); tlog(‘✅ Selesai’,‘tp’); }
+} catch(err) { tlog(‘─’.repeat(42),‘ti’); tlog(’❌ Error: ’+err.toString(),‘te’); }
 }
+function updatePreview(html) { document.getElementById(‘pframe’).srcdoc=html; }
 
-// ═══════════════════════════════════════
-// HTML PREVIEW
-// ═══════════════════════════════════════
-function updatePreview(html) {
-  document.getElementById('pframe').srcdoc = html;
+/* NEW FILE */
+function vscNewFile() {
+const loc=curPath.length>0?curPath.join(’/’):‘VSC’;
+document.getElementById(‘nf-loc’).value=loc;
+document.getElementById(‘nf-name’).value=’’;
+document.getElementById(‘nf-modal’).style.display=‘flex’;
+setTimeout(()=>document.getElementById(‘nf-name’).focus(),100);
 }
-
-// ═══════════════════════════════════════
-// NEW FILE
-// ═══════════════════════════════════════
-function newFile() {
-  const loc = curPath.length > 0 ? curPath.join('/') : 'VSC';
-  document.getElementById('nf-loc').value = loc;
-  document.getElementById('nf-name').value = '';
-  document.getElementById('nf-modal').style.display = 'flex';
-  setTimeout(() => document.getElementById('nf-name').focus(), 100);
-}
-
-function closeNFModal() { document.getElementById('nf-modal').style.display = 'none'; }
-
+function closeNFModal() { document.getElementById(‘nf-modal’).style.display=‘none’; }
 function createNF() {
-  const name = document.getElementById('nf-name').value.trim();
-  const locStr = document.getElementById('nf-loc').value.trim();
-  if (!name) { notify('⚠️', 'Error', 'Masukkan nama file'); return; }
-  const locPath = locStr ? locStr.split('/').filter(p => p) : [];
-  const parent = getNode(locPath);
-  if (!parent || parent.type !== 'folder') { notify('⚠️', 'Error', 'Folder tidak ditemukan: ' + locStr); return; }
-  if (parent.children[name]) { notify('⚠️', 'Error', 'File sudah ada: ' + name); return; }
-  const ext = name.split('.').pop().toLowerCase();
-  const defaults = {
-    py: '# ' + name + '\n\n',
-    html: `<!DOCTYPE html>\n<html lang="id">\n<head>\n  <meta charset="UTF-8">\n  <title>${name}</title>\n  <style>\n    body { font-family: sans-serif; }\n  </style>\n</head>\n<body>\n  <h1>Hello World!</h1>\n</body>\n</html>`,
-    css: '/* ' + name + ' */\n\nbody {\n  margin: 0;\n  padding: 0;\n}\n',
-    js: '// ' + name + '\n\nconsole.log("Hello!");\n',
-    txt: '',
-  };
-  parent.children[name] = { type: 'file', ext, content: defaults[ext] || '' };
-  closeNFModal();
-  renderFinder();
-  renderFT();
-  notify('📄', 'File Created', name + ' dibuat di ' + (locStr || 'Home'));
-  openInEditor([...locPath, name]);
-  openWin('vscode');
+const name=document.getElementById(‘nf-name’).value.trim();
+const locStr=document.getElementById(‘nf-loc’).value.trim();
+if (!name){notify(‘⚠️’,‘Error’,‘Masukkan nama file’);return;}
+const locPath=locStr?locStr.split(’/’).filter(p=>p):[];
+const parent=getNode(locPath);
+if (!parent||parent.type!==‘folder’){notify(‘⚠️’,‘Error’,‘Folder tidak ditemukan: ‘+locStr);return;}
+if (parent.children[name]){notify(‘⚠️’,‘Error’,‘File sudah ada: ‘+name);return;}
+const ext=name.split(’.’).pop().toLowerCase();
+const defaults={
+py:’# ‘+name+’\n\n’,
+html:`<!DOCTYPE html>\n<html lang="id">\n<head>\n  <meta charset="UTF-8">\n  <title>${name}</title>\n  <style>\n    body { font-family: sans-serif; }\n  </style>\n</head>\n<body>\n  <h1>Hello World!</h1>\n</body>\n</html>`,
+css:’/* ‘+name+’ */\n\nbody {\n  margin: 0;\n  padding: 0;\n}\n’,
+js:’// ‘+name+’\n\nconsole.log(“Hello!”);\n’,
+txt:’’,
+};
+parent.children[name]={type:‘file’,ext,content:defaults[ext]||’’};
+closeNFModal(); renderFinder(); renderFT();
+notify(‘📄’,‘File Created’,name+’ dibuat di ’+(locStr||‘Home’));
+openInEditor([…locPath,name]); openWin(‘vscode’);
 }
 
-// ═══════════════════════════════════════
-// NOTIFICATIONS
-// ═══════════════════════════════════════
-let nT;
-function notify(ico, ttl, msg) {
-  document.getElementById('nico').textContent = ico;
-  document.getElementById('nttl').textContent = ttl;
-  document.getElementById('nmsg').textContent = msg;
-  const n = document.getElementById('notif');
-  n.classList.add('show'); clearTimeout(nT);
-  nT = setTimeout(() => n.classList.remove('show'), 4000);
+/* ═══════════════════════════════════════════════════
+KEYBOARD SHORTCUTS
+═══════════════════════════════════════════════════ */
+document.addEventListener(‘keydown’, e => {
+if (e.key===‘Escape’) document.getElementById(‘spl’).classList.remove(‘open’);
+if ((e.metaKey||e.ctrlKey)&&e.key===’ ’){e.preventDefault();openSpl();}
+if (e.key===‘F5’){e.preventDefault();vscRunFile();}
+if ((e.metaKey||e.ctrlKey)&&e.key===‘n’){e.preventDefault();vscNewFile();}
+if ((e.metaKey||e.ctrlKey)&&e.key===‘s’){
+e.preventDefault(); saveActive(); notify(‘💾’,‘Saved!’,‘File tersimpan ✅’);
 }
-
-// ═══════════════════════════════════════
-// MISC
-// ═══════════════════════════════════════
-function goPortfolio() {
-  window.open('index.html', '_blank') || (window.location.href = 'index.html');
-}
-
-function tick() {
-  const n = new Date();
-  document.getElementById('clock').textContent =
-    n.toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' }) + '  ' +
-    n.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-}
-tick(); setInterval(tick, 1000);
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'F5') { e.preventDefault(); runFile(); }
-  if ((e.metaKey || e.ctrlKey) && e.key === 'n') { e.preventDefault(); newFile(); }
-  if ((e.metaKey || e.ctrlKey) && e.key === 's') {
-    e.preventDefault();
-    saveActive();
-    notify('💾', 'Saved!', 'File tersimpan ✅');
-  }
 });
 
-// ═══════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════
-window.addEventListener('load', () => {
-  // Stars
-  const wp = document.getElementById('wp');
-  for (let i = 0; i < 70; i++) {
-    const s = document.createElement('div'); s.className = 'star';
-    const sz = Math.random() * 2 + 0.5;
-    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2 + Math.random() * 4}s;animation-delay:${Math.random() * 5}s`;
-    wp.appendChild(s);
-  }
+/* ═══════════════════════════════════════════════════
+INIT
+═══════════════════════════════════════════════════ */
+window.addEventListener(‘load’, () => {
+// Drag for VSC windows
+initDrag(‘finder’);
+initDrag(‘vscode’);
 
-  // Drag
-  initDrag('finder');
-  initDrag('vscode');
+// Default finder path: VSC
+curPath = [‘VSC’];
+pathHist = [[], [‘VSC’]]; histIdx = 1;
+renderFinder();
 
-  // Render finder (default: VSC folder)
-  curPath = ['VSC'];
-  pathHist = [[], ['VSC']]; histIdx = 1;
-  renderFinder();
+// Render file tree
+renderFT();
 
-  // Render file tree
-  renderFT();
+// Auto-expand VSC folder in sidebar
+setTimeout(() => {
+const vscBtn = document.querySelector(’.fti[onclick*=”'VSC'”]’);
+if (vscBtn) vscBtn.click();
+}, 350);
 
-  // Auto-expand VSC in file tree
-  setTimeout(() => {
-    const vscBtn = document.querySelector('.fti[onclick*="VSC"]');
-    if (vscBtn) vscBtn.click();
-  }, 300);
-
-  // Open windows
-  openWin('finder');
-  openWin('vscode');
-
-  // Welcome notification
-  setTimeout(() => notify('🚀', 'Mac Studio Ready!', 'Double-tap/click file di Finder untuk membuka di Editor!'), 600);
+// Open portfolio home
+setTimeout(() => {
+owp(‘h’);
+notify(‘👋’, ‘Welcome!’, ‘Surya Dharma's Portfolio · Use dock or menu to navigate!’);
+}, 400);
 });
 </script>
+
 </body>
 </html>
