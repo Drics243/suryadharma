@@ -4,1014 +4,617 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Surya — Portfolio</title>
+<title>Surya Dharma — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  :root {
-    --mac-bg: #1e1e2e;
-    --mac-glass: rgba(255,255,255,0.06);
-    --mac-glass-border: rgba(255,255,255,0.12);
-    --mac-titlebar: rgba(40,40,60,0.98);
-    --mac-red: #ff5f57;
-    --mac-yellow: #febc2e;
-    --mac-green: #28c840;
-    --accent: #9d8fff;
-    --accent2: #5ec4ff;
-    --accent3: #ff79c6;
-    --text-primary: #f0f0f5;
-    --text-secondary: rgba(240,240,245,0.7);
-    --text-muted: rgba(240,240,245,0.4);
-    --shadow: 0 32px 80px rgba(0,0,0,0.7);
-  }
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  html, body { width:100%; height:100%; overflow:hidden; background:#1e1e2e; }
-  body { font-family:'DM Sans',sans-serif; color:#f0f0f5; touch-action:none; }
+:root{--bg:#1a1a2e;--glass:rgba(255,255,255,.06);--gb:rgba(255,255,255,.11);--tb:rgba(28,28,46,.98);--red:#ff5f57;--yel:#febc2e;--grn:#28c840;--acc:#9d8fff;--acc2:#5ec4ff;--acc3:#ff79c6;--acc4:#50c878;--t1:#f0f0f5;--t2:rgba(240,240,245,.65);--t3:rgba(240,240,245,.38);--sh:0 28px 72px rgba(0,0,0,.7)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg)}
+body{font-family:'DM Sans',sans-serif;color:var(--t1);touch-action:none}
+#wp{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 15% 15%,#2d1b69 0%,transparent 55%),radial-gradient(ellipse at 85% 85%,#0f3460 0%,transparent 55%),radial-gradient(ellipse at 50% 50%,#1a1a2e 0%,#0d0d1a 100%)}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.08;transform:scale(1)}to{opacity:.9;transform:scale(1.6)}}
+#mb{position:fixed;top:0;left:0;right:0;height:30px;z-index:9000;background:rgba(12,12,26,.94);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;padding:0 16px;gap:16px;font-size:13px;font-weight:500;color:var(--t1)}
+#mb .apple{font-size:16px;cursor:pointer}
+#mb .mi{display:flex;gap:14px}
+#mb .mi span{cursor:pointer;opacity:.82;padding:2px 8px;border-radius:4px;transition:background .15s;color:var(--t1)}
+#mb .mi span:hover{background:rgba(255,255,255,.12);opacity:1}
+#mb .rt{margin-left:auto;display:flex;gap:12px;align-items:center;color:var(--t1)}
+#clock{font-size:12px;color:var(--t1)}
+#desk{position:fixed;top:30px;left:0;right:0;bottom:86px;z-index:1;padding:14px}
+.di{position:absolute;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:8px;border-radius:10px;width:82px;transition:background .2s}
+.di:hover,.di:active{background:rgba(255,255,255,.1)}
+.di .ico{font-size:40px;transition:transform .2s;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+.di:hover .ico{transform:scale(1.12)}
+.di span{font-size:11px;color:var(--t1);text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.9);line-height:1.3}
+#dock{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:9000;display:flex;align-items:flex-end;gap:8px;padding:8px 14px;background:rgba(255,255,255,.09);backdrop-filter:blur(30px) saturate(200%);border-radius:22px;border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 32px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
+.dk{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:transform .2s cubic-bezier(.34,1.56,.64,1);position:relative}
+.dk:hover{transform:scale(1.35) translateY(-10px)}
+.dk:hover .dtt{opacity:1}
+.dki{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.dkd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.55)}
+.dtt{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(12,12,26,.96);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--t1);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
+.dksep{width:1px;height:40px;background:rgba(255,255,255,.18);margin:0 4px}
+.win{position:fixed;z-index:100;background:rgba(18,18,32,.95);backdrop-filter:blur(40px) saturate(180%);border-radius:14px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--sh),0 0 0 1px rgba(0,0,0,.4);display:none;flex-direction:column;overflow:hidden;min-width:320px;min-height:260px;animation:wO .3s cubic-bezier(.34,1.56,.64,1) both}
+.win.active{display:flex}
+@keyframes wO{from{opacity:0;transform:scale(.84)}to{opacity:1;transform:scale(1)}}
+@keyframes wC{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.84) translateY(50px)}}
+.tb{height:40px;background:rgba(24,24,40,.98);display:flex;align-items:center;padding:0 14px;cursor:grab;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.06);touch-action:none}
+.tb:active{cursor:grabbing}
+.tls{display:flex;gap:8px;margin-right:12px}
+.tl{width:13px;height:13px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:8px;color:transparent;transition:color .15s;flex-shrink:0}
+.tl:hover{color:rgba(0,0,0,.7)}
+.tl.r{background:var(--red)}.tl.y{background:var(--yel)}.tl.g{background:var(--grn)}
+.tbtitle{flex:1;text-align:center;font-size:13px;font-weight:500;color:rgba(240,240,245,.55);margin-right:60px}
+.wc{flex:1;overflow-y:auto;overflow-x:hidden}
+.wc::-webkit-scrollbar{width:5px}
+.wc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:3px}
+.stitle{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--acc);font-weight:600;display:flex;align-items:center;gap:10px}
+.stitle::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(157,143,255,.35),transparent)}
+.badge{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid;transition:transform .2s;cursor:default}
+.badge:hover{transform:translateY(-2px)}
+.bv{background:rgba(157,143,255,.15);border-color:rgba(157,143,255,.4);color:#c4b8ff}
+.bb{background:rgba(94,196,255,.15);border-color:rgba(94,196,255,.4);color:#7dd8ff}
+.bp{background:rgba(255,121,198,.15);border-color:rgba(255,121,198,.4);color:#ff9dd8}
+.bg{background:rgba(80,200,120,.15);border-color:rgba(80,200,120,.4);color:#7ae0a0}
+.bo{background:rgba(254,188,46,.15);border-color:rgba(254,188,46,.4);color:#fed876}
+.btn{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btnp{background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;box-shadow:0 4px 20px rgba(124,106,247,.4)}
+.btnp:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,106,247,.5)}
+.btns{background:rgba(255,255,255,.08);color:var(--t1);border:1px solid rgba(255,255,255,.14)}
+.btns:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
 
-/* WALLPAPER */
-#wallpaper {
-position:fixed; inset:0; z-index:0;
-background: radial-gradient(ellipse at 15% 15%, #2d1b69 0%, transparent 55%),
-radial-gradient(ellipse at 85% 85%, #0f3460 0%, transparent 55%),
-radial-gradient(ellipse at 50% 50%, #1a1a2e 0%, #0d0d1a 100%);
-}
-.star { position:absolute; border-radius:50%; background:white; animation:twinkle var(–d,3s) ease-in-out infinite alternate; }
-@keyframes twinkle { from{opacity:.1;transform:scale(1);} to{opacity:.9;transform:scale(1.6);} }
+/* HOME */
+#wh{width:700px;height:510px;top:50px;left:calc(50% - 350px)}
+.hwrap{padding:36px 42px;display:flex;flex-direction:column;gap:22px}
+.hhero{display:flex;gap:26px;align-items:center}
+.avatar{width:88px;height:88px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#7c6af7,#5ec4ff);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;color:#fff;box-shadow:0 8px 32px rgba(124,106,247,.55);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.ht h1{font-size:28px;font-weight:700;color:var(–t1);line-height:1.2}
+.ht h1 span{color:var(–acc2)}
+.hsub{font-size:14px;color:var(–t2);margin-top:5px}
+.typer{font-size:12px;color:var(–acc);font-family:‘Fira Code’,monospace;margin-top:7px;min-height:18px}
+.badges{display:flex;gap:7px;flex-wrap:wrap}
+.srow{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.sc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:15px;text-align:center;transition:transform .2s,background .2s}
+.sc:hover{transform:translateY(-4px);background:rgba(255,255,255,.09)}
+.sc .num{font-size:26px;font-weight:700;color:var(–acc2)}
+.sc .lbl{font-size:10px;color:var(–t3);margin-top:3px;text-transform:uppercase;letter-spacing:1px}
+.ctar{display:flex;gap:9px;flex-wrap:wrap}
 
-/* MENUBAR */
-#menubar {
-position:fixed; top:0; left:0; right:0; height:30px; z-index:9000;
-background:rgba(15,15,30,0.92); backdrop-filter:blur(20px) saturate(180%);
-border-bottom:1px solid rgba(255,255,255,0.08);
-display:flex; align-items:center; padding:0 16px; gap:18px;
-font-size:13px; font-weight:500; color:#f0f0f5;
-}
-#menubar .apple { font-size:16px; cursor:pointer; }
-#menubar .menu-items { display:flex; gap:16px; }
-#menubar .menu-items span { cursor:pointer; color:#f0f0f5; opacity:.85; padding:2px 7px; border-radius:4px; transition:background .15s; }
-#menubar .menu-items span:hover { background:rgba(255,255,255,0.12); opacity:1; }
-#menubar .right { margin-left:auto; display:flex; gap:12px; align-items:center; color:#f0f0f5; }
-#clock { font-size:12px; color:#f0f0f5; }
+/* ABOUT */
+#wa{width:720px;height:580px;top:55px;left:calc(50% - 360px)}
+.awrap{padding:28px 32px;display:flex;flex-direction:column;gap:18px}
+.abio{font-size:13px;color:var(–t2);line-height:1.8;padding:15px;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08)}
+.abio strong{color:var(–t1)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ir{display:flex;align-items:center;gap:10px;padding:8px 11px;background:rgba(255,255,255,.05);border-radius:9px;border:1px solid rgba(255,255,255,.08);transition:background .2s}
+.ir:hover{background:rgba(255,255,255,.09)}
+.ir i{font-size:13px;color:var(–acc);width:16px;text-align:center}
+.ik{font-size:12px;font-weight:600;color:var(–t1);min-width:68px}
+.iv{font-size:12px;color:var(–t2)}
+.sklst{display:flex;flex-direction:column;gap:9px}
+.ski{display:flex;flex-direction:column;gap:5px}
+.skh{display:flex;justify-content:space-between}
+.skn{font-size:12px;color:var(–t2)}.skp{font-size:12px;font-weight:700;color:var(–acc)}
+.skt{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.skb{height:100%;border-radius:3px;width:0;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
+.skchips{display:flex;gap:6px;flex-wrap:wrap}
+.skchip{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;background:rgba(94,196,255,.1);border:1px solid rgba(94,196,255,.22);color:#7dd8ff}
+.tl2{display:flex;flex-direction:column}
+.tlr{display:flex;gap:12px;padding-bottom:15px;position:relative}
+.tlr::before{content:’’;position:absolute;left:5px;top:15px;bottom:0;width:1px;background:rgba(255,255,255,.08)}
+.tlr:last-child::before{display:none}
+.tld{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid var(–acc);background:var(–bg);box-shadow:0 0 8px rgba(157,143,255,.5)}
+.tlyr{font-size:11px;color:var(–acc);font-weight:600}
+.tltl{font-size:13px;color:var(–t1);font-weight:500;margin-top:1px}
+.tldc{font-size:12px;color:var(–t3);margin-top:2px;line-height:1.5}
+.lchip{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:500;background:rgba(94,196,255,.12);border:1px solid rgba(94,196,255,.25);color:#7dd8ff}
 
-/* DESKTOP ICONS */
-#desktop { position:fixed; top:30px; left:0; right:0; bottom:86px; z-index:1; padding:16px; }
-.desktop-icon {
-position:absolute; display:flex; flex-direction:column; align-items:center;
-gap:5px; cursor:pointer; padding:8px; border-radius:10px;
-transition:background .2s; width:82px;
-}
-.desktop-icon:hover, .desktop-icon:active { background:rgba(255,255,255,0.1); }
-.desktop-icon .icon-img { font-size:40px; transition:transform .2s; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.5)); }
-.desktop-icon:hover .icon-img { transform:scale(1.12); }
-.desktop-icon span { font-size:11px; color:#f0f0f5; text-align:center; text-shadow:0 1px 4px rgba(0,0,0,0.9); line-height:1.3; }
+/* ACHIEVEMENTS */
+#wac{width:740px;height:580px;top:55px;left:calc(50% - 370px)}
+.acwrap{padding:26px 30px;display:flex;flex-direction:column;gap:16px}
+.actabs{display:flex;gap:7px;flex-wrap:wrap}
+.actab{padding:7px 15px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(–t2);font-family:inherit;transition:all .2s}
+.actab.active{background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;border-color:transparent}
+.actab:hover:not(.active){background:rgba(255,255,255,.08);color:var(–t1)}
+.acgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.acard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:17px;cursor:pointer;position:relative;overflow:hidden;transition:all .25s cubic-bezier(.34,1.56,.64,1)}
+.acard::after{content:’’;position:absolute;inset:0;opacity:0;transition:opacity .3s;background:radial-gradient(circle at 50% 0%,rgba(157,143,255,.18),transparent 70%)}
+.acard:hover{transform:translateY(-5px);border-color:rgba(157,143,255,.4)}
+.acard:hover::after{opacity:1}
+.aico{font-size:28px;margin-bottom:9px}
+.attl{font-size:13px;font-weight:600;color:var(–t1)}
+.asub{font-size:11px;color:var(–t3);margin-top:3px;line-height:1.5}
+.ayear{position:absolute;top:12px;right:12px;font-size:10px;color:var(–acc);font-family:‘Fira Code’,monospace;background:rgba(157,143,255,.12);padding:2px 7px;border-radius:4px}
+.afeat{grid-column:1/-1;background:linear-gradient(135deg,rgba(157,143,255,.16),rgba(94,196,255,.1));border-color:rgba(157,143,255,.3)}
+.afeat .aico{font-size:38px}
+.clist{display:flex;flex-direction:column;gap:7px}
+.citem{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.09);transition:all .2s}
+.citem:hover{background:rgba(255,255,255,.09);border-color:rgba(157,143,255,.3);transform:translateX(3px)}
+.cnum{font-size:18px;flex-shrink:0;width:30px;text-align:center}
+.cinfo{flex:1}
+.ctitle{font-size:12px;font-weight:600;color:var(–t1);line-height:1.4}
+.cissuer{font-size:11px;color:var(–t2);margin-top:2px}
+.cdate{font-size:10px;color:var(–t3);font-family:‘Fira Code’,monospace;margin-top:1px}
+.cverify{display:inline-flex;align-items:center;gap:5px;margin-top:5px;font-size:11px;color:var(–acc2);text-decoration:none;background:rgba(94,196,255,.1);border:1px solid rgba(94,196,255,.2);padding:3px 10px;border-radius:5px;transition:all .2s}
+.cverify:hover{background:rgba(94,196,255,.2);border-color:rgba(94,196,255,.4)}
+.cnum2{font-size:10px;color:var(–t3);font-family:‘Fira Code’,monospace;flex-shrink:0}
 
-/* DOCK */
-#dock {
-position:fixed; bottom:10px; left:50%; transform:translateX(-50%);
-z-index:9000; display:flex; align-items:flex-end; gap:8px;
-padding:8px 16px 8px;
-background:rgba(255,255,255,0.09);
-backdrop-filter:blur(30px) saturate(200%);
-border-radius:22px; border:1px solid rgba(255,255,255,0.16);
-box-shadow:0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
-}
-.dock-item {
-display:flex; flex-direction:column; align-items:center; gap:3px;
-cursor:pointer; transition:transform .2s cubic-bezier(.34,1.56,.64,1);
-position:relative;
-}
-.dock-item:hover { transform:scale(1.35) translateY(-10px); }
-.dock-icon {
-width:52px; height:52px; border-radius:14px;
-display:flex; align-items:center; justify-content:center; font-size:28px;
-box-shadow:0 4px 16px rgba(0,0,0,0.4); transition:inherit;
-}
-.dock-dot { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,0.55); }
-.dock-tooltip {
-position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%);
-background:rgba(15,15,30,0.95); border:1px solid rgba(255,255,255,0.15);
-border-radius:6px; padding:4px 10px; font-size:11px; color:#f0f0f5;
-white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .15s;
-}
-.dock-item:hover .dock-tooltip { opacity:1; }
-.dock-sep { width:1px; height:40px; background:rgba(255,255,255,0.18); margin:0 4px; }
+/* GRADES */
+#wg{width:700px;height:560px;top:55px;left:calc(50% - 350px)}
+.gwrap{padding:26px 30px;display:flex;flex-direction:column;gap:15px}
+.gpahero{background:linear-gradient(135deg,rgba(157,143,255,.18),rgba(94,196,255,.12));border:1px solid rgba(157,143,255,.3);border-radius:13px;padding:18px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.gpanum{font-size:48px;font-weight:700;color:var(–acc2);flex-shrink:0;min-width:80px}
+.gpalbl{font-size:10px;color:var(–t3);text-transform:uppercase;letter-spacing:1px}
+.gpadesc{font-size:12px;color:var(–t2);margin-top:3px}
+.stabs{display:flex;gap:7px;flex-wrap:wrap}
+.stab{padding:6px 13px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(–t2);font-family:inherit;transition:all .2s}
+.stab.active{background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;border-color:transparent}
+.stab:hover:not(.active){background:rgba(255,255,255,.08);color:var(–t1)}
+.gtable{width:100%;border-collapse:separate;border-spacing:0 4px}
+.gtable th{font-size:10px;color:var(–t3);text-transform:uppercase;letter-spacing:1px;padding:5px 10px;text-align:left}
+.gtable tr.gr td{padding:9px 10px;font-size:12px;color:var(–t1);background:rgba(255,255,255,.05);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);transition:background .2s}
+.gtable tr.gr td:first-child{border-left:1px solid rgba(255,255,255,.08);border-radius:7px 0 0 7px}
+.gtable tr.gr td:last-child{border-right:1px solid rgba(255,255,255,.08);border-radius:0 7px 7px 0}
+.gtable tr.gr:hover td{background:rgba(255,255,255,.09)}
+.gbg{display:inline-block;padding:2px 8px;border-radius:5px;font-weight:700;font-size:11px}
+.gA{background:rgba(80,200,120,.2);color:#7ae0a0}
+.gAm{background:rgba(94,196,255,.2);color:#7dd8ff}
+.gBp{background:rgba(254,188,46,.2);color:#fed876}
+.gB{background:rgba(255,121,198,.18);color:#ff9dd8}
+.gbw{height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden;min-width:70px}
+.gbb{height:100%;border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.csoon{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px;gap:12px;text-align:center}
+.csoon .csi{font-size:52px}
+.csoon h3{font-size:18px;font-weight:600;color:var(–t1)}
+.csoon p{font-size:13px;color:var(–t2)}
+.gpasub{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap}
+.gpabadge{font-size:11px;padding:3px 10px;border-radius:5px;font-weight:600;border:1px solid}
 
-/* WINDOWS */
-.window {
-position:fixed; z-index:100;
-background:rgba(20,20,36,0.94);
-backdrop-filter:blur(40px) saturate(180%);
-border-radius:14px; border:1px solid rgba(255,255,255,0.13);
-box-shadow:var(–shadow), 0 0 0 1px rgba(0,0,0,0.4);
-display:none; flex-direction:column;
-overflow:hidden; min-width:320px; min-height:260px;
-animation:winOpen .3s cubic-bezier(.34,1.56,.64,1) both;
-}
-.window.active { display:flex; }
-@keyframes winOpen { from{opacity:0;transform:scale(0.84);} to{opacity:1;transform:scale(1);} }
-@keyframes winClose { from{opacity:1;transform:scale(1);} to{opacity:0;transform:scale(0.84) translateY(50px);} }
+/* CONTACT */
+#wco{width:620px;height:500px;top:65px;left:calc(50% - 310px)}
+.cowrap{padding:28px 32px;display:flex;flex-direction:column;gap:17px}
+.ccgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cccard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:14px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .2s}
+.cccard:hover{background:rgba(255,255,255,.1);transform:translateY(-3px);border-color:rgba(157,143,255,.35)}
+.ccico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ccnm{font-size:13px;font-weight:600;color:var(–t1)}
+.ccvl{font-size:11px;color:var(–t3);margin-top:1px}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.flbl{font-size:11px;color:var(–t2);font-weight:500;margin-bottom:4px}
+.finp{width:100%;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(–t1);font-family:inherit;font-size:13px;outline:none;resize:vertical;transition:border-color .2s,background .2s}
+.finp:focus{border-color:var(–acc);background:rgba(157,143,255,.08)}
+.finp::placeholder{color:var(–t3)}
+.sbtn{width:100%;padding:12px;border-radius:8px;border:none;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;background:linear-gradient(135deg,#7c6af7,#5ec4ff);color:#fff;transition:all .2s}
+.sbtn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,106,247,.45)}
 
-/* TITLEBAR */
-.titlebar {
-height:40px; background:rgba(30,30,48,0.98);
-display:flex; align-items:center; padding:0 14px;
-cursor:grab; flex-shrink:0;
-border-bottom:1px solid rgba(255,255,255,0.07);
-touch-action:none;
-}
-.titlebar:active { cursor:grabbing; }
-.traffic-lights { display:flex; gap:8px; margin-right:12px; }
-.tl {
-width:13px; height:13px; border-radius:50%; cursor:pointer;
-display:flex; align-items:center; justify-content:center; font-size:8px;
-color:transparent; transition:color .15s; flex-shrink:0;
-}
-.tl:hover { color:rgba(0,0,0,0.7); }
-.tl.red { background:var(–mac-red); }
-.tl.yellow { background:var(–mac-yellow); }
-.tl.green { background:var(–mac-green); }
-.titlebar-title { flex:1; text-align:center; font-size:13px; font-weight:500; color:rgba(240,240,245,0.6); margin-right:60px; }
-
-/* WINDOW CONTENT */
-.window-content { flex:1; overflow-y:auto; overflow-x:hidden; }
-.window-content::-webkit-scrollbar { width:5px; }
-.window-content::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.18); border-radius:3px; }
-
-/* ── SECTION TITLE ── */
-.sec-title {
-font-size:11px; text-transform:uppercase; letter-spacing:2px;
-color:var(–accent); font-weight:600;
-display:flex; align-items:center; gap:10px;
-}
-.sec-title::after { content:’’; flex:1; height:1px; background:linear-gradient(to right,rgba(157,143,255,0.35),transparent); }
-
-/* ══ HOME ══ */
-#win-home { width:680px; height:500px; top:55px; left:calc(50% - 340px); }
-.home-wrap { padding:40px 44px; display:flex; flex-direction:column; gap:26px; }
-.home-hero { display:flex; gap:28px; align-items:center; }
-.avatar {
-width:90px; height:90px; border-radius:50%; flex-shrink:0;
-background:linear-gradient(135deg,#7c6af7,#5ec4ff);
-display:flex; align-items:center; justify-content:center;
-font-size:40px; font-weight:700; color:#fff;
-box-shadow:0 8px 32px rgba(124,106,247,0.55);
-animation:float 4s ease-in-out infinite;
-}
-@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);} }
-.home-text h1 { font-size:32px; font-weight:700; color:#f0f0f5; line-height:1.2; }
-.home-text h1 span { color:var(–accent2); }
-.home-sub { font-size:15px; color:rgba(240,240,245,0.65); margin-top:5px; }
-.typewriter { font-size:12px; color:var(–accent); font-family:‘Fira Code’,monospace; margin-top:7px; }
-.badges { display:flex; gap:8px; flex-wrap:wrap; }
-.badge {
-padding:5px 13px; border-radius:20px; font-size:12px; font-weight:600;
-border:1px solid; cursor:default; transition:transform .2s;
-}
-.badge:hover { transform:translateY(-2px); }
-.badge.v { background:rgba(157,143,255,0.15); border-color:rgba(157,143,255,0.4); color:#c4b8ff; }
-.badge.b { background:rgba(94,196,255,0.15); border-color:rgba(94,196,255,0.4); color:#7dd8ff; }
-.badge.p { background:rgba(255,121,198,0.15); border-color:rgba(255,121,198,0.4); color:#ff9dd8; }
-.badge.g { background:rgba(80,200,120,0.15); border-color:rgba(80,200,120,0.4); color:#7ae0a0; }
-.stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-.stat-card {
-background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
-border-radius:12px; padding:18px; text-align:center;
-transition:transform .2s, background .2s;
-}
-.stat-card:hover { transform:translateY(-4px); background:rgba(255,255,255,0.09); }
-.stat-card .num { font-size:30px; font-weight:700; color:var(–accent2); }
-.stat-card .lbl { font-size:10px; color:rgba(240,240,245,0.45); margin-top:4px; text-transform:uppercase; letter-spacing:1px; }
-.cta-row { display:flex; gap:10px; flex-wrap:wrap; }
-.btn {
-padding:10px 20px; border-radius:8px; font-size:13px; font-weight:600;
-cursor:pointer; border:none; font-family:inherit; transition:all .2s;
-}
-.btn-p { background:linear-gradient(135deg,#7c6af7,#5ec4ff); color:#fff; box-shadow:0 4px 20px rgba(124,106,247,0.4); }
-.btn-p:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(124,106,247,0.5); }
-.btn-s { background:rgba(255,255,255,0.08); color:#f0f0f5; border:1px solid rgba(255,255,255,0.14); }
-.btn-s:hover { background:rgba(255,255,255,0.14); transform:translateY(-2px); }
-
-/* ══ ABOUT ══ */
-#win-about { width:680px; height:540px; top:65px; left:calc(50% - 340px); }
-.about-wrap { padding:32px 36px; display:flex; flex-direction:column; gap:22px; }
-.about-bio {
-font-size:14px; color:rgba(240,240,245,0.7); line-height:1.8;
-padding:16px; background:rgba(255,255,255,0.05); border-radius:10px;
-border:1px solid rgba(255,255,255,0.09);
-}
-.about-bio strong { color:#f0f0f5; }
-.two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-.info-row {
-display:flex; align-items:center; gap:11px; padding:9px 13px;
-background:rgba(255,255,255,0.05); border-radius:9px;
-border:1px solid rgba(255,255,255,0.08); transition:background .2s;
-}
-.info-row:hover { background:rgba(255,255,255,0.09); }
-.info-row i { font-size:14px; color:var(–accent); width:18px; text-align:center; }
-.info-row .ik { font-size:12px; font-weight:600; color:#f0f0f5; min-width:70px; }
-.info-row .iv { font-size:12px; color:rgba(240,240,245,0.65); }
-.skill-list { display:flex; flex-direction:column; gap:10px; }
-.sk-item { display:flex; flex-direction:column; gap:5px; }
-.sk-head { display:flex; justify-content:space-between; }
-.sk-name { font-size:12px; color:rgba(240,240,245,0.7); }
-.sk-pct { font-size:12px; font-weight:700; color:var(–accent); }
-.sk-track { height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
-.sk-bar { height:100%; border-radius:3px; width:0; transition:width 1.3s cubic-bezier(.16,1,.3,1); }
-.timeline { display:flex; flex-direction:column; gap:0; }
-.tl-row { display:flex; gap:13px; padding-bottom:18px; position:relative; }
-.tl-row::before { content:’’; position:absolute; left:6px; top:18px; bottom:0; width:1px; background:rgba(255,255,255,0.08); }
-.tl-row:last-child::before { display:none; }
-.tl-dot { width:13px; height:13px; border-radius:50%; flex-shrink:0; margin-top:3px; border:2px solid var(–accent); background:var(–mac-bg); box-shadow:0 0 8px rgba(157,143,255,0.5); }
-.tl-yr { font-size:11px; color:var(–accent); font-weight:600; }
-.tl-ttl { font-size:13px; color:#f0f0f5; font-weight:500; margin-top:1px; }
-.tl-dsc { font-size:12px; color:rgba(240,240,245,0.5); margin-top:2px; line-height:1.5; }
-.lang-chips { display:flex; gap:8px; }
-.lchip { padding:5px 12px; border-radius:6px; font-size:12px; font-weight:500; background:rgba(94,196,255,0.12); border:1px solid rgba(94,196,255,0.25); color:#7dd8ff; }
-
-/* ══ ACHIEVEMENTS ══ */
-#win-achievements { width:700px; height:540px; top:60px; left:calc(50% - 350px); }
-.ach-wrap { padding:32px 36px; display:flex; flex-direction:column; gap:22px; }
-.ach-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-.ach-card {
-background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
-border-radius:13px; padding:20px; cursor:pointer;
-transition:all .25s cubic-bezier(.34,1.56,.64,1); position:relative; overflow:hidden;
-}
-.ach-card::after {
-content:’’; position:absolute; inset:0; opacity:0; transition:opacity .3s;
-background:radial-gradient(circle at 50% 0%,rgba(157,143,255,0.18),transparent 70%);
-}
-.ach-card:hover { transform:translateY(-5px); border-color:rgba(157,143,255,0.4); }
-.ach-card:hover::after { opacity:1; }
-.ach-ico { font-size:30px; margin-bottom:10px; }
-.ach-ttl { font-size:14px; font-weight:600; color:#f0f0f5; }
-.ach-sub { font-size:12px; color:rgba(240,240,245,0.5); margin-top:3px; line-height:1.5; }
-.ach-yr { position:absolute; top:14px; right:14px; font-size:10px; color:var(–accent); font-family:‘Fira Code’,monospace; background:rgba(157,143,255,0.12); padding:2px 7px; border-radius:4px; }
-.ach-feat { grid-column:1/-1; background:linear-gradient(135deg,rgba(157,143,255,0.14),rgba(94,196,255,0.1)); border-color:rgba(157,143,255,0.3); }
-.ach-feat .ach-ico { font-size:42px; }
-.rings-wrap { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
-.ring-item { display:flex; flex-direction:column; align-items:center; gap:8px; }
-.ring-svg { transform:rotate(-90deg); }
-.ring-bg { fill:none; stroke:rgba(255,255,255,0.08); stroke-width:7; }
-.ring-fill { fill:none; stroke-width:7; stroke-linecap:round; transition:stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1); }
-.ring-center { position:absolute; font-size:13px; font-weight:700; color:#f0f0f5; }
-.ring-lbl { font-size:11px; color:rgba(240,240,245,0.6); text-align:center; line-height:1.4; }
-
-/* ══ GRADES ══ */
-#win-grades { width:660px; height:510px; top:70px; left:calc(50% - 330px); }
-.grades-wrap { padding:32px 36px; display:flex; flex-direction:column; gap:18px; }
-.gpa-hero {
-background:linear-gradient(135deg,rgba(157,143,255,0.18),rgba(94,196,255,0.12));
-border:1px solid rgba(157,143,255,0.3); border-radius:14px;
-padding:22px; display:flex; gap:24px; align-items:center;
-}
-.gpa-num { font-size:52px; font-weight:700; color:var(–accent2); flex-shrink:0; }
-.gpa-lbl { font-size:11px; color:rgba(240,240,245,0.45); text-transform:uppercase; letter-spacing:1px; }
-.gpa-desc { font-size:13px; color:rgba(240,240,245,0.65); margin-top:4px; }
-.sem-tabs { display:flex; gap:8px; }
-.sem-tab {
-padding:6px 16px; border-radius:7px; font-size:12px; font-weight:600;
-cursor:pointer; border:1px solid rgba(255,255,255,0.12); background:transparent;
-color:rgba(240,240,245,0.6); font-family:inherit; transition:all .2s;
-}
-.sem-tab.active { background:linear-gradient(135deg,#7c6af7,#5ec4ff); color:#fff; border-color:transparent; }
-.sem-tab:hover:not(.active) { background:rgba(255,255,255,0.08); color:#f0f0f5; }
-.gtable { width:100%; border-collapse:separate; border-spacing:0 5px; }
-.gtable th { font-size:10px; color:rgba(240,240,245,0.4); text-transform:uppercase; letter-spacing:1px; padding:6px 12px; text-align:left; }
-.gtable tr.gr td {
-padding:11px 12px; font-size:13px; color:#f0f0f5;
-background:rgba(255,255,255,0.05); border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); transition:background .2s;
-}
-.gtable tr.gr td:first-child { border-left:1px solid rgba(255,255,255,0.08); border-radius:8px 0 0 8px; }
-.gtable tr.gr td:last-child { border-right:1px solid rgba(255,255,255,0.08); border-radius:0 8px 8px 0; }
-.gtable tr.gr:hover td { background:rgba(255,255,255,0.09); }
-.gbadge { display:inline-block; padding:2px 9px; border-radius:5px; font-weight:700; font-size:12px; }
-.ga { background:rgba(80,200,120,0.2); color:#7ae0a0; }
-.gb { background:rgba(94,196,255,0.2); color:#7dd8ff; }
-.gbar-wrap { height:4px; border-radius:2px; background:rgba(255,255,255,0.08); overflow:hidden; }
-.gbar { height:100%; border-radius:2px; width:0; transition:width 1.2s cubic-bezier(.16,1,.3,1); }
-
-/* ══ CONTACT ══ */
-#win-contact { width:600px; height:490px; top:75px; left:calc(50% - 300px); }
-.contact-wrap { padding:32px 36px; display:flex; flex-direction:column; gap:18px; }
-.cc-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.cc-card {
-background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
-border-radius:11px; padding:16px; display:flex; align-items:center; gap:13px;
-cursor:pointer; transition:all .2s;
-}
-.cc-card:hover { background:rgba(255,255,255,0.1); transform:translateY(-3px); border-color:rgba(157,143,255,0.35); }
-.cc-ico { width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
-.cc-name { font-size:13px; font-weight:600; color:#f0f0f5; }
-.cc-val { font-size:11px; color:rgba(240,240,245,0.5); margin-top:1px; }
-.form-row2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.flbl { font-size:11px; color:rgba(240,240,245,0.6); font-weight:500; margin-bottom:5px; }
-.finput {
-width:100%; padding:10px 13px; border-radius:8px;
-background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
-color:#f0f0f5; font-family:inherit; font-size:13px; outline:none; resize:vertical;
-transition:border-color .2s, background .2s;
-}
-.finput:focus { border-color:var(–accent); background:rgba(157,143,255,0.08); }
-.finput::placeholder { color:rgba(240,240,245,0.3); }
-.send-btn {
-width:100%; padding:12px; border-radius:8px; border:none; font-family:inherit;
-font-size:14px; font-weight:600; cursor:pointer;
-background:linear-gradient(135deg,#7c6af7,#5ec4ff); color:#fff;
-transition:all .2s; letter-spacing:.3px;
-}
-.send-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(124,106,247,0.45); }
-
-/* NOTIFICATION */
-.notif {
-position:fixed; top:38px; right:16px; z-index:99999;
-background:rgba(25,25,45,0.97); backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.12); border-radius:13px;
-padding:14px 18px; min-width:260px;
-box-shadow:0 8px 32px rgba(0,0,0,0.6);
-transform:translateX(120%); transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-display:flex; gap:12px; align-items:center;
-}
-.notif.show { transform:translateX(0); }
-.notif-ico { font-size:22px; flex-shrink:0; }
-.notif-ttl { font-size:13px; font-weight:600; color:#f0f0f5; }
-.notif-msg { font-size:12px; color:rgba(240,240,245,0.5); margin-top:2px; }
+/* NOTIF */
+.notif{position:fixed;top:38px;right:16px;z-index:99999;background:rgba(18,18,38,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:13px 17px;min-width:260px;box-shadow:0 8px 32px rgba(0,0,0,.6);transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);display:flex;gap:12px;align-items:center}
+.notif.show{transform:translateX(0)}
+.nttl{font-size:13px;font-weight:600;color:var(–t1)}
+.ntmsg{font-size:12px;color:var(–t3);margin-top:2px}
 
 /* SPOTLIGHT */
-#spotlight {
-position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.45);
-backdrop-filter:blur(12px); display:none; align-items:flex-start;
-justify-content:center; padding-top:14vh;
-}
-#spotlight.open { display:flex; }
-.sp-box {
-width:580px; background:rgba(22,22,40,0.97); backdrop-filter:blur(30px);
-border-radius:16px; border:1px solid rgba(255,255,255,0.15);
-box-shadow:0 32px 80px rgba(0,0,0,0.8); overflow:hidden;
-animation:winOpen .2s ease both;
-}
-.sp-input-row { display:flex; align-items:center; gap:12px; padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.08); }
-.sp-input-row i { font-size:17px; color:rgba(240,240,245,0.4); }
-#sp-input { flex:1; background:transparent; border:none; outline:none; font-family:inherit; font-size:18px; color:#f0f0f5; }
-#sp-input::placeholder { color:rgba(240,240,245,0.3); }
-.sp-results { padding:6px 0; max-height:280px; overflow-y:auto; }
-.sp-row {
-display:flex; align-items:center; gap:13px; padding:10px 20px;
-cursor:pointer; transition:background .15s; color:#f0f0f5;
-}
-.sp-row:hover, .sp-row.sel { background:rgba(157,143,255,0.2); }
-.sp-row i { font-size:16px; width:30px; height:30px; border-radius:7px;
-display:flex; align-items:center; justify-content:center;
-background:rgba(157,143,255,0.15); color:var(–accent); }
-.sp-name { font-size:14px; font-weight:500; color:#f0f0f5; }
+#spl{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.45);backdrop-filter:blur(12px);display:none;align-items:flex-start;justify-content:center;padding-top:14vh}
+#spl.open{display:flex}
+.spbox{width:580px;background:rgba(18,18,38,.97);backdrop-filter:blur(30px);border-radius:16px;border:1px solid rgba(255,255,255,.15);box-shadow:0 32px 80px rgba(0,0,0,.8);overflow:hidden;animation:wO .2s ease both}
+.spinrow{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.spinrow i{font-size:17px;color:var(–t3)}
+#spinput{flex:1;background:transparent;border:none;outline:none;font-family:inherit;font-size:18px;color:var(–t1)}
+#spinput::placeholder{color:var(–t3)}
+.spres{padding:6px 0;max-height:280px;overflow-y:auto}
+.sprow{display:flex;align-items:center;gap:13px;padding:10px 20px;cursor:pointer;transition:background .15s;color:var(–t1)}
+.sprow:hover,.sprow.sel{background:rgba(157,143,255,.2)}
+.sprow i{font-size:15px;width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:rgba(157,143,255,.15);color:var(–acc)}
+.spnm{font-size:14px;font-weight:500;color:var(–t1)}
 
-/* CONTEXT MENU */
-#ctx {
-position:fixed; z-index:9997;
-background:rgba(22,22,40,0.97); backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.12); border-radius:10px;
-padding:6px 0; min-width:180px; box-shadow:0 16px 40px rgba(0,0,0,0.6);
-display:none;
-}
-#ctx.open { display:block; animation:fadeIn .15s ease; }
-@keyframes fadeIn { from{opacity:0;transform:scale(.95);} to{opacity:1;transform:scale(1);} }
-.ctx-row { padding:8px 16px; font-size:13px; cursor:pointer; display:flex; align-items:center; gap:10px; color:#f0f0f5; transition:background .15s; }
-.ctx-row i { font-size:12px; color:rgba(240,240,245,0.45); width:14px; }
-.ctx-row:hover { background:rgba(157,143,255,0.2); }
-.ctx-sep { height:1px; background:rgba(255,255,255,0.08); margin:4px 0; }
-
-/* SCROLLBAR */
-::-webkit-scrollbar { width:5px; }
-::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.18); border-radius:3px; }
+/* CTX */
+#ctx{position:fixed;z-index:9997;background:rgba(18,18,38,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 0;min-width:180px;box-shadow:0 16px 40px rgba(0,0,0,.6);display:none}
+#ctx.open{display:block;animation:fadeIn .15s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.ctxr{padding:8px 16px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:10px;color:var(–t1);transition:background .15s}
+.ctxr i{font-size:12px;color:var(–t3);width:14px}
+.ctxr:hover{background:rgba(157,143,255,.2)}
+.ctxs{height:1px;background:rgba(255,255,255,.08);margin:4px 0}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:3px}
 </style>
 
 </head>
 <body>
+<div id="wp"></div>
 
-<div id="wallpaper"></div>
-
-<!-- MENUBAR -->
-
-<div id="menubar">
+<div id="mb">
   <span class="apple">🍎</span>
-  <div class="menu-items">
+  <div class="mi">
     <span>Portfolio</span>
-    <span onclick="openWin('home')">Home</span>
-    <span onclick="openWin('about')">About</span>
-    <span onclick="openWin('achievements')">Achievements</span>
-    <span onclick="openWin('grades')">Grades</span>
-    <span onclick="openWin('contact')">Contact</span>
+    <span onclick="ow('h')">Home</span>
+    <span onclick="ow('a')">About</span>
+    <span onclick="ow('ac')">Achievements</span>
+    <span onclick="ow('g')">Grades</span>
+    <span onclick="ow('co')">Contact</span>
   </div>
-  <div class="right">
-    <i class="fas fa-wifi" style="color:#f0f0f5;font-size:13px;"></i>
-    <i class="fas fa-battery-three-quarters" style="color:#f0f0f5;font-size:13px;"></i>
-    <i class="fas fa-search" style="color:#f0f0f5;font-size:13px;cursor:pointer;" onclick="openSpotlight()"></i>
+  <div class="rt">
+    <i class="fas fa-wifi" style="color:var(--t1);font-size:13px"></i>
+    <i class="fas fa-battery-three-quarters" style="color:var(--t1);font-size:13px"></i>
+    <i class="fas fa-search" style="color:var(--t1);font-size:13px;cursor:pointer" onclick="openSpl()"></i>
     <span id="clock"></span>
   </div>
 </div>
 
-<!-- DESKTOP ICONS -->
-
-<div id="desktop">
-  <div class="desktop-icon" style="top:16px;left:16px;" ondblclick="openWin('home')" ontouchend="dblTap('home',event)">
-    <div class="icon-img">🏠</div><span>Home</span>
-  </div>
-  <div class="desktop-icon" style="top:110px;left:16px;" ondblclick="openWin('about')" ontouchend="dblTap('about',event)">
-    <div class="icon-img">👤</div><span>About Me</span>
-  </div>
-  <div class="desktop-icon" style="top:204px;left:16px;" ondblclick="openWin('achievements')" ontouchend="dblTap('achievements',event)">
-    <div class="icon-img">🏆</div><span>Achievements</span>
-  </div>
-  <div class="desktop-icon" style="top:298px;left:16px;" ondblclick="openWin('grades')" ontouchend="dblTap('grades',event)">
-    <div class="icon-img">📊</div><span>Grades</span>
-  </div>
-  <div class="desktop-icon" style="top:392px;left:16px;" ondblclick="openWin('contact')" ontouchend="dblTap('contact',event)">
-    <div class="icon-img">✉️</div><span>Contact</span>
-  </div>
+<div id="desk">
+  <div class="di" style="top:14px;left:14px" ondblclick="ow('h')" ontouchend="dbt('h',event)"><div class="ico">🏠</div><span>Home</span></div>
+  <div class="di" style="top:106px;left:14px" ondblclick="ow('a')" ontouchend="dbt('a',event)"><div class="ico">👤</div><span>About Me</span></div>
+  <div class="di" style="top:198px;left:14px" ondblclick="ow('ac')" ontouchend="dbt('ac',event)"><div class="ico">🏆</div><span>Achievements</span></div>
+  <div class="di" style="top:290px;left:14px" ondblclick="ow('g')" ontouchend="dbt('g',event)"><div class="ico">📊</div><span>Grades</span></div>
+  <div class="di" style="top:382px;left:14px" ondblclick="ow('co')" ontouchend="dbt('co',event)"><div class="ico">✉️</div><span>Contact</span></div>
 </div>
 
-<!-- ══ HOME WINDOW ══ -->
+<!-- HOME -->
 
-<div class="window" id="win-home">
-  <div class="titlebar" id="tb-home">
-    <div class="traffic-lights">
-      <div class="tl red" onclick="closeWin('home')">✕</div>
-      <div class="tl yellow" onclick="minWin('home')">–</div>
-      <div class="tl green" onclick="maxWin('home')">+</div>
-    </div>
-    <div class="titlebar-title">🏠 Home — Surya's Portfolio</div>
-  </div>
-  <div class="window-content">
-    <div class="home-wrap">
-      <div class="home-hero">
-        <div class="avatar">S</div>
-        <div class="home-text">
-          <h1>Hi, I'm <span>Surya</span> 👋</h1>
-          <div class="home-sub">Student · Trader · Dreamer from Indonesia 🇮🇩</div>
-          <div class="typewriter" id="typer">// Loading...</div>
-        </div>
-      </div>
-      <div class="badges">
-        <span class="badge v">📈 Index Trader</span>
-        <span class="badge b">💛 Gold &amp; Silver</span>
-        <span class="badge p">🎓 Grade 11</span>
-        <span class="badge g">💻 MetaTrader 5</span>
-        <span class="badge v">🏦 Pepperstone</span>
-      </div>
-      <div class="stats-row">
-        <div class="stat-card"><div class="num" data-c="5">0</div><div class="lbl">Instruments Traded</div></div>
-        <div class="stat-card"><div class="num" data-c="11">0</div><div class="lbl">School Grade</div></div>
-        <div class="stat-card"><div class="num" data-c="100">0</div><div class="lbl">Dedication %</div></div>
-      </div>
-      <div class="cta-row">
-        <button class="btn btn-p" onclick="openWin('about')">🔍 About Me</button>
-        <button class="btn btn-s" onclick="openWin('contact')">✉️ Get In Touch</button>
-        <button class="btn btn-s" onclick="openWin('achievements')">🏆 Achievements</button>
+<div class="win" id="wh">
+  <div class="tb" id="tbh"><div class="tls"><div class="tl r" onclick="cw('h')">✕</div><div class="tl y" onclick="mw('h')">–</div><div class="tl g" onclick="xw('h')">+</div></div><div class="tbtitle">🏠 Home — Surya Dharma</div></div>
+  <div class="wc"><div class="hwrap">
+    <div class="hhero">
+      <div class="avatar">SD</div>
+      <div class="ht">
+        <h1>Hi, I'm <span>Surya Dharma</span> 👋</h1>
+        <div class="hsub">Entrepreneur · Trader · Student · Bogor, Indonesia 🇮🇩</div>
+        <div class="typer" id="typer">// Loading...</div>
       </div>
     </div>
-  </div>
+    <div class="badges">
+      <span class="badge bv">📈 Index Trader</span>
+      <span class="badge bb">💛 Gold &amp; Silver</span>
+      <span class="badge bp">🎓 SMAIT Ummul Quro</span>
+      <span class="badge bg">🏢 GrowHost Founder</span>
+      <span class="badge bo">🤝 Datalix Co-Founder</span>
+      <span class="badge bv">🌐 TRADER FX ID</span>
+    </div>
+    <div class="srow">
+      <div class="sc"><div class="num" data-c="26">0</div><div class="lbl">Certifications</div></div>
+      <div class="sc"><div class="num" data-c="5">0</div><div class="lbl">Years in Business</div></div>
+      <div class="sc"><div class="num" data-c="5">0</div><div class="lbl">Instruments Traded</div></div>
+      <div class="sc"><div class="num" data-c="11">0</div><div class="lbl">School Grade</div></div>
+    </div>
+    <div class="ctar">
+      <button class="btn btnp" onclick="ow('a')">🔍 About Me</button>
+      <button class="btn btns" onclick="ow('ac')">🏆 Achievements</button>
+      <button class="btn btns" onclick="ow('g')">📊 Grades</button>
+      <button class="btn btns" onclick="ow('co')">✉️ Contact</button>
+    </div>
+  </div></div>
 </div>
 
-<!-- ══ ABOUT WINDOW ══ -->
+<!-- ABOUT -->
 
-<div class="window" id="win-about">
-  <div class="titlebar" id="tb-about">
-    <div class="traffic-lights">
-      <div class="tl red" onclick="closeWin('about')">✕</div>
-      <div class="tl yellow" onclick="minWin('about')">–</div>
-      <div class="tl green" onclick="maxWin('about')">+</div>
-    </div>
-    <div class="titlebar-title">👤 About Me</div>
-  </div>
-  <div class="window-content">
-    <div class="about-wrap">
-      <div class="sec-title">Bio</div>
-      <div class="about-bio">
-        I'm <strong>Surya</strong>, an 18-year-old student from Indonesia in Grade 11. Alongside my studies, I trade financial indices and commodities — SPX500, US30, NAS100, Gold &amp; Silver — using MetaTrader 5 via Pepperstone. Deeply motivated to grow financially and support my family, I approach every trade and every exam with the same relentless drive.
-      </div>
-      <div class="two-col">
-        <div style="display:flex;flex-direction:column;gap:18px;">
-          <div class="sec-title">Personal Info</div>
-          <div style="display:flex;flex-direction:column;gap:7px;">
-            <div class="info-row"><i class="fas fa-user"></i><span class="ik">Name</span><span class="iv">Surya</span></div>
-            <div class="info-row"><i class="fas fa-flag"></i><span class="ik">Country</span><span class="iv">Indonesia 🇮🇩</span></div>
-            <div class="info-row"><i class="fas fa-graduation-cap"></i><span class="ik">Grade</span><span class="iv">11 — High School</span></div>
-            <div class="info-row"><i class="fas fa-birthday-cake"></i><span class="ik">Age</span><span class="iv">18 years old</span></div>
-            <div class="info-row"><i class="fas fa-chart-line"></i><span class="ik">Platform</span><span class="iv">MT5 · Pepperstone</span></div>
-          </div>
-          <div class="sec-title">Languages</div>
-          <div class="lang-chips">
-            <span class="lchip">🇮🇩 Indonesian</span>
-            <span class="lchip">🇬🇧 English</span>
-          </div>
+<div class="win" id="wa">
+  <div class="tb" id="tba"><div class="tls"><div class="tl r" onclick="cw('a')">✕</div><div class="tl y" onclick="mw('a')">–</div><div class="tl g" onclick="xw('a')">+</div></div><div class="tbtitle">👤 About Me — Surya Dharma</div></div>
+  <div class="wc"><div class="awrap">
+    <div class="stitle">Bio</div>
+    <div class="abio">As the <strong>owner and founder of GrowHost</strong> &amp; <strong>Co-Founder of Datalix</strong>, I successfully managed an online hosting service from 2021 to 2026, offering digital hosting solutions to international clients. Operating remotely via Discord and a dedicated website, my responsibilities included client communication, customer support, service deployment, technical coordination, and order processing. I also developed and managed an online community to enhance customer engagement and satisfaction.<br><br>My academic journey at <strong>SMAIT Ummul Quro Bogor</strong>, with a focus on general business and commerce, complements my professional experience. I have furthered my knowledge through certifications in Financial Engineering, International Business, and Business Impact. Skilled in futures trading, trading strategies, and trading systems, I am committed to continuous learning and growth in finance and business development.</div>
+    <div class="twocol">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="stitle">Personal Info</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="ir"><i class="fas fa-user"></i><span class="ik">Name</span><span class="iv">Surya Dharma</span></div>
+          <div class="ir"><i class="fas fa-school"></i><span class="ik">School</span><span class="iv">SMAIT Ummul Quro Bogor</span></div>
+          <div class="ir"><i class="fas fa-graduation-cap"></i><span class="ik">Grade</span><span class="iv">11 — IPS (Social Science)</span></div>
+          <div class="ir"><i class="fas fa-birthday-cake"></i><span class="ik">Age</span><span class="iv">18 years old</span></div>
+          <div class="ir"><i class="fas fa-map-marker-alt"></i><span class="ik">City</span><span class="iv">Bogor, Indonesia 🇮🇩</span></div>
+          <div class="ir"><i class="fas fa-chart-line"></i><span class="ik">Platform</span><span class="iv">MT5 · Pepperstone</span></div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:18px;">
-          <div class="sec-title">Skills</div>
-          <div class="skill-list" id="skill-list">
-            <div class="sk-item"><div class="sk-head"><span class="sk-name">Risk Management</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-bar" style="background:linear-gradient(to right,#7c6af7,#5ec4ff);" data-w="85"></div></div></div>
-            <div class="sk-item"><div class="sk-head"><span class="sk-name">Technical Analysis</span><span class="sk-pct">78%</span></div><div class="sk-track"><div class="sk-bar" style="background:linear-gradient(to right,#5ec4ff,#ff79c6);" data-w="78"></div></div></div>
-            <div class="sk-item"><div class="sk-head"><span class="sk-name">Trading Discipline</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-bar" style="background:linear-gradient(to right,#ff79c6,#7c6af7);" data-w="80"></div></div></div>
-            <div class="sk-item"><div class="sk-head"><span class="sk-name">Chart Reading</span><span class="sk-pct">72%</span></div><div class="sk-track"><div class="sk-bar" style="background:linear-gradient(to right,#febc2e,#ff5f57);" data-w="72"></div></div></div>
-            <div class="sk-item"><div class="sk-head"><span class="sk-name">Academic Studies</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-bar" style="background:linear-gradient(to right,#28c840,#5ec4ff);" data-w="88"></div></div></div>
-          </div>
+        <div class="stitle">Languages</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap"><span class="lchip">🇮🇩 Indonesian</span><span class="lchip">🇬🇧 English</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="stitle">Core Skills</div>
+        <div class="sklst" id="sklst">
+          <div class="ski"><div class="skh"><span class="skn">Financial Analysis</span><span class="skp">90%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#7c6af7,#5ec4ff)" data-w="90"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Trading &amp; Risk Mgmt</span><span class="skp">85%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#5ec4ff,#ff79c6)" data-w="85"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Business Development</span><span class="skp">88%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#ff79c6,#7c6af7)" data-w="88"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Customer Management</span><span class="skp">85%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#28c840,#5ec4ff)" data-w="85"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Microsoft Excel</span><span class="skp">80%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#febc2e,#ff5f57)" data-w="80"></div></div></div>
+          <div class="ski"><div class="skh"><span class="skn">Market Research</span><span class="skp">82%</span></div><div class="skt"><div class="skb" style="background:linear-gradient(to right,#7c6af7,#28c840)" data-w="82"></div></div></div>
         </div>
       </div>
-      <div class="sec-title">Journey</div>
-      <div class="timeline">
-        <div class="tl-row"><div class="tl-dot"></div><div><div class="tl-yr">2024</div><div class="tl-ttl">Started Live Trading</div><div class="tl-dsc">Began trading SPX500, US30, NAS100 with family capital via MetaTrader 5 on Pepperstone.</div></div></div>
-        <div class="tl-row"><div class="tl-dot"></div><div><div class="tl-yr">2024</div><div class="tl-ttl">Built Trading Framework</div><div class="tl-dsc">Developed a system: 1:2 RRR, daily loss limits, trailing stop-loss, fixed lot sizing.</div></div></div>
-        <div class="tl-row"><div class="tl-dot"></div><div><div class="tl-yr">2025</div><div class="tl-ttl">Grade 11 Enrollment</div><div class="tl-dsc">Balancing advanced math (circle geometry) with active market trading.</div></div></div>
-        <div class="tl-row"><div class="tl-dot" style="border-color:var(--accent3);box-shadow:0 0 8px rgba(255,121,198,0.5);"></div><div><div class="tl-yr" style="color:var(--accent3);">NOW</div><div class="tl-ttl">Refining &amp; Growing</div><div class="tl-dsc">Mastering trading psychology and live performance analysis to support family financially.</div></div></div>
-      </div>
     </div>
-  </div>
+    <div class="stitle">Other Skills</div>
+    <div class="skchips">
+      <span class="skchip">Analisis Keuangan</span><span class="skchip">Riset Investasi</span><span class="skchip">Analisis Bisnis</span><span class="skchip">Pemikiran Analitis</span><span class="skchip">Berpikir Kritis</span><span class="skchip">Pemecahan Masalah</span><span class="skchip">Manajemen Waktu</span><span class="skchip">Pemasaran Online</span><span class="skchip">CRM</span><span class="skchip">HTML &amp; CSS</span><span class="skchip">Komunikasi</span><span class="skchip">Pembelajaran Mandiri</span>
+    </div>
+    <div class="stitle">Journey</div>
+    <div class="tl2">
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2021</div><div class="tltl">Founded GrowHost</div><div class="tldc">Mendirikan bisnis hosting &amp; server digital, melayani klien internasional via Discord &amp; website.</div></div></div>
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2022</div><div class="tltl">Co-Founded Datalix &amp; Mulai Belajar Trading</div><div class="tldc">Bergabung mendirikan Datalix (game scripts &amp; VPS/RDP) dan mulai mendalami financial market.</div></div></div>
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2024</div><div class="tltl">Masuk SMAIT Ummul Quro Bogor</div><div class="tldc">Memulai perjalanan akademik (Kelas 10) sambil terus mengembangkan bisnis &amp; skill trading.</div></div></div>
+      <div class="tlr"><div class="tld"></div><div><div class="tlyr">2025</div><div class="tltl">Naik Kelas 11 — 25+ Sertifikasi</div><div class="tldc">Meraih lebih dari 25 sertifikasi Coursera dari Columbia, Duke, Rice, London Business School, dll.</div></div></div>
+      <div class="tlr"><div class="tld" style="border-color:var(--acc3);box-shadow:0 0 8px rgba(255,121,198,.5)"></div><div><div class="tlyr" style="color:var(--acc3)">2026 → Future</div><div class="tltl">Founder TRADER FX ID &amp; Bermimpi Lebih Besar</div><div class="tldc">Mendirikan komunitas trading, menyelesaikan job simulations di BofA &amp; Citi, dan terus bertumbuh.</div></div></div>
+    </div>
+  </div></div>
 </div>
 
-<!-- ══ ACHIEVEMENTS WINDOW ══ -->
+<!-- ACHIEVEMENTS -->
 
-<div class="window" id="win-achievements">
-  <div class="titlebar" id="tb-achievements">
-    <div class="traffic-lights">
-      <div class="tl red" onclick="closeWin('achievements')">✕</div>
-      <div class="tl yellow" onclick="minWin('achievements')">–</div>
-      <div class="tl green" onclick="maxWin('achievements')">+</div>
+<div class="win" id="wac">
+  <div class="tb" id="tbac"><div class="tls"><div class="tl r" onclick="cw('ac')">✕</div><div class="tl y" onclick="mw('ac')">–</div><div class="tl g" onclick="xw('ac')">+</div></div><div class="tbtitle">🏆 Achievements &amp; Certifications</div></div>
+  <div class="wc"><div class="acwrap">
+    <div class="actabs">
+      <button class="actab active" onclick="switchAch(this,'abiz')">💼 Business (2021–)</button>
+      <button class="actab" onclick="switchAch(this,'atrade')">📈 Trading (2022–)</button>
+      <button class="actab" onclick="switchAch(this,'ajob')">🏦 Job Sim (2026)</button>
+      <button class="actab" onclick="switchAch(this,'acerts')">🎓 Certificates (2026)</button>
     </div>
-    <div class="titlebar-title">🏆 Achievements</div>
-  </div>
-  <div class="window-content">
-    <div class="ach-wrap">
-      <div class="ach-grid">
-        <div class="ach-card ach-feat">
-          <div class="ach-ico">🚀</div>
-          <div class="ach-yr">2024–2025</div>
-          <div class="ach-ttl">Live Trading Milestone</div>
-          <div class="ach-sub">Managing real capital on Pepperstone with disciplined risk management — daily loss limits, trailing SL, and structured lot sizing.</div>
-        </div>
-        <div class="ach-card" onclick="notify('📈','Trading Framework','Built a personal trading system with 1:2 RRR & trailing stop-loss strategy.')">
-          <div class="ach-ico">📈</div><div class="ach-yr">2024</div>
-          <div class="ach-ttl">Trading Framework</div>
-          <div class="ach-sub">Personal system: 1:2 RRR & trailing SL</div>
-        </div>
-        <div class="ach-card" onclick="notify('🧮','Math Excellence','Strong performance in Grade 11 mathematics including advanced circle geometry.')">
-          <div class="ach-ico">🧮</div><div class="ach-yr">2025</div>
-          <div class="ach-ttl">Math Excellence</div>
-          <div class="ach-sub">Advanced circle & coordinate geometry</div>
-        </div>
-        <div class="ach-card" onclick="notify('💡','Multi-Instrument','Trading 5 instruments: SPX500, US30, NAS100, Gold & Silver.')">
-          <div class="ach-ico">💡</div><div class="ach-yr">2024</div>
-          <div class="ach-ttl">Multi-Instrument</div>
-          <div class="ach-sub">5 instruments across indices & metals</div>
-        </div>
-        <div class="ach-card" onclick="notify('🧠','Trading Psychology','Overcoming emotional trading — respecting SL, avoiding revenge trades.')">
-          <div class="ach-ico">🧠</div><div class="ach-yr">2025</div>
-          <div class="ach-ttl">Trading Psychology</div>
-          <div class="ach-sub">Discipline over emotion in live markets</div>
-        </div>
-        <div class="ach-card" onclick="notify('📚','Dual Performance','Maintaining Grade 11 GPA while actively trading financial markets.')">
-          <div class="ach-ico">📚</div><div class="ach-yr">2025</div>
-          <div class="ach-ttl">Academic + Trading</div>
-          <div class="ach-sub">Excelling in school & financial markets</div>
-        </div>
+    <!-- BUSINESS -->
+    <div id="abiz">
+      <div class="acgrid">
+        <div class="acard afeat"><div class="aico">🌐</div><div class="ayear">2021 – Present</div><div class="attl">Founder — GrowHost</div><div class="asub">Mendirikan dan mengelola layanan digital hosting untuk klien internasional. Bertanggung jawab atas client management, service deployment, customer support, dan community building via Discord &amp; website.</div></div>
+        <div class="acard" onclick="notify('🤝','Datalix','Co-Founder: Game Script Development & Digital Server (RDP/VPS) — bergerak sejak 2022 melayani klien di bidang hosting dan game server.')"><div class="aico">💻</div><div class="ayear">2022 – Present</div><div class="attl">Co-Founder — Datalix</div><div class="asub">Pembuatan Script Game &amp; penjualan RDP/VPS Server. Bergerak di bidang digital product &amp; server solutions untuk klien gaming.</div></div>
+        <div class="acard" onclick="notify('🌍','TRADER FX ID','Komunitas trading Forex & Indices Indonesia — didirikan 2026 untuk edukasi dan sharing strategi trading.')"><div class="aico">🌍</div><div class="ayear">2026 – Present</div><div class="attl">Founder — TRADER FX ID</div><div class="asub">Mendirikan komunitas trading Forex &amp; Indices Indonesia — fokus pada edukasi, analisis pasar, dan sharing strategi antar trader.</div></div>
+        <div class="acard" onclick="notify('⚡','Self-Taught Entrepreneur','Membangun bisnis dari nol sejak 2021, membuktikan bahwa semangat belajar mandiri bisa menghasilkan hasil nyata di usia muda.')"><div class="aico">⚡</div><div class="ayear">2021 – Present</div><div class="attl">Self-Taught Entrepreneur</div><div class="asub">Membangun bisnis online dari umur muda tanpa modal besar — hanya dengan tekad, konsistensi, dan semangat belajar mandiri.</div></div>
       </div>
-      <div class="sec-title">Progress Rings</div>
-      <div class="rings-wrap" id="rings-wrap"></div>
     </div>
-  </div>
+    <!-- TRADING -->
+    <div id="atrade" style="display:none">
+      <div class="acgrid">
+        <div class="acard afeat"><div class="aico">📈</div><div class="ayear">2022 – Present</div><div class="attl">Certified Trader — Indices &amp; Metal</div><div class="asub">Aktif trading SPX500, US30, NAS100, XAUUSD (Gold), XAGUSD (Silver) di MetaTrader 5 via Pepperstone. Menguasai sistem risk management terstruktur dengan 1:2 RRR dan trailing stop-loss.</div></div>
+        <div class="acard"><div class="aico">🧠</div><div class="ayear">2022</div><div class="attl">Mulai Belajar Trading</div><div class="asub">Mempelajari analisis teknikal, price action, chart patterns, dan fundamental market secara independen.</div></div>
+        <div class="acard"><div class="aico">⚖️</div><div class="ayear">2024</div><div class="attl">Trading Framework Developed</div><div class="asub">Membangun sistem trading: 1:2 RRR, trailing SL, daily loss limit, fixed lot sizing (0.01 Gold/Silver, 0.1 Indices).</div></div>
+        <div class="acard"><div class="aico">📊</div><div class="ayear">2026</div><div class="attl">Bloomberg Terminal Analysis</div><div class="asub">Menyelesaikan project "Analyze Apple's Stock and Financials with Bloomberg Terminal" via Coursera.</div></div>
+        <div class="acard"><div class="aico">💹</div><div class="ayear">2026</div><div class="attl">Stock Valuation — DDM</div><div class="asub">Menguasai valuasi saham fundamental menggunakan Dividend Discount Model melalui Coursera project.</div></div>
+        <div class="acard"><div class="aico">🏗️</div><div class="ayear">2026</div><div class="attl">Construct Stock Market Indices</div><div class="asub">Menyelesaikan project konstruksi indeks pasar saham — memahami metodologi pembuatan indeks keuangan.</div></div>
+      </div>
+    </div>
+    <!-- JOB SIMULATIONS -->
+    <div id="ajob" style="display:none">
+      <div class="acgrid">
+        <div class="acard afeat"><div class="aico">🏦</div><div class="ayear">2026</div><div class="attl">The Private Bank Job Simulation</div><div class="asub">Bank of America — Menyelesaikan simulasi pekerjaan private banking. Memahami client portfolio management, investment advisory, dan wealth management dalam lingkungan perbankan kelas dunia.</div></div>
+        <div class="acard afeat"><div class="aico">💹</div><div class="ayear">2026</div><div class="attl">Markets Sales &amp; Trading Job Simulation</div><div class="asub">Citi — Job Simulation dalam bidang Sales &amp; Trading. Memahami bagaimana institutional trading desk beroperasi di bank investasi global, termasuk market making dan client sales.</div></div>
+      </div>
+    </div>
+    <!-- CERTS -->
+    <div id="acerts" style="display:none">
+      <div class="clist" id="certlist"></div>
+    </div>
+  </div></div>
 </div>
 
-<!-- ══ GRADES WINDOW ══ -->
+<!-- GRADES -->
 
-<div class="window" id="win-grades">
-  <div class="titlebar" id="tb-grades">
-    <div class="traffic-lights">
-      <div class="tl red" onclick="closeWin('grades')">✕</div>
-      <div class="tl yellow" onclick="minWin('grades')">–</div>
-      <div class="tl green" onclick="maxWin('grades')">+</div>
-    </div>
-    <div class="titlebar-title">📊 Academic Grades</div>
-  </div>
-  <div class="window-content">
-    <div class="grades-wrap">
-      <div class="gpa-hero">
-        <div><div class="gpa-num" id="gpa-num">0.0</div><div class="gpa-lbl">Overall GPA</div></div>
-        <div>
-          <div class="gpa-desc">Grade 11 · High School · Indonesia 🇮🇩</div>
-          <div style="font-size:12px;color:rgba(240,240,245,0.5);margin-top:4px;">Strong academic standing while balancing active trading</div>
-          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
-            <span class="badge g" style="font-size:11px;">🎓 Active Student</span>
-            <span class="badge b" style="font-size:11px;">📐 Math Focus</span>
-          </div>
-        </div>
+<div class="win" id="wg">
+  <div class="tb" id="tbg"><div class="tls"><div class="tl r" onclick="cw('g')">✕</div><div class="tl y" onclick="mw('g')">–</div><div class="tl g" onclick="xw('g')">+</div></div><div class="tbtitle">📊 Academic Grades — SMAIT Ummul Quro</div></div>
+  <div class="wc"><div class="gwrap">
+    <div class="gpahero">
+      <div><div class="gpanum" id="gpan">0.00</div><div class="gpalbl">Cumulative GPA</div></div>
+      <div>
+        <div class="gpadesc" style="color:var(--t1);font-weight:600;font-size:14px">SMAIT Ummul Quro Bogor · Grade 11 · IPS 🇮🇩</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:3px">Skala 4.0: A(≥90=4.0) · A-(85–89=3.7) · B+(80–84=3.3) · B(75–79=3.0)</div>
+        <div id="semgpa" style="margin-top:8px;font-size:12px;color:var(--acc2)"></div>
       </div>
-      <div class="sem-tabs">
-        <button class="sem-tab active" onclick="switchSem(this,'s1')">Semester 1</button>
-        <button class="sem-tab" onclick="switchSem(this,'s2')">Semester 2</button>
-      </div>
-      <div id="s1"><table class="gtable"><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Progress</th></tr></thead><tbody id="tb1"></tbody></table></div>
-      <div id="s2" style="display:none;"><table class="gtable"><thead><tr><th>Subject</th><th>Score</th><th>Grade</th><th>Progress</th></tr></thead><tbody id="tb2"></tbody></table></div>
     </div>
-  </div>
+    <div class="stabs">
+      <button class="stab active" onclick="switchG(this,'g10s1','Kelas 10 Sem 1')">Kelas 10 · Sem 1</button>
+      <button class="stab" onclick="switchG(this,'g10s2','Kelas 10 Sem 2')">Kelas 10 · Sem 2</button>
+      <button class="stab" onclick="switchG(this,'g11s1','Kelas 11 Sem 1')">Kelas 11 · Sem 1</button>
+      <button class="stab" onclick="switchG(this,'g11s2','')">Kelas 11 · Sem 2</button>
+      <button class="stab" onclick="switchG(this,'g12s1','')">Kelas 12 · Sem 1</button>
+    </div>
+    <div id="g10s1"><table class="gtable"><thead><tr><th>Mata Pelajaran</th><th>Nilai</th><th>Grade</th><th>GPA</th><th>Progress</th></tr></thead><tbody id="tb10s1"></tbody></table></div>
+    <div id="g10s2" style="display:none"><table class="gtable"><thead><tr><th>Mata Pelajaran</th><th>Nilai</th><th>Grade</th><th>GPA</th><th>Progress</th></tr></thead><tbody id="tb10s2"></tbody></table></div>
+    <div id="g11s1" style="display:none"><table class="gtable"><thead><tr><th>Mata Pelajaran</th><th>Nilai</th><th>Grade</th><th>GPA</th><th>Progress</th></tr></thead><tbody id="tb11s1"></tbody></table></div>
+    <div id="g11s2" style="display:none"><div class="csoon"><div class="csi">⏳</div><h3>Kelas 11 Semester 2</h3><p>Sedang berlangsung — nilai akan tersedia setelah ujian selesai 📝</p></div></div>
+    <div id="g12s1" style="display:none"><div class="csoon"><div class="csi">🚀</div><h3>Kelas 12 Semester 1</h3><p>Coming Soon — Stay tuned! ✨</p></div></div>
+  </div></div>
 </div>
 
-<!-- ══ CONTACT WINDOW ══ -->
+<!-- CONTACT -->
 
-<div class="window" id="win-contact">
-  <div class="titlebar" id="tb-contact">
-    <div class="traffic-lights">
-      <div class="tl red" onclick="closeWin('contact')">✕</div>
-      <div class="tl yellow" onclick="minWin('contact')">–</div>
-      <div class="tl green" onclick="maxWin('contact')">+</div>
+<div class="win" id="wco">
+  <div class="tb" id="tbco"><div class="tls"><div class="tl r" onclick="cw('co')">✕</div><div class="tl y" onclick="mw('co')">–</div><div class="tl g" onclick="xw('co')">+</div></div><div class="tbtitle">✉️ Contact — Surya Dharma</div></div>
+  <div class="wc"><div class="cowrap">
+    <div class="ccgrid">
+      <div class="cccard" onclick="notify('📧','Email','suryadharma@email.com')"><div class="ccico" style="background:rgba(255,121,198,.15)">📧</div><div><div class="ccnm">Email</div><div class="ccvl">suryadharma@email.com</div></div></div>
+      <div class="cccard" onclick="notify('📱','Instagram','@surya.dharma')"><div class="ccico" style="background:rgba(157,143,255,.15)">📱</div><div><div class="ccnm">Instagram</div><div class="ccvl">@surya.dharma</div></div></div>
+      <div class="cccard" onclick="notify('💼','LinkedIn','linkedin.com/in/suryadharma')"><div class="ccico" style="background:rgba(94,196,255,.15)">💼</div><div><div class="ccnm">LinkedIn</div><div class="ccvl">Surya Dharma</div></div></div>
+      <div class="cccard" onclick="notify('📍','Location','Bogor, Jawa Barat, Indonesia 🇮🇩')"><div class="ccico" style="background:rgba(80,200,120,.15)">📍</div><div><div class="ccnm">Location</div><div class="ccvl">Bogor, Indonesia 🇮🇩</div></div></div>
     </div>
-    <div class="titlebar-title">✉️ Contact Me</div>
-  </div>
-  <div class="window-content">
-    <div class="contact-wrap">
-      <div class="cc-grid">
-        <div class="cc-card" onclick="notify('📧','Email','surya.dharma.ac@gmail.com')">
-          <div class="cc-ico" style="background:rgba(255,121,198,0.15);">📧</div>
-          <div><div class="cc-name">Email</div><div class="cc-val">surya.dharma.ac@gmail.com</div></div>
-        </div>
-        <div class="cc-card" onclick="notify('📱','Instagram','@surydhrm_')">
-          <div class="cc-ico" style="background:rgba(157,143,255,0.15);">📱</div>
-          <div><div class="cc-name">Instagram</div><div class="cc-val">@surydhrm_</div></div>
-        </div>
-        <div class="cc-card" onclick="notify('📥','LinkedIn','Surya Dharma')">
-          <div class="cc-ico" style="background:rgba(94,196,255,0.15);">🐦</div>
-          <div><div class="cc-name">LinkedIn</div><div class="cc-val">Surya Dharma</div></div>
-        </div>
-        <div class="cc-card" onclick="notify('📍','Location','Indonesia 🇮🇩')">
-          <div class="cc-ico" style="background:rgba(80,200,120,0.15);">📍</div>
-          <div><div class="cc-name">Location</div><div class="cc-val">Indonesia 🇮🇩</div></div>
-        </div>
-      </div>
-      <div class="sec-title">Send Message</div>
-      <div class="form-row2">
-        <div><div class="flbl">Your Name</div><input class="finput" type="text" placeholder="John Doe" id="cn"></div>
-        <div><div class="flbl">Email</div><input class="finput" type="email" placeholder="you@example.com" id="ce"></div>
-      </div>
-      <div><div class="flbl">Message</div><textarea class="finput" rows="4" placeholder="Hey Surya, I wanted to reach out about..." id="cm"></textarea></div>
-      <button class="send-btn" onclick="sendMsg()">🚀 Send Message</button>
+    <div class="stitle">Send Message</div>
+    <div class="fr2">
+      <div><div class="flbl">Your Name</div><input class="finp" type="text" placeholder="John Doe" id="cn"></div>
+      <div><div class="flbl">Email</div><input class="finp" type="email" placeholder="you@example.com" id="ce"></div>
     </div>
-  </div>
+    <div><div class="flbl">Message</div><textarea class="finp" rows="4" placeholder="Hey Surya, I wanted to reach out about..." id="cm"></textarea></div>
+    <button class="sbtn" onclick="sendMsg()">🚀 Send Message</button>
+  </div></div>
 </div>
 
 <!-- DOCK -->
 
 <div id="dock">
-  <div class="dock-item" onclick="openWin('home')">
-    <div class="dock-icon" style="background:linear-gradient(135deg,#4a90d9,#7c6af7);">🏠</div>
-    <div class="dock-dot"></div><div class="dock-tooltip">Home</div>
-  </div>
-  <div class="dock-item" onclick="openWin('about')">
-    <div class="dock-icon" style="background:linear-gradient(135deg,#f7971e,#ffd200);">👤</div>
-    <div class="dock-dot"></div><div class="dock-tooltip">About Me</div>
-  </div>
-  <div class="dock-item" onclick="openWin('achievements')">
-    <div class="dock-icon" style="background:linear-gradient(135deg,#f7971e,#ff5f6d);">🏆</div>
-    <div class="dock-dot"></div><div class="dock-tooltip">Achievements</div>
-  </div>
-  <div class="dock-item" onclick="openWin('grades')">
-    <div class="dock-icon" style="background:linear-gradient(135deg,#11998e,#38ef7d);">📊</div>
-    <div class="dock-dot"></div><div class="dock-tooltip">Grades</div>
-  </div>
-  <div class="dock-item" onclick="openWin('contact')">
-    <div class="dock-icon" style="background:linear-gradient(135deg,#ff79c6,#7c6af7);">✉️</div>
-    <div class="dock-dot"></div><div class="dock-tooltip">Contact</div>
-  </div>
-  <div class="dock-sep"></div>
-  <div class="dock-item" onclick="openSpotlight()">
-    <div class="dock-icon" style="background:linear-gradient(135deg,#636e72,#b2bec3);">🔍</div>
-    <div class="dock-tooltip">Spotlight</div>
-  </div>
+  <div class="dk" onclick="ow('h')"><div class="dki" style="background:linear-gradient(135deg,#4a90d9,#7c6af7)">🏠</div><div class="dkd"></div><div class="dtt">Home</div></div>
+  <div class="dk" onclick="ow('a')"><div class="dki" style="background:linear-gradient(135deg,#f7971e,#ffd200)">👤</div><div class="dkd"></div><div class="dtt">About Me</div></div>
+  <div class="dk" onclick="ow('ac')"><div class="dki" style="background:linear-gradient(135deg,#f7971e,#ff5f6d)">🏆</div><div class="dkd"></div><div class="dtt">Achievements</div></div>
+  <div class="dk" onclick="ow('g')"><div class="dki" style="background:linear-gradient(135deg,#11998e,#38ef7d)">📊</div><div class="dkd"></div><div class="dtt">Grades</div></div>
+  <div class="dk" onclick="ow('co')"><div class="dki" style="background:linear-gradient(135deg,#ff79c6,#7c6af7)">✉️</div><div class="dkd"></div><div class="dtt">Contact</div></div>
+  <div class="dksep"></div>
+  <div class="dk" onclick="openSpl()"><div class="dki" style="background:linear-gradient(135deg,#636e72,#b2bec3)">🔍</div><div class="dtt">Spotlight</div></div>
 </div>
 
-<!-- SPOTLIGHT -->
-
-<div id="spotlight" onclick="closeSpotlight(event)">
-  <div class="sp-box">
-    <div class="sp-input-row">
-      <i class="fas fa-search"></i>
-      <input id="sp-input" placeholder="Spotlight Search…" oninput="spSearch(this.value)" onkeydown="spKey(event)">
-    </div>
-    <div class="sp-results" id="sp-results"></div>
+<div id="spl" onclick="closeSpl(event)">
+  <div class="spbox">
+    <div class="spinrow"><i class="fas fa-search"></i><input id="spinput" placeholder="Spotlight Search…" oninput="spSearch(this.value)" onkeydown="spKey(event)"></div>
+    <div class="spres" id="spres"></div>
   </div>
 </div>
-
-<!-- NOTIFICATION -->
 
 <div class="notif" id="notif">
-  <div class="notif-ico" id="n-ico">✉️</div>
-  <div><div class="notif-ttl" id="n-ttl"></div><div class="notif-msg" id="n-msg"></div></div>
+  <div style="font-size:22px;flex-shrink:0" id="nico">✉️</div>
+  <div><div class="nttl" id="nttl"></div><div class="ntmsg" id="ntmsg"></div></div>
 </div>
 
-<!-- CONTEXT MENU -->
-
 <div id="ctx">
-  <div class="ctx-row" onclick="openWin('home');closeCtx()"><i class="fas fa-home"></i>Open Home</div>
-  <div class="ctx-row" onclick="openWin('about');closeCtx()"><i class="fas fa-user"></i>Open About</div>
-  <div class="ctx-sep"></div>
-  <div class="ctx-row" onclick="openSpotlight();closeCtx()"><i class="fas fa-search"></i>Spotlight</div>
-  <div class="ctx-row" onclick="closeCtx()"><i class="fas fa-times"></i>Dismiss</div>
+  <div class="ctxr" onclick="ow('h');closeCtx()"><i class="fas fa-home"></i>Open Home</div>
+  <div class="ctxr" onclick="ow('a');closeCtx()"><i class="fas fa-user"></i>Open About</div>
+  <div class="ctxr" onclick="ow('ac');closeCtx()"><i class="fas fa-trophy"></i>Achievements</div>
+  <div class="ctxs"></div>
+  <div class="ctxr" onclick="openSpl();closeCtx()"><i class="fas fa-search"></i>Spotlight</div>
+  <div class="ctxr" onclick="closeCtx()"><i class="fas fa-times"></i>Dismiss</div>
 </div>
 
 <script>
-// ── STARS ──
-const wp=document.getElementById('wallpaper');
-for(let i=0;i<80;i++){
-  const s=document.createElement('div'); s.className='star';
-  const sz=Math.random()*2+.5;
-  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;animation-delay:${Math.random()*5}s;`;
-  wp.appendChild(s);
-}
+// STARS
+const wp=document.getElementById('wp');
+for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;animation-delay:${Math.random()*5}s`;wp.appendChild(s);}
 
-// ── CLOCK ──
-function tick(){
-  const n=new Date();
-  document.getElementById('clock').textContent=
-    n.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})+' '+
-    n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-}
-tick(); setInterval(tick,1000);
+// CLOCK
+function tick(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})+' '+n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});}
+tick();setInterval(tick,1000);
 
-// ── TYPEWRITER ──
-const phrases=['// Learning to trade the markets...','// SPX500 · US30 · NAS100 · XAUUSD · XAGUSD','// Risk Management First 📊','// Grade 11 · Aspiring Trader','// Indonesia 🇮🇩 · Pepperstone · MT5'];
-let pi=0,ci=0,deleting=false;
-function type(){
-  const el=document.getElementById('typer'); if(!el)return;
-  const ph=phrases[pi];
-  if(!deleting){ if(ci<ph.length){el.textContent=ph.slice(0,++ci);setTimeout(type,65);}
-    else{deleting=true;setTimeout(type,2200);}
-  }else{ if(ci>0){el.textContent=ph.slice(0,--ci);setTimeout(type,32);}
-    else{deleting=false;pi=(pi+1)%phrases.length;setTimeout(type,400);}
-  }
-}
+// TYPEWRITER
+const phrases=['// Entrepreneur · Trader · Student 🎓','// Founder: GrowHost & TRADER FX ID','// Co-Founder: Datalix (Game Scripts & VPS)','// 26+ Coursera Certifications 📜','// SPX500 · US30 · NAS100 · XAUUSD · XAGUSD','// SMAIT Ummul Quro Bogor, Indonesia 🇮🇩','// Columbia · Duke · Rice · London Business School'];
+let pi=0,ci=0,del=false;
+function type(){const el=document.getElementById('typer');if(!el)return;const ph=phrases[pi];if(!del){if(ci<ph.length){el.textContent=ph.slice(0,++ci);setTimeout(type,55);}else{del=true;setTimeout(type,2000);}}else{if(ci>0){el.textContent=ph.slice(0,--ci);setTimeout(type,28);}else{del=false;pi=(pi+1)%phrases.length;setTimeout(type,400);}}}
 type();
 
-// ── WINDOW MANAGEMENT ──
-let topZ=200;
-const maxSaved={};
+// WINDOW MANAGER
+let topZ=200;const maxS={};
+function ow(id){const el=document.getElementById('w'+id);if(!el)return;el.classList.add('active');el.style.zIndex=++topZ;el.style.animation='wO .3s cubic-bezier(.34,1.56,.64,1) both';if(id==='h')setTimeout(animC,350);if(id==='a')setTimeout(animSk,350);if(id==='g')setTimeout(()=>animG('g10s1','Kelas 10 Sem 1'),350);}
+function cw(id){const el=document.getElementById('w'+id);el.style.animation='wC .2s ease-in both';setTimeout(()=>el.classList.remove('active'),200);}
+function mw(id){cw(id);notify('🗂️','Minimized','Tap dock icon to restore');}
+function xw(id){const el=document.getElementById('w'+id);if(maxS[id]){Object.assign(el.style,maxS[id]);maxS[id]=null;}else{maxS[id]={top:el.style.top,left:el.style.left,width:el.style.width,height:el.style.height,right:el.style.right};el.style.top='30px';el.style.left='0';el.style.right='0';el.style.width='100%';el.style.height='calc(100vh - 116px)';}}
+document.querySelectorAll('.win').forEach(w=>{w.addEventListener('mousedown',()=>{w.style.zIndex=++topZ;});w.addEventListener('touchstart',()=>{w.style.zIndex=++topZ;},{passive:true});});
 
-function openWin(id){
-  const el=document.getElementById('win-'+id); if(!el)return;
-  el.classList.add('active'); el.style.zIndex=++topZ;
-  el.style.animation='winOpen .3s cubic-bezier(.34,1.56,.64,1) both';
-  if(id==='home') setTimeout(animCounters,350);
-  if(id==='about') setTimeout(animSkills,350);
-  if(id==='achievements') setTimeout(animRings,350);
-  if(id==='grades') setTimeout(animGrades,350);
+// DRAG
+function drag(winId){
+  const el=document.getElementById('w'+winId),tb=document.getElementById('tb'+winId);
+  if(!el||!tb)return;let dr=false,ox=0,oy=0;
+  tb.addEventListener('mousedown',e=>{if(e.target.classList.contains('tl'))return;dr=true;const r=el.getBoundingClientRect();ox=e.clientX-r.left;oy=e.clientY-r.top;el.style.zIndex=++topZ;e.preventDefault();});
+  document.addEventListener('mousemove',e=>{if(!dr)return;el.style.left=`${e.clientX-ox}px`;el.style.top=`${e.clientY-oy}px`;el.style.right='auto';el.style.bottom='auto';});
+  document.addEventListener('mouseup',()=>{dr=false;});
+  tb.addEventListener('touchstart',e=>{if(e.target.classList.contains('tl'))return;const t=e.touches[0];dr=true;const r=el.getBoundingClientRect();ox=t.clientX-r.left;oy=t.clientY-r.top;el.style.zIndex=++topZ;},{passive:true});
+  document.addEventListener('touchmove',e=>{if(!dr)return;const t=e.touches[0];el.style.left=`${t.clientX-ox}px`;el.style.top=`${t.clientY-oy}px`;el.style.right='auto';el.style.bottom='auto';e.preventDefault();},{passive:false});
+  document.addEventListener('touchend',()=>{dr=false;});
 }
+['h','a','ac','g','co'].forEach(drag);
 
-function closeWin(id){
-  const el=document.getElementById('win-'+id);
-  el.style.animation='winClose .2s ease-in both';
-  setTimeout(()=>el.classList.remove('active'),200);
-}
+// DOUBLE TAP
+const tap={};
+function dbt(id,e){e.preventDefault();const now=Date.now();if(tap[id]&&now-tap[id]<400){ow(id);tap[id]=0;}else{tap[id]=now;}}
 
-function minWin(id){
-  closeWin(id);
-  notify('🗂️','Minimized','Tap dock icon to restore');
-}
+// COUNTERS
+function animC(){document.querySelectorAll('[data-c]').forEach(el=>{const t=+el.dataset.c;let c=0;const s=()=>{c=Math.min(c+Math.ceil(t/25),t);el.textContent=c;if(c<t)requestAnimationFrame(s);};s();});}
 
-function maxWin(id){
-  const el=document.getElementById('win-'+id);
-  if(maxSaved[id]){
-    Object.assign(el.style,maxSaved[id]); maxSaved[id]=null;
-  } else {
-    maxSaved[id]={top:el.style.top,left:el.style.left,width:el.style.width,height:el.style.height,right:el.style.right};
-    el.style.top='30px'; el.style.left='0'; el.style.right='0';
-    el.style.width='100%'; el.style.height='calc(100vh - 116px)';
-  }
-}
+// SKILLS
+function animSk(){document.querySelectorAll('.skb').forEach(b=>{b.style.width='0';setTimeout(()=>{b.style.width=b.dataset.w+'%';},100);});}
 
-document.querySelectorAll('.window').forEach(w=>{
-  w.addEventListener('mousedown',()=>{ w.style.zIndex=++topZ; });
-  w.addEventListener('touchstart',()=>{ w.style.zIndex=++topZ; },{passive:true});
-});
+// GRADE DATA
+const gr10s1=[['PAI',91],['PKN',93],['Bahasa Indonesia',89],['Matematika',75],['Fisika',76],['Kimia',88],['Biologi',81],['Sosiologi',85],['Ekonomi',84],['Geografi',80],['Sejarah',87],['B. Inggris',88],['PJOK',96],['TIK',98],['Seni',89]];
+const gr10s2=[['PAI',92],['PKN',93],['Bahasa Indonesia',90],['Matematika',81],['Fisika',84],['Kimia',90],['Biologi',85],['Sosiologi',93],['Ekonomi',90],['Geografi',81],['Sejarah',84],['B. Inggris',84],['PJOK',94],['TIK',95],['Seni',93]];
+const gr11s1=[['PAI',93],['PKN',92],['Bahasa Indonesia',87],['Matematika',85],['Sosiologi',93],['Ekonomi',93],['Geografi',86],['Sejarah',88],['B. Inggris',85],['PJOK',95],['TIK',95],['Seni',93]];
 
-// ── DRAG (Mouse + Touch) ──
-function makeDraggable(winId){
-  const el=document.getElementById('win-'+winId);
-  const tb=document.getElementById('tb-'+winId);
-  if(!el||!tb)return;
+function sgpa(s){if(s>=90)return 4.0;if(s>=85)return 3.7;if(s>=80)return 3.3;if(s>=75)return 3.0;if(s>=70)return 2.7;return 2.3;}
+function sgl(s){if(s>=90)return'A';if(s>=85)return'A-';if(s>=80)return'B+';if(s>=75)return'B';return'B-';}
+function sgc(s){if(s>=90)return'gA';if(s>=85)return'gAm';if(s>=80)return'gBp';return'gB';}
+function sgcol(s){if(s>=90)return'#28c840';if(s>=85)return'#5ec4ff';if(s>=80)return'#febc2e';return'#ff79c6';}
+function calcGPA(d){return(d.reduce((a,[,s])=>a+sgpa(s),0)/d.length).toFixed(2);}
 
-  let dragging=false, ox=0, oy=0;
+const gpaMap={'g10s1':calcGPA(gr10s1),'g10s2':calcGPA(gr10s2),'g11s1':calcGPA(gr11s1)};
+const cumGPA=((+gpaMap.g10s1+(+gpaMap.g10s2)+(+gpaMap.g11s1))/3).toFixed(2);
 
-  // Mouse
-  tb.addEventListener('mousedown',e=>{
-    if(e.target.classList.contains('tl'))return;
-    dragging=true;
-    const r=el.getBoundingClientRect();
-    ox=e.clientX-r.left; oy=e.clientY-r.top;
-    el.style.zIndex=++topZ;
-    e.preventDefault();
-  });
-  document.addEventListener('mousemove',e=>{
-    if(!dragging)return;
-    el.style.left=`${e.clientX-ox}px`;
-    el.style.top=`${e.clientY-oy}px`;
-    el.style.right='auto'; el.style.bottom='auto';
-  });
-  document.addEventListener('mouseup',()=>{ dragging=false; });
-
-  // Touch
-  tb.addEventListener('touchstart',e=>{
-    if(e.target.classList.contains('tl'))return;
-    const t=e.touches[0];
-    dragging=true;
-    const r=el.getBoundingClientRect();
-    ox=t.clientX-r.left; oy=t.clientY-r.top;
-    el.style.zIndex=++topZ;
-  },{passive:true});
-
-  document.addEventListener('touchmove',e=>{
-    if(!dragging)return;
-    const t=e.touches[0];
-    el.style.left=`${t.clientX-ox}px`;
-    el.style.top=`${t.clientY-oy}px`;
-    el.style.right='auto'; el.style.bottom='auto';
-    e.preventDefault();
-  },{passive:false});
-
-  document.addEventListener('touchend',()=>{ dragging=false; });
-}
-
-['home','about','achievements','grades','contact'].forEach(makeDraggable);
-
-// ── DOUBLE TAP for desktop icons on iPad ──
-const tapTrack={};
-function dblTap(id,e){
-  e.preventDefault();
-  const now=Date.now();
-  if(tapTrack[id]&&now-tapTrack[id]<400){ openWin(id); tapTrack[id]=0; }
-  else { tapTrack[id]=now; }
-}
-
-// ── COUNTERS ──
-function animCounters(){
-  document.querySelectorAll('[data-c]').forEach(el=>{
-    const t=+el.dataset.c; let c=0;
-    const step=()=>{ c=Math.min(c+Math.ceil(t/25),t); el.textContent=c; if(c<t)requestAnimationFrame(step); };
-    step();
+function renderG(data,tid){
+  const tb=document.getElementById(tid);tb.innerHTML='';
+  data.forEach(([sub,sc])=>{const g=sgpa(sc);const l=sgl(sc);const cl=sgc(sc);const col=sgcol(sc);
+    tb.insertAdjacentHTML('beforeend',`<tr class="gr"><td style="color:var(--t1)">${sub}</td><td style="color:var(--t1);font-family:'Fira Code',monospace;font-weight:600">${sc}</td><td><span class="gbg ${cl}">${l}</span></td><td style="color:var(--acc2);font-family:'Fira Code',monospace;font-weight:600">${g.toFixed(1)}</td><td style="min-width:70px"><div class="gbw"><div class="gbb" style="background:${col}" data-w="${sc}%"></div></div></td></tr>`);
   });
 }
+renderG(gr10s1,'tb10s1');renderG(gr10s2,'tb10s2');renderG(gr11s1,'tb11s1');
 
-// ── SKILL BARS ──
-function animSkills(){
-  document.querySelectorAll('.sk-bar').forEach(b=>{
-    b.style.width='0';
-    setTimeout(()=>{ b.style.width=b.dataset.w+'%'; },100);
-  });
+let gpaAnimDone=false;
+function animG(tabId,label){
+  document.querySelectorAll('.gbb').forEach(b=>{b.style.width='0';setTimeout(()=>{b.style.width=b.dataset.w||'0';},120);});
+  if(!gpaAnimDone){gpaAnimDone=true;const el=document.getElementById('gpan');let c=0;const t=+cumGPA;const s=()=>{c=Math.min(c+0.04,t);el.textContent=c.toFixed(2);if(c<t)requestAnimationFrame(s);};s();}
+  if(tabId&&gpaMap[tabId]){document.getElementById('semgpa').textContent=`${label||tabId}: GPA ${gpaMap[tabId]}`;}
 }
 
-// ── PROGRESS RINGS ──
-const ringsData=[
-  {lbl:'Trading\nDiscipline',pct:80,c1:'#7c6af7',c2:'#5ec4ff'},
-  {lbl:'Risk\nManagement',pct:85,c1:'#5ec4ff',c2:'#ff79c6'},
-  {lbl:'Tech\nAnalysis',pct:78,c1:'#ff79c6',c2:'#7c6af7'},
-  {lbl:'Academic',pct:88,c1:'#28c840',c2:'#5ec4ff'},
-];
-(function buildRings(){
-  const wrap=document.getElementById('rings-wrap');
-  const R=36, C=2*Math.PI*R;
-  ringsData.forEach((rd,i)=>{
-    const id='rg'+i;
-    const div=document.createElement('div'); div.className='ring-item';
-    div.innerHTML=`
-      <div style="position:relative;display:flex;align-items:center;justify-content:center;width:86px;height:86px;">
-        <svg class="ring-svg" width="86" height="86" viewBox="0 0 86 86">
-          <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="${rd.c1}"/><stop offset="100%" stop-color="${rd.c2}"/>
-          </linearGradient></defs>
-          <circle class="ring-bg" cx="43" cy="43" r="${R}"/>
-          <circle class="ring-fill" cx="43" cy="43" r="${R}"
-            stroke="url(#${id})"
-            stroke-dasharray="${C}" stroke-dashoffset="${C}"
-            data-target="${C*(1-rd.pct/100)}"
-            id="rf${i}"/>
-        </svg>
-        <div class="ring-center">${rd.pct}%</div>
-      </div>
-      <div class="ring-lbl" style="white-space:pre-line;">${rd.lbl}</div>`;
-    wrap.appendChild(div);
-  });
-})();
-
-function animRings(){
-  document.querySelectorAll('.ring-fill').forEach(r=>{
-    const target=parseFloat(r.dataset.target);
-    r.style.strokeDashoffset=r.getAttribute('stroke-dasharray');
-    setTimeout(()=>{ r.style.strokeDashoffset=target; },80);
-  });
-}
-
-// ── GRADES ──
-const s1=[
-  {sub:'Mathematics',sc:88,gr:'A'},{sub:'Physics',sc:82,gr:'A'},
-  {sub:'Chemistry',sc:79,gr:'B+'},{sub:'Indonesian Language',sc:90,gr:'A'},
-  {sub:'English',sc:85,gr:'A'},{sub:'Economics',sc:87,gr:'A'},{sub:'History',sc:81,gr:'A'},
-];
-const s2=[
-  {sub:'Mathematics',sc:91,gr:'A'},{sub:'Physics',sc:84,gr:'A'},
-  {sub:'Chemistry',sc:80,gr:'A'},{sub:'Indonesian Language',sc:92,gr:'A'},
-  {sub:'English',sc:88,gr:'A'},{sub:'Economics',sc:89,gr:'A'},{sub:'History',sc:83,gr:'A'},
-];
-function renderGrades(data,tbid){
-  const tb=document.getElementById(tbid); tb.innerHTML='';
-  data.forEach(d=>{
-    const cls=d.gr.startsWith('A')?'ga':'gb';
-    const col=d.gr.startsWith('A')?'#28c840':'#5ec4ff';
-    tb.insertAdjacentHTML('beforeend',`
-      <tr class="gr">
-        <td style="color:#f0f0f5;">${d.sub}</td>
-        <td style="color:#f0f0f5;font-family:'Fira Code',monospace;font-weight:600;">${d.sc}</td>
-        <td><span class="gbadge ${cls}">${d.gr}</span></td>
-        <td style="min-width:90px;"><div class="gbar-wrap"><div class="gbar" style="background:${col};" data-w="${d.sc}%"></div></div></td>
-      </tr>`);
-  });
-}
-renderGrades(s1,'tb1');
-renderGrades(s2,'tb2');
-
-function animGrades(){
-  document.querySelectorAll('.gbar').forEach(b=>{ b.style.width='0'; setTimeout(()=>b.style.width=b.dataset.w,120); });
-  let g=0;
-  const el=document.getElementById('gpa-num');
-  const step=()=>{ g=Math.min(g+0.06,3.7); el.textContent=g.toFixed(1); if(g<3.7)requestAnimationFrame(step); };
-  step();
-}
-
-function switchSem(btn,id){
-  document.querySelectorAll('.sem-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('s1').style.display='none';
-  document.getElementById('s2').style.display='none';
+function switchG(btn,id,label){
+  document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  ['g10s1','g10s2','g11s1','g11s2','g12s1'].forEach(x=>{document.getElementById(x).style.display='none';});
   document.getElementById(id).style.display='block';
-  setTimeout(animGrades,100);
+  setTimeout(()=>animG(id,label),80);
 }
 
-// ── NOTIFICATION ──
-let nTimer;
-function notify(ico,ttl,msg){
-  document.getElementById('n-ico').textContent=ico;
-  document.getElementById('n-ttl').textContent=ttl;
-  document.getElementById('n-msg').textContent=msg;
-  const n=document.getElementById('notif');
-  n.classList.add('show'); clearTimeout(nTimer);
-  nTimer=setTimeout(()=>n.classList.remove('show'),3500);
+// ACHIEVEMENTS TABS
+function switchAch(btn,id){
+  document.querySelectorAll('.actab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  ['abiz','atrade','ajob','acerts'].forEach(x=>{document.getElementById(x).style.display='none';});
+  document.getElementById(id).style.display='block';
+  if(id==='acerts')buildCerts();
 }
 
-// ── SEND MESSAGE ──
-function sendMsg(){
-  const n=document.getElementById('cn').value;
-  const e=document.getElementById('ce').value;
-  const m=document.getElementById('cm').value;
-  if(!n||!e||!m){ notify('⚠️','Incomplete','Please fill in all fields'); return; }
-  notify('✅','Message Sent!',`Thanks ${n}, I'll reply soon!`);
-  document.getElementById('cn').value='';
-  document.getElementById('ce').value='';
-  document.getElementById('cm').value='';
-}
-
-// ── SPOTLIGHT ──
-const spAll=[
-  {ico:'fa-home',nm:'Home',fn:()=>openWin('home')},
-  {ico:'fa-user',nm:'About Me',fn:()=>openWin('about')},
-  {ico:'fa-trophy',nm:'Achievements',fn:()=>openWin('achievements')},
-  {ico:'fa-chart-bar',nm:'Grades',fn:()=>openWin('grades')},
-  {ico:'fa-envelope',nm:'Contact',fn:()=>openWin('contact')},
+// CERTIFICATES
+const certs=[
+  {t:'Analyze Investment Banking & Financial Market Systems',i:'EDUCBA',d:'Feb 22, 2026',e:'📊',url:'https://coursera.org/verify/L6FJF18LFOVJ'},
+  {t:'Analyze Mortgage-Backed Securities and Credit Risk',i:'EDUCBA',d:'Feb 22, 2026',e:'🏦',url:'https://coursera.org/verify/TLGEDTSYXNF1'},
+  {t:'Analyze Markets Using Technical Analysis & Chart Patterns',i:'EDUCBA',d:'Feb 22, 2026',e:'📈',url:'https://coursera.org/verify/ILWZEH3T4JCN'},
+  {t:'Behavioral Finance',i:'Duke University',d:'Feb 22, 2026',e:'🧠',url:'https://coursera.org/verify/8EAOVBL5ZV4A'},
+  {t:'Understanding Financial Markets',i:'University of Geneva',d:'Feb 22, 2026',e:'🌍',url:'https://coursera.org/verify/JLJM9ZR9K3DR'},
+  {t:'Fundamentals of Financial Analysis',i:'London Business School',d:'Feb 22, 2026',e:'📋',url:'https://coursera.org/verify/B7PY2F5RH05X'},
+  {t:'Fundamentals of International Business',i:'University of London',d:'Feb 23, 2026',e:'🌐',url:'https://coursera.org/verify/8DU9KR8LBN3O'},
+  {t:'Business Impact',i:'Duke University',d:'Feb 23, 2026',e:'💥',url:'https://coursera.org/verify/XSL6DDNGRKV4'},
+  {t:"Analyze Apple's Stock and Financials with Bloomberg Terminal",i:'Coursera Project',d:'Feb 23, 2026',e:'🍎',url:'https://coursera.org/verify/17MLAD2UXTQ7'},
+  {t:'Stock Valuation with Dividend Discount Model',i:'Coursera Project',d:'Feb 23, 2026',e:'💹',url:'https://coursera.org/verify/8IZNK21MIAWX'},
+  {t:'Construct Stock Market Indices',i:'Coursera Project',d:'Feb 23, 2026',e:'📉',url:'https://coursera.org/verify/4YWWANNVQ5U6'},
+  {t:'Investment Risk Management',i:'Coursera Project',d:'Feb 23, 2026',e:'⚖️',url:'https://coursera.org/verify/XWV37BIZ3Z8R'},
+  {t:'Global Financial Markets and Instruments',i:'Rice University',d:'Feb 23, 2026',e:'🏛️',url:'https://coursera.org/verify/8XWXRP1W5F7U'},
+  {t:'Introduction to Financial Engineering and Risk Management',i:'Columbia University',d:'Feb 24, 2026',e:'🎓',url:'https://coursera.org/verify/A5MHP520NQY0'},
+  {t:'Impact Investment Finance',i:'Duke University',d:'Feb 24, 2026',e:'🌱',url:'https://coursera.org/verify/X68OXCZCCZW6'},
+  {t:'Financial Statements',i:'Duke University',d:'Feb 24, 2026',e:'📑',url:'https://coursera.org/verify/P17IPBPTRC0G'},
+  {t:'Business Growth Strategy',i:'University of Virginia',d:'Feb 24, 2026',e:'📣',url:'https://coursera.org/verify/X279GXI4B5TT'},
+  {t:'Fundamentals of Marketing Strategy',i:'University of London',d:'Feb 24, 2026',e:'🎯',url:'https://coursera.org/verify/66EFIUDJVWDG'},
+  {t:'Corporate Finance Fundamentals',i:'Corporate Finance Institute',d:'Feb 25, 2026',e:'💼',url:'https://coursera.org/verify/QLX7V7Y27XUK'},
+  {t:'ChatGPT for Beginners: Using AI for Market Research',i:'Coursera Project',d:'Feb 27, 2026',e:'🤖',url:'https://coursera.org/verify/KHTG82QBI05L'},
+  {t:'GenAI Basics — How LLMs Work',i:'Duke University',d:'Feb 27, 2026',e:'🧬',url:'https://coursera.org/verify/YEAMTINOT8M8'},
+  {t:'Introduction to CRM with HubSpot',i:'Coursera Project',d:'Feb 27, 2026',e:'🤝',url:'https://coursera.org/verify/1SR7DJB9LVZI'},
+  {t:'Getting Started with Microsoft Word',i:'Coursera Project',d:'Feb 27, 2026',e:'📝',url:'https://coursera.org/verify/VANCP5XP4ZL0'},
+  {t:'Getting Started with Microsoft Excel',i:'Coursera Project',d:'Feb 27, 2026',e:'📊',url:'https://coursera.org/verify/1OHNXU1JUDOJ'},
+  {t:'ChatGPT for Beginners: Save time with Microsoft Excel',i:'Coursera Project',d:'Feb 27, 2026',e:'⚡',url:'https://coursera.org/verify/6LZ3GDWDQ82K'},
+  {t:'Introduction to Microsoft Excel',i:'Coursera Project',d:'Feb 27, 2026',e:'📗',url:'https://coursera.org/verify/ELNB8RZ4T3LX'},
 ];
-function openSpotlight(){
-  document.getElementById('spotlight').classList.add('open');
-  document.getElementById('sp-input').value='';
-  document.getElementById('sp-input').focus();
-  spSearch('');
+let certsBuilt=false;
+function buildCerts(){
+  if(certsBuilt)return;certsBuilt=true;
+  const cl=document.getElementById('certlist');
+  certs.forEach((c,i)=>{
+    cl.insertAdjacentHTML('beforeend',`<div class="citem"><div class="cnum">${c.e}</div><div class="cinfo"><div class="ctitle">${c.t}</div><div class="cissuer">🏛️ ${c.i}</div><div class="cdate">📅 ${c.d}</div><a class="cverify" href="${c.url}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt" style="font-size:10px"></i> Verify Certificate</a></div><div class="cnum2">#${String(i+1).padStart(2,'0')}</div></div>`);
+  });
 }
-function closeSpotlight(e){ if(e.target===document.getElementById('spotlight')) document.getElementById('spotlight').classList.remove('open'); }
-function spSearch(q){
-  const res=document.getElementById('sp-results');
-  const f=spAll.filter(s=>s.nm.toLowerCase().includes(q.toLowerCase()));
-  res.innerHTML=f.map((s,i)=>`
-    <div class="sp-row${i===0?' sel':''}" id="spr${i}">
-      <i class="fas ${s.ico}"></i>
-      <span class="sp-name">${s.nm}</span>
-    </div>`).join('');
-  f.forEach((s,i)=>{ const el=document.getElementById('spr'+i); if(el) el.onclick=()=>{ s.fn(); document.getElementById('spotlight').classList.remove('open'); }; });
-}
-function spKey(e){ if(e.key==='Escape') document.getElementById('spotlight').classList.remove('open'); if(e.key==='Enter'){ const s=document.querySelector('.sp-row.sel'); if(s)s.click(); } }
 
-// ── CONTEXT MENU ──
-document.addEventListener('contextmenu',e=>{ e.preventDefault(); const m=document.getElementById('ctx'); m.style.left=e.clientX+'px'; m.style.top=e.clientY+'px'; m.classList.add('open'); });
+// NOTIFICATION
+let nT;
+function notify(ico,ttl,msg){document.getElementById('nico').textContent=ico;document.getElementById('nttl').textContent=ttl;document.getElementById('ntmsg').textContent=msg;const n=document.getElementById('notif');n.classList.add('show');clearTimeout(nT);nT=setTimeout(()=>n.classList.remove('show'),4000);}
+
+// SEND
+function sendMsg(){const n=document.getElementById('cn').value,e=document.getElementById('ce').value,m=document.getElementById('cm').value;if(!n||!e||!m){notify('⚠️','Incomplete','Please fill all fields');return;}notify('✅','Message Sent!',`Thanks ${n}! I'll reply soon 🙏`);['cn','ce','cm'].forEach(id=>{document.getElementById(id).value='';});}
+
+// SPOTLIGHT
+const spAll=[{ico:'fa-home',nm:'Home',fn:()=>ow('h')},{ico:'fa-user',nm:'About Me',fn:()=>ow('a')},{ico:'fa-trophy',nm:'Achievements',fn:()=>ow('ac')},{ico:'fa-chart-bar',nm:'Grades',fn:()=>ow('g')},{ico:'fa-envelope',nm:'Contact',fn:()=>ow('co')}];
+function openSpl(){document.getElementById('spl').classList.add('open');document.getElementById('spinput').value='';document.getElementById('spinput').focus();spSearch('');}
+function closeSpl(e){if(e.target===document.getElementById('spl'))document.getElementById('spl').classList.remove('open');}
+function spSearch(q){const res=document.getElementById('spres');const f=spAll.filter(s=>s.nm.toLowerCase().includes(q.toLowerCase()));res.innerHTML=f.map((s,i)=>`<div class="sprow${i===0?' sel':''}" id="spr${i}"><i class="fas ${s.ico}"></i><span class="spnm">${s.nm}</span></div>`).join('');f.forEach((s,i)=>{const el=document.getElementById('spr'+i);if(el)el.onclick=()=>{s.fn();document.getElementById('spl').classList.remove('open');};});}
+function spKey(e){if(e.key==='Escape')document.getElementById('spl').classList.remove('open');if(e.key==='Enter'){const s=document.querySelector('.sprow.sel');if(s)s.click();}}
+
+// CTX
+document.addEventListener('contextmenu',e=>{e.preventDefault();const m=document.getElementById('ctx');m.style.left=e.clientX+'px';m.style.top=e.clientY+'px';m.classList.add('open');});
 document.addEventListener('click',closeCtx);
-function closeCtx(){ document.getElementById('ctx').classList.remove('open'); }
+function closeCtx(){document.getElementById('ctx').classList.remove('open');}
 
-// ── KEYBOARD ──
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') document.getElementById('spotlight').classList.remove('open');
-  if((e.metaKey||e.ctrlKey)&&e.key===' '){ e.preventDefault(); openSpotlight(); }
-});
+// KEYBOARD
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('spl').classList.remove('open');if((e.metaKey||e.ctrlKey)&&e.key===' '){e.preventDefault();openSpl();}});
 
-// ── INIT ──
-setTimeout(()=>{ openWin('home'); notify('👋','Welcome!','Tap dock icons or double-tap desktop icons to explore'); },400);
+// INIT
+setTimeout(()=>{ow('h');notify('👋','Welcome!','Surya Dharma\'s Portfolio — Tap dock icons to explore!');},400);
 </script>
 
 </body>
